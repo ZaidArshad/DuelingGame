@@ -1,4 +1,6 @@
 #include <GLFW/glfw3.h>
+#include "Sprite.h"
+#include "AppTools.h"
 
 int main(void)
 {
@@ -9,7 +11,7 @@ int main(void)
         return -1;
 
     /* Create a windowed mode window and its OpenGL context */
-    window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
+    window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "DuelingGame", NULL, NULL);
     if (!window)
     {
         glfwTerminate();
@@ -20,19 +22,25 @@ int main(void)
     glfwMakeContextCurrent(window);
 
     double xpos, ypos;
+
+    Sprite box = Sprite(200, 200, 50, 50);
+
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
     {
         glfwGetCursorPos(window, &xpos, &ypos);
-
+        box.setPosition(xpos, ypos);
         /* Render here */
         glClear(GL_COLOR_BUFFER_BIT);
 
-        glBegin(GL_TRIANGLES);
-        glVertex2d((xpos-320)/320, (240-ypos)/240);
-        glVertex2d(0.5, 0.5);
-        glVertex2d(-0.5, -0.5);
-        glEnd();
+        box.drawBox();
+        //glBegin(GL_TRIANGLES);
+        //glVertex2d((xpos-320)/320, (240-ypos)/240);
+        //glVertex2d(0.5, 0.5);
+        //glVertex2d(-0.5, -0.5);
+        //glEnd();
+
+
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window);
