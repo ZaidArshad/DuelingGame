@@ -1,7 +1,9 @@
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include "Box.hpp"
 #include "AppTools.hpp"
 #include "InputController.hpp"
+#include<iostream>
 
 int main(void)
 {
@@ -9,7 +11,9 @@ int main(void)
 
     /* Initialize the library */
     if (!glfwInit())
+    {
         return -1;
+    }
 
     /* Create a windowed mode window and its OpenGL context */
     window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "DuelingGame", NULL, NULL);
@@ -21,6 +25,12 @@ int main(void)
 
     /* Make the window's context current */
     glfwMakeContextCurrent(window);
+
+    if (glewInit() != GLEW_OK)
+    {
+        std::cout << "Error initializing GLEW" << std::endl;
+        return -1;
+    }
 
     double xpos = 0;
     double ypos = 0;
