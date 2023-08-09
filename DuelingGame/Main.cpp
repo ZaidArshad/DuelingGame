@@ -1,5 +1,5 @@
 #include <GLFW/glfw3.h>
-#include "Sprite.h"
+#include "Box.h"
 #include "AppTools.h"
 
 int main(void)
@@ -23,7 +23,7 @@ int main(void)
 
     double xpos, ypos;
 
-    Sprite box = Sprite(200, 200, 50, 50);
+    Box box = Box(200, 200, 50, 50);
 
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))

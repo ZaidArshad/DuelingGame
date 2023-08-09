@@ -1,8 +1,8 @@
-#include "Sprite.h"
+#include "Box.h"
 #include "AppTools.h"
 #include <GLFW/glfw3.h>
 
-Sprite::Sprite(double x, double y, double w, double h)
+Box::Box(double x, double y, double w, double h)
 {
 	xPos = x;
 	yPos = y;
@@ -10,7 +10,7 @@ Sprite::Sprite(double x, double y, double w, double h)
 	height = h;
 }
 
-void Sprite::drawBox()
+void Box::drawBox()
 {
 	double left = AppTools::normalizeX(xPos);
 	double right = AppTools::normalizeX(xPos+width);
@@ -25,7 +25,7 @@ void Sprite::drawBox()
 }
 
 
-void Sprite::setPosition(double x, double y)
+void Box::setPosition(double x, double y)
 {
 	xPos = x;
 	yPos = y;

@@ -1,5 +1,5 @@
 #pragma once
-class Sprite
+class Box
 {
 private:
 	double xPos;
@@ -7,7 +7,7 @@ private:
 	double width;
 	double height;
 public:
-	Sprite(double x, double y, double w, double h);
+	Box(double x, double y, double w, double h);
 	void drawBox();
 	void setPosition(double x, double y);
 };
