@@ -1,7 +1,7 @@
 #include <GLFW/glfw3.h>
-#include "Box.h"
-#include "AppTools.h"
-#include "InputController.h"
+#include "Box.hpp"
+#include "AppTools.hpp"
+#include "InputController.hpp"
 
 int main(void)
 {

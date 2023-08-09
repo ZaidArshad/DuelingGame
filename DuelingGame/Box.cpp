@@ -1,5 +1,5 @@
-#include "Box.h"
-#include "AppTools.h"
+#include "Box.hpp"
+#include "AppTools.hpp"
 #include <GLFW/glfw3.h>
 
 Box::Box(double x, double y, double w, double h)

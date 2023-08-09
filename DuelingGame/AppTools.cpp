@@ -1,4 +1,4 @@
-#include "AppTools.h"
+#include "AppTools.hpp"
 
 double AppTools::normalizeX(double position)
 {
