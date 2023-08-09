@@ -15,7 +15,7 @@ Box::Box(double x, double y, double w, double h)
 void Box::drawBox()
 {
 	glBindVertexArray(VAO);
-	glDrawArrays(GL_LINE_LOOP, 0, 4);
+	glDrawArrays(GL_TRIANGLES, 0, 6);
 }
 
 void Box::setPosition(double x, double y)
@@ -26,16 +26,18 @@ void Box::setPosition(double x, double y)
 	double right = AppTools::normalizeX(xPos + width);
 	double top = AppTools::normalizeY(yPos);
 	double bottom = AppTools::normalizeY(yPos + height);
-	double positions[8] =
+	double positions[12] =
 	{
 		left,  top,
 		right, top,
 		left,  bottom,
+		left, bottom,
+		right, top,
 		right, bottom
 	};
 
 	glBindBuffer(GL_ARRAY_BUFFER, buffer);
-	glBufferData(GL_ARRAY_BUFFER, 8 * sizeof(double), positions, GL_DYNAMIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, 12 * sizeof(double), positions, GL_DYNAMIC_DRAW);
 }
 
 void Box::generateBuffer()
@@ -43,6 +45,7 @@ void Box::generateBuffer()
 	glGenVertexArrays(1, &VAO);
 	glBindVertexArray(VAO);
 
+	// Create the buffer and set the vertex data
 	glGenBuffers(1, &buffer);
 	glBindBuffer(GL_ARRAY_BUFFER, buffer);
 	setPosition(xPos, yPos);

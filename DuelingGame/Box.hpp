@@ -11,10 +11,13 @@ public:
 private:
 	void generateBuffer();
 
+	// Used to calculate dimensions
 	double xPos;
 	double yPos;
 	double width;
 	double height;
+
+	// Encapsulates the box's buffer
 	GLuint VAO;
 	GLuint buffer;
 };
