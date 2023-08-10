@@ -72,8 +72,9 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)src\Controller;$(SolutionDir)src\Helper;$(SolutionDir)src\Model;$(SolutionDir)src\Shader;$(IncludePath)</IncludePath>
     <LibraryPath>D:\Desktop_Folders\Projects\C++\DuelingGame\DuelingGame\Libraries\lib;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)build\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -164,15 +165,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AppTools.cpp" />
-    <ClCompile Include="InputController.cpp" />
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Box.cpp" />
+    <ClCompile Include="src\Shader\Shader.cpp" />
+    <ClCompile Include="src\Helper\AppTools.cpp" />
+    <ClCompile Include="src\Controller\InputController.cpp" />
+    <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\Model\Box.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AppTools.hpp" />
-    <ClInclude Include="Box.hpp" />
-    <ClInclude Include="InputController.hpp" />
+    <ClInclude Include="src\Shader\Shader.hpp" />
+    <ClInclude Include="src\Helper\AppTools.hpp" />
+    <ClInclude Include="src\Model\Box.hpp" />
+    <ClInclude Include="src\Controller\InputController.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\Shaders\Fragment.shader" />
+    <None Include="res\Shaders\Vertex.shader" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,8 +1,9 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-#include "Box.hpp"
-#include "AppTools.hpp"
-#include "InputController.hpp"
+#include "Model/Box.hpp"
+#include "Helper/AppTools.hpp"
+#include "Controller/InputController.hpp"
+#include "Shader/Shader.hpp"
 #include<iostream>
 
 int main(void)
@@ -38,23 +39,11 @@ int main(void)
     Box box = Box(200, 200, 50, 50);
     InputController inputController = InputController(2);
 
-    float positions[] =
-    {
-        0.5, 0.5,
-        -0.5, 0.5,
-        -0.5, -0.5
-    };
+    Box box2 = Box(200, 200, 100, 100);
 
-    GLuint VAO;
-    glGenVertexArrays(1, &VAO);
-    glBindVertexArray(VAO);
-
-    GLuint buffer;
-    glGenBuffers(1, &buffer);
-    glBindBuffer(GL_ARRAY_BUFFER, buffer);
-    glBufferData(GL_ARRAY_BUFFER, 6*sizeof(float), positions, GL_STATIC_DRAW);
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0);
+    Shader shader;
+    shader.generateShader("res/Shaders/Vertex.shader", "res/Shaders/Fragment.shader");
+    shader.useShader();
 
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window) && !glfwGetKey(window, GLFW_KEY_ESCAPE))
@@ -66,8 +55,7 @@ int main(void)
         glClear(GL_COLOR_BUFFER_BIT);
 
         box.drawBox();
-        glBindVertexArray(VAO);
-        glDrawArrays(GL_TRIANGLES, 0, 3);
+        box2.drawBox();
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window);
@@ -75,6 +63,8 @@ int main(void)
         /* Poll for and process events */
         glfwPollEvents();
     }
+
+    shader.deleteShader();
 
     glfwTerminate();
     return 0;
