@@ -9,7 +9,7 @@ public:
 	void drawBox();
 	void setPosition(double x, double y);
 private:
-	void generateBuffer();
+	void generateBuffers();
 
 	// Used to calculate dimensions
 	double xPos;
@@ -19,6 +19,7 @@ private:
 
 	// Encapsulates the box's buffer
 	GLuint VAO;
+	GLuint IBO;
 	GLuint buffer;
 };
 
