@@ -1,4 +1,6 @@
 #include "Shader.hpp"
+#include "Logger.hpp"
+
 #include<fstream>
 #include<sstream>
 #include<iostream>
@@ -42,10 +44,12 @@ Status Shader::compileShader(GLuint& shader, std::string& shaderSource, GLenum t
         glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &length);
         char* message = (char*) _malloca(length * sizeof(char));
         glGetShaderInfoLog(shader, length, &length, message);
-        std::cout << "Failed to compile " 
+        std::stringstream log;
+        log << "Failed to compile " 
                   << (type == GL_VERTEX_SHADER ? "vertex" : "fragment")
-                  << " shader." << std::endl;
-        std::cout << message << std::endl;
+                  << " shader.\n"
+                  << message << std::endl;
+        Logger::log(log.str());
         glDeleteShader(shader);
         return Status::BAD;
     }

@@ -35,7 +35,7 @@ void Box::setPosition(double x, double y)
 	};
 
 	glBindBuffer(GL_ARRAY_BUFFER, VBO);
-	glBufferData(GL_ARRAY_BUFFER, 8 * sizeof(double), positions, GL_DYNAMIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, 8 * sizeof(double), positions, GL_STATIC_DRAW);
 }
 
 void Box::generateBuffers()
@@ -54,7 +54,7 @@ void Box::generateBuffers()
 		1, 2, 3
 	};
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6 * sizeof(unsigned int), indices, GL_DYNAMIC_DRAW);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6 * sizeof(unsigned int), indices, GL_STATIC_DRAW);
 
 	// Binds the buffer in setPosition
 	setPosition(xPos, yPos);

@@ -1,10 +1,15 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
+
 #include "Model/Box.hpp"
 #include "Helper/AppTools.hpp"
+#include "Helper/Logger.hpp"
+#include "Helper/GLError.hpp"
 #include "Controller/InputController.hpp"
 #include "Shader/Shader.hpp"
-#include<iostream>
+
+#include <iostream>
+#include <fstream>
 
 int main(void)
 {
@@ -13,10 +18,12 @@ int main(void)
     /* Initialize the library */
     if (!glfwInit())
     {
+        Logger::log("Error initializing GLFW\n");
         return -1;
     }
 
     /* Create a windowed mode window and its OpenGL context */
+    glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE);
     window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "DuelingGame", NULL, NULL);
     if (!window)
     {
@@ -29,9 +36,13 @@ int main(void)
 
     if (glewInit() != GLEW_OK)
     {
-        std::cout << "Error initializing GLEW" << std::endl;
+        Logger::log("Error initializing GLEW\n");
         return -1;
     }
+
+    Logger::log((const char*)glGetString(GL_VERSION));
+    glEnable(GL_DEBUG_OUTPUT);
+    glDebugMessageCallback(MessageCallback, 0);
 
     double xpos = 0;
     double ypos = 0;
