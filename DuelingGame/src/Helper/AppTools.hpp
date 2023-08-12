@@ -16,8 +16,6 @@ class AppTools
 public:
 	static double normalizeX(double position);
 	static double normalizeY(double position);
-	static void clearOpenGLErrors();
-	static void checkOpenGLError();
 };
 
 
