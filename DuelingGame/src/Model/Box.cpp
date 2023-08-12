@@ -34,17 +34,8 @@ void Box::setPosition(double x, double y)
 		right, bottom
 	};
 
-	unsigned int indices[6] =
-	{
-		0, 1, 2,
-		1, 2, 3
-	};
-
-	glBindBuffer(GL_ARRAY_BUFFER, buffer);
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 	glBufferData(GL_ARRAY_BUFFER, 8 * sizeof(double), positions, GL_DYNAMIC_DRAW);
-
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6 * sizeof(unsigned int), indices, GL_DYNAMIC_DRAW);
 }
 
 void Box::generateBuffers()
@@ -53,8 +44,17 @@ void Box::generateBuffers()
 	glBindVertexArray(VAO);
 
 	// Create the buffer and set the vertex data
-	glGenBuffers(1, &buffer);
+	glGenBuffers(1, &VBO);
 	glGenBuffers(1, &IBO);
+
+	// Setting the index buffer for these vertices [(0,0),(0,1),(1,0),(1,1)]
+	unsigned int indices[6] =
+	{
+		0, 1, 2,
+		1, 2, 3
+	};
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, 6 * sizeof(unsigned int), indices, GL_DYNAMIC_DRAW);
 
 	// Binds the buffer in setPosition
 	setPosition(xPos, yPos);

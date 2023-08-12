@@ -17,9 +17,9 @@ private:
 	double width;
 	double height;
 
-	// Encapsulates the box's buffer
+	// Encapsulates the box's buffers
 	GLuint VAO;
+	GLuint VBO;
 	GLuint IBO;
-	GLuint buffer;
 };
 
