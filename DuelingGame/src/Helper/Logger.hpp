@@ -1,4 +1,9 @@
 #pragma once
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
+
+#include "GLError.hpp"
+
 #include <string>
 #include <fstream>
 
@@ -9,13 +14,13 @@ class Logger
 {
 public:
 	static void log(std::string msg);
+	static void log(GLError err);
 
 private:
 	Logger();
 
 	std::ofstream outFile;
-	std::string lastLog;
-	unsigned int lastLogCount;
+	GLError lastErr;
 
 	static Logger instance;
 };

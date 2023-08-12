@@ -4,7 +4,6 @@
 #include "Model/Box.hpp"
 #include "Helper/AppTools.hpp"
 #include "Helper/Logger.hpp"
-#include "Helper/GLError.hpp"
 #include "Controller/InputController.hpp"
 #include "Shader/Shader.hpp"
 

@@ -1,4 +1,7 @@
 #include "Logger.hpp"
+
+#include "GLErrorMaps.h"
+
 #include <iostream>
 #include <sstream>
 
@@ -13,33 +16,22 @@ void Logger::log(std::string msg)
 {
 	std::cout << msg << std::endl;
 	instance.outFile << msg << std::endl;
-	std::stringstream repeatCountMsg;
+}
 
-	// To prevent spamming of the same log message
-	if (instance.lastLog != msg)
-	{
-		if (instance.lastLogCount > 0)
-		{
-			repeatCountMsg << "Repeated last line "
-						   << instance.lastLogCount << "times\n";
-			std::cout << repeatCountMsg.str();
-			instance.outFile << repeatCountMsg.str();
-		}
 
-		instance.lastLogCount = 0;
-		std::cout << msg << std::endl;
-		instance.outFile << msg << std::endl;
-	}
-	else if (instance.lastLogCount < 100)
+void Logger::log(GLError err)
+{
+	if (err.id != instance.lastErr.id)
 	{
-		instance.lastLogCount++;
+		std::stringstream log;
+		log << "[OpenGL Error] ("
+			<< "Severity: " << GLErrorSeverity[err.severity]
+			<< " Source: " << GLErrorSources[err.source]
+			<< " Type: " << GLErrorTypes[err.type]
+			<< " ID: " << err.id
+			<< " Message: " << err.message
+			<< ")" << std::endl;
+		Logger::log(log.str());
 	}
-	else if (instance.lastLogCount == 100)
-	{
-		repeatCountMsg << "Repeated last line 100+ times\n";
-		std::cout << repeatCountMsg.str();
-		instance.outFile << repeatCountMsg.str();
-		instance.lastLogCount++;
-	}
-	instance.lastLog = msg;
+	instance.lastErr = err;
 }

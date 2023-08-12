@@ -165,6 +165,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Helper\GLError.cpp" />
     <ClCompile Include="src\Helper\Logger.cpp" />
     <ClCompile Include="src\Shader\Shader.cpp" />
     <ClCompile Include="src\Helper\AppTools.cpp" />
@@ -174,6 +175,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Helper\GLError.hpp" />
+    <ClInclude Include="src\Helper\GLErrorMaps.h" />
     <ClInclude Include="src\Helper\Logger.hpp" />
     <ClInclude Include="src\Shader\Shader.hpp" />
     <ClInclude Include="src\Helper\AppTools.hpp" />

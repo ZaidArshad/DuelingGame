@@ -3,6 +3,8 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
+#include <iostream>
+
 Box::Box(double x, double y, double w, double h)
 {
 	xPos = x;
