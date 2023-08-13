@@ -36,7 +36,7 @@
     <ClCompile Include="src\Helper\Logger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Helper\GLError.cpp">
+    <ClCompile Include="src\Error\GLError.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -56,10 +56,10 @@
     <ClInclude Include="src\Helper\Logger.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Helper\GLError.hpp">
+    <ClInclude Include="src\Error\GLError.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Helper\GLErrorMaps.h">
+    <ClInclude Include="src\Error\GLErrorMaps.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

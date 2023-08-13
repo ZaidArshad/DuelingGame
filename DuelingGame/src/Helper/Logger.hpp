@@ -22,5 +22,6 @@ private:
 	std::ofstream outFile;
 	GLError lastErr;
 
+	// Singleton instance
 	static Logger instance;
 };

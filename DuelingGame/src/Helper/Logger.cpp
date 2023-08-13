@@ -18,9 +18,9 @@ void Logger::log(std::string msg)
 	instance.outFile << msg << std::endl;
 }
 
-
 void Logger::log(GLError err)
 {
+	// Avoids spam from same object error
 	if (err.id != instance.lastErr.id)
 	{
 		std::stringstream log;

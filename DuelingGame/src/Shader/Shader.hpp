@@ -11,6 +11,7 @@ public:
 	Status generateShader(std::string vPath, std::string fPath);
 	void useShader();
 	void deleteShader();
+	void setFragmentColor(float r, float g, float b, float a);
 
 private:
 	Status compileShader(GLuint& shader, std::string& shaderSource, GLenum type);

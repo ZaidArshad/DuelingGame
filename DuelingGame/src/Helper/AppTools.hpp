@@ -2,14 +2,13 @@
 #include <string>
 #include <fstream>
 
+#define Status unsigned int
+
 static const int WINDOW_WIDTH = 640;
 static const int WINDOW_HEIGHT = 480;
 
-enum class Status : unsigned int
-{
-	OK = 0,
-	BAD = 1
-};
+static const Status STATUS_OK = 0U;
+static const Status STATUS_BAD = 1U;
 
 class AppTools
 {

@@ -3,10 +3,10 @@
 
 class InputController
 {
-private:
-	double velocity;
 public:
 	InputController(double v);
 	void move2D(GLFWwindow* window, double* x, double* y);
+private:
+	double velocity;
 };
 
