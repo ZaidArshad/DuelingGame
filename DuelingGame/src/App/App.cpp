@@ -14,13 +14,11 @@
 
 App::App()
 {
-
+    window = nullptr;
 }
 
 Status App::run()
 {
-    GLFWwindow* window;
-
     /* Initialize the library */
     if (!glfwInit())
     {
@@ -72,7 +70,7 @@ Status App::run()
     }
     shader.useShader();
 
-    /* Loop until the user closes the window */
+    ///* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window) && !glfwGetKey(window, GLFW_KEY_ESCAPE))
     {
         inputController.move2D(window, &xpos, &ypos);
@@ -99,6 +97,5 @@ Status App::run()
     }
 
     shader.deleteShader();
-
     glfwTerminate();
 }
