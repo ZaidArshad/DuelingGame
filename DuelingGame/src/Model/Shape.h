@@ -4,6 +4,7 @@
 
 #include <vector>
 
+// Base class for model objects
 class Shape
 {
 public:
