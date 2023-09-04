@@ -1,6 +1,6 @@
 #include "Logger.h"
 
-#include "GLErrorMaps.h"
+#include "Error/GLErrorMaps.h"
 
 #include <iostream>
 #include <sstream>

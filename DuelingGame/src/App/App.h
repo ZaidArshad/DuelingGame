@@ -3,7 +3,7 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
-#include "AppTools.h"
+#include "Helper/AppTools.h"
 
 class App
 {

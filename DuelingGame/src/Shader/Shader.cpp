@@ -1,5 +1,5 @@
 #include "Shader.h"
-#include "Logger.h"
+#include "Helper/Logger.h"
 
 #include<fstream>
 #include<sstream>

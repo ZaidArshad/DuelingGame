@@ -1,5 +1,5 @@
 #include "GLError.h"
-#include "Logger.h"
+#include "Helper/Logger.h"
 #include <sstream>
 // Used for glDebugMessageCallback
 void GLAPIENTRY MessageCallback(GLenum source,

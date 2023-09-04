@@ -6,11 +6,12 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include "Box.h"
-#include "AppTools.h"
-#include "Logger.h"
-#include "InputController.h"
-#include "Shader.h"
+#include "Model/Box.h"
+#include "Helper/AppTools.h"
+#include "Helper/Logger.h"
+#include "Controller/InputController.h"
+#include "Shader/Shader.h"
+#include "Renderer/Renderer.h"
 
 #include <iostream>
 #include <fstream>
@@ -55,13 +56,17 @@ Status App::run()
     glEnable(GL_DEBUG_OUTPUT);
     glDebugMessageCallback(MessageCallback, 0);
 
+    Renderer renderer;
+
     double xpos = 0;
     double ypos = 0;
 
     Box box = Box(200, 200, 50, 50);
     InputController inputController = InputController(2);
+    renderer.addShape(box);
 
     Box box2 = Box((WINDOW_WIDTH / 2) - 150, (WINDOW_HEIGHT / 2) - 150, 300, 300);
+    renderer.addShape(box2);
 
     Shader shader;
     Status err = STATUS_OK;
@@ -73,6 +78,7 @@ Status App::run()
     }
     shader.useShader();
 
+
     ///* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window) && !glfwGetKey(window, GLFW_KEY_ESCAPE))
     {
@@ -81,18 +87,17 @@ Status App::run()
         box.setPosition(xpos, ypos);
 
         shader.setFragmentColor(AppTools::normalizeX(xpos),
-            0.5f, -AppTools::normalizeY(ypos), 1.0f);
+                                0.5f,
+                                -AppTools::normalizeY(ypos),
+                                1.0f);
 
         std::cout << AppTools::normalizeX(xpos) << " "
-            << AppTools::normalizeY(ypos)
-            << " " << xpos << " " << ypos << std::endl;
+                  << AppTools::normalizeY(ypos)
+                  << " " << xpos << " " << ypos << std::endl;
 
-        ///* Render here */
-        glClear(GL_COLOR_BUFFER_BIT);
+        renderer.clear();
 
-        //shader.useShader();
-        box.draw();
-        box2.draw();
+        renderer.drawShapes();
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window);

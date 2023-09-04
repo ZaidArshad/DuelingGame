@@ -11,7 +11,6 @@ uniform mat4 model;
 uniform mat4 view;
 uniform mat4 proj;
 
-
 void main()
 {
 	// Outputs the positions/coordinates of all vertices
