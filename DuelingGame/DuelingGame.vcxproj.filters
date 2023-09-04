@@ -42,30 +42,42 @@
     <ClCompile Include="src\App\App.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\3rd\stb_image\stb_image.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Model\Shape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Model\Box.hpp">
+    <ClInclude Include="src\Model\Box.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Helper\AppTools.hpp">
+    <ClInclude Include="src\Helper\AppTools.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Controller\InputController.hpp">
+    <ClInclude Include="src\Controller\InputController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Shader\Shader.hpp">
+    <ClInclude Include="src\Shader\Shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Helper\Logger.hpp">
+    <ClInclude Include="src\Helper\Logger.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Error\GLError.hpp">
+    <ClInclude Include="src\Error\GLError.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Error\GLErrorMaps.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\App\App.hpp">
+    <ClInclude Include="src\App\App.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\3rd\stb_image\stb_image.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Model\Shape.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -74,5 +86,6 @@
       <Filter>Resource Files\Shaders</Filter>
     </None>
     <None Include="res\Shaders\Vertex.shader" />
+    <None Include="res\Shaders\Vertex3D.shader" />
   </ItemGroup>
 </Project>

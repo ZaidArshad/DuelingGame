@@ -1,13 +1,16 @@
-#include "App.hpp"
+#include "App.h"
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
-#include "Box.hpp"
-#include "AppTools.hpp"
-#include "Logger.hpp"
-#include "InputController.hpp"
-#include "Shader.hpp"
+#include "Box.h"
+#include "AppTools.h"
+#include "Logger.h"
+#include "InputController.h"
+#include "Shader.h"
 
 #include <iostream>
 #include <fstream>
@@ -73,6 +76,7 @@ Status App::run()
     ///* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window) && !glfwGetKey(window, GLFW_KEY_ESCAPE))
     {
+        //shader.useShader();
         inputController.move2D(window, &xpos, &ypos);
         box.setPosition(xpos, ypos);
 
@@ -86,8 +90,9 @@ Status App::run()
         ///* Render here */
         glClear(GL_COLOR_BUFFER_BIT);
 
-        box.drawBox();
-        box2.drawBox();
+        //shader.useShader();
+        box.draw();
+        box2.draw();
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window);
@@ -98,4 +103,5 @@ Status App::run()
 
     shader.deleteShader();
     glfwTerminate();
+    return err;
 }

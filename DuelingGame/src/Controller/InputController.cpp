@@ -1,4 +1,4 @@
-#include "InputController.hpp"
+#include "InputController.h"
 #include<iostream>
 
 InputController::InputController(double v)

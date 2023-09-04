@@ -1,4 +1,4 @@
-#include "Logger.hpp"
+#include "Logger.h"
 
 #include "GLErrorMaps.h"
 

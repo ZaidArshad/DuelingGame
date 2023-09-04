@@ -1,5 +1,5 @@
-#include "AppTools.hpp"
-#include "Logger.hpp"
+#include "AppTools.h"
+#include "Logger.h"
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>

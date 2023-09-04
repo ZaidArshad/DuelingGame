@@ -1,5 +1,5 @@
-#include "Shader.hpp"
-#include "Logger.hpp"
+#include "Shader.h"
+#include "Logger.h"
 
 #include<fstream>
 #include<sstream>
@@ -28,6 +28,11 @@ Status Shader::generateShader(std::string vPath, std::string fPath)
     glDeleteShader(vShader);
     glDeleteShader(fShader);
     return status;
+}
+
+GLuint Shader::getProgram()
+{
+    return program;
 }
 
 void Shader::useShader()
