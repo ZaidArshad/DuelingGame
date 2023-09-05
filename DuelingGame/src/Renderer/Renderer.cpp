@@ -12,14 +12,14 @@ Renderer::~Renderer()
 void Renderer::drawShapes()
 {
 	m_shader->useShader();
-	for (Shape& shape : m_shapes)
+	for (Shape* shape : m_shapes)
 	{
-		m_shader->setFragmentColor(shape.getColor());
-		shape.draw();
+		m_shader->setFragmentColor(shape->getColor());
+		shape->draw();
 	}
 }
 
-void Renderer::addShape(const Shape& shape)
+void Renderer::addShape(Shape* shape)
 {
 	m_shapes.push_back(shape);
 }

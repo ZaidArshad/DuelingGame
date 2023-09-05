@@ -38,7 +38,6 @@ GLuint Shader::getProgram()
 void Shader::useShader()
 {
 	glUseProgram(program);
-    setFragmentColor(Color{1.0f, 1.0f, 1.0f, 1.0f});
 }
 
 void Shader::deleteShader()
@@ -50,7 +49,7 @@ void Shader::setFragmentColor(const Color& color)
 {
     GLint location = glGetUniformLocation(program, "u_Color");
     glUniform4f(location, color.r, color.g, color.b, color.a);
-    std::cout << color.r << color.g << color.b << color.a << std::endl;
+    //std::cout << color.r << color.g << color.b << color.a << std::endl;
 }
 
 Status Shader::compileShader(GLuint& shader, std::string& shaderSource, GLenum type)

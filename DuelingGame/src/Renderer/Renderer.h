@@ -12,10 +12,10 @@ public:
 	Renderer(Shader* shader);
 	~Renderer();
 	void drawShapes();
-	void addShape(const Shape& shape);
+	void addShape(Shape* shape);
 	void clear();
 private:
-	std::vector<Shape> m_shapes;
+	std::vector<Shape*> m_shapes;
 	Shader* m_shader;
 };
 

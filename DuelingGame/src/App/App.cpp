@@ -73,10 +73,10 @@ Status App::run()
 
     Box box = Box(200, 200, 50, 50);
     InputController inputController = InputController(2);
-    renderer.addShape(box);
+    renderer.addShape(&box);
 
     Box box2 = Box((WINDOW_WIDTH / 2) - 150, (WINDOW_HEIGHT / 2) - 150, 300, 300);
-    renderer.addShape(box2);
+    renderer.addShape(&box2);
 
 
     ///* Loop until the user closes the window */

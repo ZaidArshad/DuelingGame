@@ -1,5 +1,6 @@
 #include "Shape.h"
 #include <algorithm>
+#include <iostream>
 
 Shape::Shape()
 {
@@ -8,7 +9,7 @@ Shape::Shape()
 	glGenBuffers(1, &m_VBO);
 	glGenBuffers(1, &m_IBO);
 
-	m_color = Color{1.0f, 1.0f, 1.0f, 1.0f};
+	m_color = Color{0.0f, 1.0f, 1.0f, 1.0f};
 }
 
 Shape::~Shape()
@@ -35,6 +36,7 @@ void Shape::setColor(float r, float g, float b, float a)
 	m_color.g = g;
 	m_color.b = b;
 	m_color.a = a;
+	std::cout << m_color.r << " " << r << std::endl;
 }
 
 Color Shape::getColor()
