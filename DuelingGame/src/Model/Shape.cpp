@@ -9,7 +9,7 @@ Shape::Shape()
 	glGenBuffers(1, &m_VBO);
 	glGenBuffers(1, &m_IBO);
 
-	m_color = Color{0.0f, 1.0f, 1.0f, 1.0f};
+	m_color = Color{1.0f, 1.0f, 1.0f, 1.0f};
 }
 
 Shape::~Shape()
@@ -43,6 +43,7 @@ Color Shape::getColor()
 void Shape::draw()
 {
 	glBindVertexArray(m_VAO);
+	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, nullptr);
 	glBindVertexArray(m_VAO);
 }

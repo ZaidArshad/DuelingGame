@@ -78,6 +78,10 @@ Status App::run()
     Box box2 = Box((WINDOW_WIDTH / 2) - 150, (WINDOW_HEIGHT / 2) - 150, 300, 300);
     renderer.addShape(&box2);
 
+    float r = 0;
+    float i = 0.005;
+
+    glfwSwapInterval(1);
 
     ///* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window) && !glfwGetKey(window, GLFW_KEY_ESCAPE))
@@ -88,8 +92,14 @@ Status App::run()
 
         box.setColor(AppTools::normalizeX(xpos),
             0.5f,
-            -AppTools::normalizeY(ypos),
+            AppTools::normalizeY(ypos),
             1.0f);
+
+        box2.setColor(r, 1.0-r, 1.0, 1.0);
+        std::cout << r << std::endl;
+        r += i;
+        if (r >= 1 || r <= 0) i *= -1;
+  
 
         std::cout << AppTools::normalizeX(xpos) << " "
                   << AppTools::normalizeY(ypos)
