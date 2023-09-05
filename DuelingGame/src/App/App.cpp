@@ -56,7 +56,17 @@ Status App::run()
     glEnable(GL_DEBUG_OUTPUT);
     glDebugMessageCallback(MessageCallback, 0);
 
-    Renderer renderer;
+    Shader shader;
+    Status err = STATUS_OK;
+    err = shader.generateShader("res/Shaders/Vertex.shader", "res/Shaders/Fragment.shader");
+    if (err == STATUS_BAD)
+    {
+        glfwTerminate();
+        return STATUS_BAD;
+    }
+    shader.useShader();
+
+    Renderer renderer(&shader);
 
     double xpos = 0;
     double ypos = 0;
@@ -68,16 +78,6 @@ Status App::run()
     Box box2 = Box((WINDOW_WIDTH / 2) - 150, (WINDOW_HEIGHT / 2) - 150, 300, 300);
     renderer.addShape(box2);
 
-    Shader shader;
-    Status err = STATUS_OK;
-    err = shader.generateShader("res/Shaders/Vertex.shader", "res/Shaders/Fragment.shader");
-    if (err == STATUS_BAD)
-    {
-        glfwTerminate();
-        return STATUS_BAD;
-    }
-    shader.useShader();
-
 
     ///* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window) && !glfwGetKey(window, GLFW_KEY_ESCAPE))
@@ -86,14 +86,14 @@ Status App::run()
         inputController.move2D(window, &xpos, &ypos);
         box.setPosition(xpos, ypos);
 
-        shader.setFragmentColor(AppTools::normalizeX(xpos),
-                                0.5f,
-                                -AppTools::normalizeY(ypos),
-                                1.0f);
+        box.setColor(AppTools::normalizeX(xpos),
+            0.5f,
+            -AppTools::normalizeY(ypos),
+            1.0f);
 
-        std::cout << AppTools::normalizeX(xpos) << " "
-                  << AppTools::normalizeY(ypos)
-                  << " " << xpos << " " << ypos << std::endl;
+        //std::cout << AppTools::normalizeX(xpos) << " "
+        //          << AppTools::normalizeY(ypos)
+        //          << " " << xpos << " " << ypos << std::endl;
 
         renderer.clear();
 

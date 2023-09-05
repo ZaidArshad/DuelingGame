@@ -1,22 +1,24 @@
 #pragma once
-#include "Helper/AppTools.h"
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <string>
+
+#include "Helper/AppTools.h"
+#include "Color.h"
 
 class Shader
 {
 public:
 	Shader();
-	Status generateShader(std::string vPath, std::string fPath);
+	Status generateShader(const std::string& vPath, const std::string& fPath);
 	GLuint getProgram();
 	void useShader();
 	void deleteShader();
-	void setFragmentColor(float r, float g, float b, float a);
+	void setFragmentColor(const Color& color);
 
 private:
 	Status compileShader(GLuint& shader, std::string& shaderSource, GLenum type);
-	std::string parseShaderFile(std::string& path);
+	std::string parseShaderFile(const std::string& path);
 
 	GLuint program;
 };

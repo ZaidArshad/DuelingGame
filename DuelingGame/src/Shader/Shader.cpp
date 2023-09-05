@@ -10,7 +10,7 @@ Shader::Shader()
     program = glCreateProgram();
 }
 
-Status Shader::generateShader(std::string vPath, std::string fPath)
+Status Shader::generateShader(const std::string& vPath, const std::string& fPath)
 {
     std::string vShaderSource = parseShaderFile(vPath);
     std::string fShaderSource = parseShaderFile(fPath);
@@ -38,7 +38,7 @@ GLuint Shader::getProgram()
 void Shader::useShader()
 {
 	glUseProgram(program);
-    setFragmentColor(1.0f, 1.0f, 1.0f, 1.0f);
+    setFragmentColor(Color{1.0f, 1.0f, 1.0f, 1.0f});
 }
 
 void Shader::deleteShader()
@@ -46,10 +46,11 @@ void Shader::deleteShader()
 	glDeleteProgram(program);
 }
 
-void Shader::setFragmentColor(float r, float g, float b, float a)
+void Shader::setFragmentColor(const Color& color)
 {
     GLint location = glGetUniformLocation(program, "u_Color");
-    glUniform4f(location, r, g, b, a);
+    glUniform4f(location, color.r, color.g, color.b, color.a);
+    std::cout << color.r << color.g << color.b << color.a << std::endl;
 }
 
 Status Shader::compileShader(GLuint& shader, std::string& shaderSource, GLenum type)
@@ -81,7 +82,7 @@ Status Shader::compileShader(GLuint& shader, std::string& shaderSource, GLenum t
     return STATUS_OK;
 }
 
-std::string Shader::parseShaderFile(std::string& path)
+std::string Shader::parseShaderFile(const std::string& path)
 {
 	std::ifstream stream(path);
 	std::stringstream buffer;

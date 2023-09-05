@@ -7,6 +7,8 @@ Shape::Shape()
 	glBindVertexArray(m_VAO);
 	glGenBuffers(1, &m_VBO);
 	glGenBuffers(1, &m_IBO);
+
+	m_color = Color{1.0f, 1.0f, 1.0f, 1.0f};
 }
 
 Shape::~Shape()
@@ -25,6 +27,19 @@ void Shape::setIndices(const std::vector<unsigned int>& indices)
 	m_indices = indices;
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_IBO);
 	glBufferData(GL_ELEMENT_ARRAY_BUFFER, m_indices.size() * sizeof(unsigned int), m_indices.data(), GL_STATIC_DRAW);
+}
+
+void Shape::setColor(float r, float g, float b, float a)
+{
+	m_color.r = r;
+	m_color.g = g;
+	m_color.b = b;
+	m_color.a = a;
+}
+
+Color Shape::getColor()
+{
+	return m_color;
 }
 
 void Shape::draw()

@@ -1,7 +1,8 @@
 #include "Renderer.h"
 
-Renderer::Renderer()
+Renderer::Renderer(Shader* shader)
 {
+	m_shader = shader;
 }
 
 Renderer::~Renderer()
@@ -10,8 +11,10 @@ Renderer::~Renderer()
 
 void Renderer::drawShapes()
 {
+	m_shader->useShader();
 	for (Shape& shape : m_shapes)
 	{
+		m_shader->setFragmentColor(shape.getColor());
 		shape.draw();
 	}
 }

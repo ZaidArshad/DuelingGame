@@ -178,6 +178,7 @@
     <ClCompile Include="src\Model\Box.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Shader\Color.h" />
     <ClInclude Include="src\Renderer\Renderer.h" />
     <ClInclude Include="src\Model\Shape.h" />
     <ClInclude Include="src\3rd\stb_image\stb_image.h" />
