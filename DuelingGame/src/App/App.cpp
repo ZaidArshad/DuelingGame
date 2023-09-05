@@ -91,9 +91,9 @@ Status App::run()
             -AppTools::normalizeY(ypos),
             1.0f);
 
-        //std::cout << AppTools::normalizeX(xpos) << " "
-        //          << AppTools::normalizeY(ypos)
-        //          << " " << xpos << " " << ypos << std::endl;
+        std::cout << AppTools::normalizeX(xpos) << " "
+                  << AppTools::normalizeY(ypos)
+                  << " " << xpos << " " << ypos << std::endl;
 
         renderer.clear();
 

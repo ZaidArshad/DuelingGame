@@ -32,11 +32,7 @@ void Shape::setIndices(const std::vector<unsigned int>& indices)
 
 void Shape::setColor(float r, float g, float b, float a)
 {
-	m_color.r = r;
-	m_color.g = g;
-	m_color.b = b;
-	m_color.a = a;
-	std::cout << m_color.r << " " << r << std::endl;
+	m_color = Color{r, g, b, a};
 }
 
 Color Shape::getColor()
