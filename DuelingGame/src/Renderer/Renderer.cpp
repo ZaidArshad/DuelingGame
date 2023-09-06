@@ -1,20 +1,19 @@
 #include "Renderer.h"
 
-Renderer::Renderer(Shader* shader)
+Renderer::Renderer()
 {
-	m_shader = shader;
 }
 
 Renderer::~Renderer()
 {
 }
 
-void Renderer::drawShapes()
+void Renderer::drawShapes(Shader& shader)
 {
-	m_shader->useShader();
+	shader.useShader();
 	for (Shape* shape : m_shapes)
 	{
-		m_shader->setFragmentColor(shape->getColor());
+		shader.setFragmentColor(shape->getColor());
 		shape->draw();
 	}
 }

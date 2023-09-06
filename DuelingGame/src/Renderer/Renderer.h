@@ -9,9 +9,9 @@
 class Renderer
 {
 public:
-	Renderer(Shader* shader);
+	Renderer();
 	~Renderer();
-	void drawShapes();
+	void drawShapes(Shader& shader);
 	void addShape(Shape* shape);
 	void clear();
 private:

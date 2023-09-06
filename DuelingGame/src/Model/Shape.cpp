@@ -43,7 +43,7 @@ Color Shape::getColor()
 void Shape::draw()
 {
 	glBindVertexArray(m_VAO);
-	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 	glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, nullptr);
 	glBindVertexArray(m_VAO);
 }

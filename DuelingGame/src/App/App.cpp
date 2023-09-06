@@ -66,7 +66,7 @@ Status App::run()
     }
     shader.useShader();
 
-    Renderer renderer(&shader);
+    Renderer renderer;
 
     double xpos = 0;
     double ypos = 0;
@@ -107,7 +107,7 @@ Status App::run()
 
         renderer.clear();
 
-        renderer.drawShapes();
+        renderer.drawShapes(shader);
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window);
