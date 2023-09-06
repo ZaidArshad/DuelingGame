@@ -7,6 +7,7 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include "Model/Box.h"
+#include "Model/Texture.h"
 #include "Helper/AppTools.h"
 #include "Helper/Logger.h"
 #include "Controller/InputController.h"

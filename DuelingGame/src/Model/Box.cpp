@@ -32,9 +32,9 @@ void Box::setPosition(double x, double y)
 	double bottom = AppTools::normalizeY(yPos + height);
 	std::vector<double> positions
 	{
-		left,  top,
+		left,  top, 
 		right, top,
-		left,  bottom,
+		left,  bottom, 
 		right, bottom
 	};
 
