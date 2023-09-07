@@ -177,6 +177,7 @@
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Model\Box.cpp" />
     <ClCompile Include="src\Model\Texture.cpp" />
+    <ClCompile Include="src\Model\VertexArray.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Shader\Color.h" />
@@ -192,6 +193,7 @@
     <ClInclude Include="src\Model\Box.h" />
     <ClInclude Include="src\Controller\InputController.h" />
     <ClInclude Include="src\Model\Texture.h" />
+    <ClInclude Include="src\Model\VertexArray.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="res\Shaders\Fragment.shader" />
