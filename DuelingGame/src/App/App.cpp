@@ -84,12 +84,12 @@ Status App::run()
     float r = 0;
     float i = 0.005;
 
-    std::vector<double> positions
+    std::vector<float> positions
     {
-        0.0f, 0.0f,
-        0.5f, 0.0f,
-        0.0f, 0.5f,
-        0.5f, 0.5f
+        -0.5f, 0.5f,
+        0.5f, 0.5f,
+        -0.5f, -0.5f,
+        0.5f, -0.5f
     };
     std::vector<unsigned int> indices
     {
@@ -97,12 +97,12 @@ Status App::run()
         1, 2, 3
     };
     VertexArray va(positions, 2, indices);
-    std::vector<double> color
+    std::vector<float> color
     {
+        1.0f, 0.0f, 0.0f, 1.0f,
+        0.0f, 1.0f, 0.0f, 1.0f,
         0.0f, 0.0f, 1.0f, 1.0f,
-        0.0f, 0.0f, 1.0f, 1.0f,
-        0.0f, 0.0f, 1.0f, 1.0f,
-        0.0f, 0.0f, 1.0f, 1.0f
+        0.0f, 0.0f, 0.0f, 1.0f
     };
     va.addBuffer(color, 4);
 
@@ -131,6 +131,15 @@ Status App::run()
         std::cout << AppTools::normalizeX(xpos) << " "
                   << AppTools::normalizeY(ypos)
                   << " " << xpos << " " << ypos << std::endl;
+
+        std::vector<float> color
+        {
+            r, 0.0f, 0.0f, 1.0f,
+            r, 0.0f, 0.0f, 1.0f,
+            0.0f, 0.0f, 1.0f, 1.0f,
+            0.0f, 0.0f, 1.0f, 1.0f
+        };
+        va.updateBuffer(1, color);
 
         renderer.clear();
 

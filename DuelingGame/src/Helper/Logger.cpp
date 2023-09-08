@@ -12,7 +12,7 @@ Logger::Logger()
 	instance.outFile = std::ofstream("log.txt");
 }
 
-void Logger::log(std::string msg)
+void Logger::log(const std::string& msg)
 {
 	std::cout << msg << std::endl;
 	instance.outFile << msg << std::endl;

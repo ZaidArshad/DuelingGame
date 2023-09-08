@@ -13,7 +13,7 @@
 class Logger
 {
 public:
-	static void log(std::string msg);
+	static void log(const std::string& msg);
 	static void log(GLError err);
 
 private:
