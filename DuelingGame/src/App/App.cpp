@@ -59,6 +59,10 @@ Status App::run()
     glEnable(GL_DEBUG_OUTPUT);
     glDebugMessageCallback(MessageCallback, 0);
 
+    // Enables transparency
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable(GL_BLEND);
+
     Shader shader;
     Status err = STATUS_OK;
     err = shader.generateShader("res/Shaders/Vertex.shader", "res/Shaders/Fragment.shader");
@@ -96,7 +100,7 @@ Status App::run()
             AppTools::normalizeY(ypos),
             1.0f);
 
-        box2.setColor(r, 1.0-r, 1.0, 1.0);
+        box2.setColor(r, 1.0-r, 1.0, 0.5);
         std::cout << r << std::endl;
         r += i;
         if (r >= 1 || r <= 0) i *= -1;

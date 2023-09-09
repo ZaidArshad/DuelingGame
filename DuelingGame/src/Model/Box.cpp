@@ -1,27 +1,29 @@
-#include "Box.h"
-#include "Helper/AppTools.h"
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
+#include "Box.h"
+#include "Shader/Color.h"
+#include "Helper/AppTools.h"
 
 #include <iostream>
 
 Box::Box(float x, float y, float w, float h)
 {
+	// Generating position buffer
 	m_width = w;
 	m_height = h;
 	m_x = x;
 	m_y = y;
 	m_va.addBuffer(getPosition(), 2);
 
-	std::vector<float> colors
+	// Generating color buffer to white
+	std::vector<float> colors;
+	for (int i = 0; i < 4; i++)
 	{
-		1.0f, 1.0f, 1.0f, 1.0f,
-		1.0f, 1.0f, 1.0f, 1.0f,
-		1.0f, 1.0f, 1.0f, 1.0f,
-		1.0f, 1.0f, 1.0f, 1.0f,
-	};
+		colors.insert(colors.end(), COLOR_WHITE.begin(), COLOR_WHITE.end());
+	}
 	m_va.addBuffer(colors, 4);
 
+	// Generating index buffer
 	std::vector<unsigned int> indices
 	{
 		0, 1, 2,
@@ -43,13 +45,11 @@ void Box::setPosition(float x, float y)
 
 void Box::setColor(float r, float g, float b, float a)
 {
-	std::vector<float> colors
+	std::vector<float> colors;
+	for (int i = 0; i < 4; i++)
 	{
-		r, g, b, 1.0f,
-		r, g, b, 1.0f,
-		r, g, b, 1.0f,
-		r, g, b, 1.0f
-	};
+		colors.insert(colors.end(), { r, g, b, a });
+	}
 	m_va.updateBuffer(1, colors);
 }
 
