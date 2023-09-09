@@ -1,16 +1,22 @@
 #version 400 core
 
 in vec4 out_color;
+in vec2 out_texCoord;
 
 out vec4 color;
 
+uniform sampler2D u_Texture;
+
 void main()
 {
-	if (out_color.x != 0.0f ||
-		out_color.y != 0.0f || 
-		out_color.z != 0.0f)
+	if (out_color != 0)
 	{
 		color = out_color;
+	}
+	if (out_texCoord != 0)
+	{
+		vec4 texColor = texture(u_Texture, out_texCoord);
+		color = texColor;
 	}
 	else
 	{

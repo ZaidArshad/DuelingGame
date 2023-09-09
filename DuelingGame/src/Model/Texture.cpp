@@ -10,7 +10,6 @@ Texture::Texture(const std::string& path)
 	m_height = 0;
 	m_BPP = 0;
 
-	stbi_set_flip_vertically_on_load(1);
 	m_imgBuffer = stbi_load(path.c_str(), &m_width, &m_height, &m_BPP, 4);
 
 	glGenTextures(1, &m_renderID);

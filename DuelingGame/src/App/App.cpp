@@ -87,6 +87,11 @@ Status App::run()
     Box box2 = Box((WINDOW_WIDTH / 2) - 150, (WINDOW_HEIGHT / 2) - 150, 300, 300);
     renderer.addShape(&box2);
 
+    GLint location = glGetUniformLocation(shader.getProgram(), "u_Texture");
+    Texture texture("res/Images/him.PNG");
+    texture.bind(0);
+    glUniform1i(location, 0);
+
     float r = 0;
     float i = 0.005f;
 

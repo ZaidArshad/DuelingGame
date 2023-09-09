@@ -23,6 +23,15 @@ Box::Box(float x, float y, float w, float h)
 	}
 	m_va.addBuffer(colors, 4);
 
+	std::vector<float> textureCoords
+	{
+		0.0f, 0.0f,
+		1.0f, 0.0f,
+		0.0f, 1.0f,
+		1.0f, 1.0f
+	};
+	m_va.addBuffer(textureCoords, 2);
+
 	// Generating index buffer
 	std::vector<unsigned int> indices
 	{
