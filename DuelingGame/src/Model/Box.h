@@ -1,10 +1,10 @@
 #pragma once
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-
+#include "Shape.h"
 #include "VertexArray.h"
 
-class Box
+class Box : public Shape
 {
 public:
 	Box(float x, float y, float w, float h);

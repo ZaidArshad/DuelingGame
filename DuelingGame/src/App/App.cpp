@@ -37,7 +37,8 @@ Status App::run()
     glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, "DuelingGame", NULL, NULL);
+    window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, 
+                              "DuelingGame", NULL, NULL);
     glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
     if (!window)
     {
@@ -65,7 +66,8 @@ Status App::run()
 
     Shader shader;
     Status err = STATUS_OK;
-    err = shader.generateShader("res/Shaders/Vertex.shader", "res/Shaders/Fragment.shader");
+    err = shader.generateShader("res/Shaders/Vertex.shader",
+                                "res/Shaders/Fragment.shader");
     if (err == STATUS_BAD)
     {
         glfwTerminate();
@@ -79,9 +81,11 @@ Status App::run()
     float ypos = 0.0f;
 
     Box box = Box(200, 200, 50, 50);
+    renderer.addShape(&box);
     InputController inputController = InputController(2);
 
     Box box2 = Box((WINDOW_WIDTH / 2) - 150, (WINDOW_HEIGHT / 2) - 150, 300, 300);
+    renderer.addShape(&box2);
 
     float r = 0;
     float i = 0.005f;
@@ -91,7 +95,6 @@ Status App::run()
     ///* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window) && !glfwGetKey(window, GLFW_KEY_ESCAPE))
     {
-        //shader.useShader();
         inputController.move2D(window, &xpos, &ypos);
         box.setPosition(xpos, ypos);
 
@@ -105,16 +108,13 @@ Status App::run()
         r += i;
         if (r >= 1 || r <= 0) i *= -1;
   
-
         std::cout << AppTools::normalizeX(xpos) << " "
                   << AppTools::normalizeY(ypos)
                   << " " << xpos << " " << ypos << std::endl;
 
         renderer.clear();
 
-        //renderer.drawShapes(shader);
-        box.draw();
-        box2.draw();
+        renderer.drawShapes();
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window);
