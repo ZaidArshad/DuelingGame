@@ -74,11 +74,11 @@ Status App::run()
     double xpos = 0;
     double ypos = 0;
 
-    //Box box = Box(200, 200, 50, 50);
-    //InputController inputController = InputController(2);
+    Box box = Box(200, 200, 50, 50);
+    InputController inputController = InputController(2);
     //renderer.addShape(&box);
 
-    //Box box2 = Box((WINDOW_WIDTH / 2) - 150, (WINDOW_HEIGHT / 2) - 150, 300, 300);
+    Box box2 = Box((WINDOW_WIDTH / 2) - 150, (WINDOW_HEIGHT / 2) - 150, 300, 300);
     //renderer.addShape(&box2);
 
     float r = 0;
@@ -145,6 +145,7 @@ Status App::run()
 
         //renderer.drawShapes(shader);
         va.draw();
+        box.draw();
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window);

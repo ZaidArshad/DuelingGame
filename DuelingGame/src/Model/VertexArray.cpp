@@ -1,6 +1,17 @@
 #include "VertexArray.h"
 #include "Helper/Logger.h"
 
+
+
+VertexArray::VertexArray()
+{
+	m_VAO = 0;
+	m_IBO = 0;
+	glGenVertexArrays(1, &m_VAO);
+	glBindVertexArray(m_VAO);
+	glGenBuffers(1, &m_IBO);
+}
+
 VertexArray::VertexArray(const std::vector<float>& vertices,
 						 unsigned int stride,
 						 const std::vector<unsigned int>& indices)
@@ -20,7 +31,8 @@ VertexArray::~VertexArray()
 {
 }
 
-void VertexArray::addBuffer(const std::vector<float>& vertices, unsigned int stride)
+void VertexArray::addBuffer(const std::vector<float>& vertices, 
+							unsigned int stride)
 {
 	glBindVertexArray(m_VAO);
 
@@ -58,6 +70,14 @@ void VertexArray::setIndices(const std::vector<unsigned int>& indices)
 
 void VertexArray::updateBuffer(unsigned int i, const std::vector<float>& vertices)
 {
+	if (i > m_vertexLayouts.size())
+	{
+		Logger::log("Index " + std::to_string(i) +
+					" out of bounds. Number of vertice layouts = " +
+					std::to_string(m_vertexLayouts.size()));
+		return;
+	}
+
 	glBindVertexArray(m_VAO);
 
 	// Updating layout

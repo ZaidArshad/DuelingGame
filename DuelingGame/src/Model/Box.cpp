@@ -5,38 +5,50 @@
 
 #include <iostream>
 
-Box::Box(double x, double y, double w, double h)
+Box::Box(float x, float y, float w, float h)
 {
-	width = w;
-	height = h;
-	setPosition(x, y);
-	
+	m_width = w;
+	m_height = h;
+	m_x = x;
+	m_y = y;
+	m_va.addBuffer(getPosition(), 2);
+
 	std::vector<unsigned int> indices
 	{
 		0, 1, 2,
 		1, 2, 3
 	};
-	setIndices(indices);
-
-	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 2, GL_DOUBLE, GL_TRUE, sizeof(double) * 2, 0);
+	m_va.setIndices(indices);
 }
 
-void Box::setPosition(double x, double y)
+Box::~Box()
 {
-	xPos = x;
-	yPos = y;
-	double left = AppTools::normalizeX(xPos);
-	double right = AppTools::normalizeX(xPos + width);
-	double top = AppTools::normalizeY(yPos);
-	double bottom = AppTools::normalizeY(yPos + height);
-	std::vector<double> positions
+}
+
+void Box::setPosition(float x, float y)
+{
+	m_x = x;
+	m_y = y;
+	m_va.updateBuffer(0, getPosition());
+}
+
+void Box::draw()
+{
+	m_va.draw();
+}
+
+std::vector<float> Box::getPosition()
+{
+	float left = AppTools::normalizeX(m_x);
+	float right = AppTools::normalizeX(m_x + m_width);
+	float top = AppTools::normalizeY(m_y);
+	float bottom = AppTools::normalizeY(m_y + m_height);
+	std::vector<float> positions
 	{
-		left,  top, 
+		left,  top,
 		right, top,
-		left,  bottom, 
+		left,  bottom,
 		right, bottom
 	};
-
-	setVertices(positions);
+	return positions;
 }

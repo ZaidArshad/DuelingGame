@@ -2,18 +2,24 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
-#include "Shape.h"
+#include "VertexArray.h"
 
-class Box : public Shape
+class Box
 {
 public:
-	Box(double x, double y, double w, double h);
-	void setPosition(double x, double y);
+	Box(float x, float y, float w, float h);
+	~Box();
+	void setPosition(float x, float y);
+	void draw();
 private:
+	std::vector<float> getPosition();
+
 	// Used to calculate dimensions
-	double xPos;
-	double yPos;
-	double width;
-	double height;
+	float m_x;
+	float m_y;
+	float m_width;
+	float m_height;
+
+	VertexArray m_va;
 };
 

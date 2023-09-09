@@ -13,6 +13,7 @@ struct VertexLayout
 class VertexArray
 {
 public:
+	VertexArray();
 	VertexArray(const std::vector<float>& vertices,
 				unsigned int stride,
 				const std::vector<unsigned int>& indices);
