@@ -80,17 +80,17 @@ Status App::run()
     float xpos = 0.0f;
     float ypos = 0.0f;
 
-    Box box = Box(200, 200, 50, 50);
+    Box box = Box(200, 200, 100, 50);
+    box.setTexture("res/Images/him.PNG");
     renderer.addShape(&box);
     InputController inputController = InputController(2);
 
     Box box2 = Box((WINDOW_WIDTH / 2) - 150, (WINDOW_HEIGHT / 2) - 150, 300, 300);
+    box2.setTexture("res/Images/france.png");
     renderer.addShape(&box2);
 
-    GLint location = glGetUniformLocation(shader.getProgram(), "u_Texture");
-    Texture texture("res/Images/him.PNG");
-    texture.bind(0);
-    glUniform1i(location, 0);
+    Box box3 = Box(WINDOW_WIDTH - 50, WINDOW_HEIGHT - 50, 50, 50);
+    renderer.addShape(&box3);
 
     float r = 0;
     float i = 0.005f;
@@ -103,12 +103,12 @@ Status App::run()
         inputController.move2D(window, &xpos, &ypos);
         box.setPosition(xpos, ypos);
 
-        box.setColor(AppTools::normalizeX(xpos),
-            0.5f,
-            AppTools::normalizeY(ypos),
-            1.0f);
+        //box.setColor(AppTools::normalizeX(xpos),
+        //    0.5f,
+        //    AppTools::normalizeY(ypos),
+        //    1.0f);
 
-        box2.setColor(r, 1.0f-r, 1.0f, 0.5f);
+        box3.setColor(r, 1.0f-r, 1.0f, 1.0f);
         std::cout << r << std::endl;
         r += i;
         if (r >= 1 || r <= 0) i *= -1;

@@ -30,7 +30,7 @@ Status Shader::generateShader(const std::string& vPath, const std::string& fPath
     return status;
 }
 
-GLuint Shader::getProgram()
+GLuint Shader::getProgram() const
 {
     return program;
 }

@@ -11,7 +11,7 @@ class Shader
 public:
 	Shader();
 	Status generateShader(const std::string& vPath, const std::string& fPath);
-	GLuint getProgram();
+	GLuint getProgram() const;
 	void useShader();
 	void deleteShader();
 	void setFragmentColor(const Color& color);

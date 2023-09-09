@@ -2,6 +2,7 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <vector>
+#include "Texture.h"
 
 struct VertexLayout
 {
@@ -20,6 +21,7 @@ public:
 	~VertexArray();
 	void addBuffer(const std::vector<float>& vertices, unsigned int stride);
 	void setIndices(const std::vector<unsigned int>& indices);
+	void setTexture(const std::string& path);
 	void updateBuffer(unsigned int i, const std::vector<float>& vertices);
 	void draw();
 private:

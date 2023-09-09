@@ -14,6 +14,7 @@ Box::Box(float x, float y, float w, float h)
 	m_x = x;
 	m_y = y;
 	m_va.addBuffer(getPosition(), 2);
+	m_pTexture = nullptr;
 
 	// Generating color buffer to white
 	std::vector<float> colors;
@@ -43,6 +44,7 @@ Box::Box(float x, float y, float w, float h)
 
 Box::~Box()
 {
+	delete m_pTexture;
 }
 
 void Box::setPosition(float x, float y)
@@ -62,9 +64,30 @@ void Box::setColor(float r, float g, float b, float a)
 	m_va.updateBuffer(1, colors);
 }
 
+void Box::setTexture(const std::string& path)
+{
+	std::vector<float> colors;
+	for (int i = 0; i < 4; i++)
+	{
+		colors.insert(colors.end(), COLOR_TEXTURE.begin(), COLOR_TEXTURE.end());
+	}
+	m_va.updateBuffer(1, colors);
+	m_pTexture = new Texture(path);
+}
+
+
 void Box::draw()
 {
-	m_va.draw();
+	if (m_pTexture)
+	{
+		m_pTexture->bind(0);
+		m_va.draw();
+		m_pTexture->unbind();
+	}
+	else
+	{
+		m_va.draw();
+	}
 }
 
 std::vector<float> Box::getPosition()

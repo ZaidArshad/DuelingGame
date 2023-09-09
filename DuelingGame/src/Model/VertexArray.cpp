@@ -18,7 +18,6 @@ VertexArray::VertexArray(const std::vector<float>& vertices,
 {
 	m_VAO = 0;
 	m_IBO = 0;
-
 	glGenVertexArrays(1, &m_VAO);
 	glBindVertexArray(m_VAO);
 	addBuffer(vertices, stride);

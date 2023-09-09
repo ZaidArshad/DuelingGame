@@ -9,11 +9,11 @@ uniform sampler2D u_Texture;
 
 void main()
 {
-	if (out_color != 0)
+	if (out_color.w != 0)
 	{
 		color = out_color;
 	}
-	if (out_texCoord != 0)
+	else if (out_texCoord != 0)
 	{
 		vec4 texColor = texture(u_Texture, out_texCoord);
 		color = texColor;

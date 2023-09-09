@@ -2,6 +2,8 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include "Shape.h"
+#include "Texture.h"
+#include "Shader/Shader.h"
 #include "VertexArray.h"
 
 class Box : public Shape
@@ -11,6 +13,7 @@ public:
 	~Box();
 	void setPosition(float x, float y);
 	void setColor(float r, float g, float b, float a);
+	void setTexture(const std::string& path);
 	void draw();
 private:
 	std::vector<float> getPosition();
@@ -22,5 +25,6 @@ private:
 	float m_height;
 
 	VertexArray m_va;
+	Texture* m_pTexture;
 };
 
