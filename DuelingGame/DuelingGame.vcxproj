@@ -166,7 +166,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Renderer\Renderer.cpp" />
-    <ClCompile Include="src\Model\Shape.cpp" />
     <ClCompile Include="src\3rd\stb_image\stb_image.cpp" />
     <ClCompile Include="src\App\App.cpp" />
     <ClCompile Include="src\Error\GLError.cpp" />
@@ -182,7 +181,6 @@
   <ItemGroup>
     <ClInclude Include="src\Shader\Color.h" />
     <ClInclude Include="src\Renderer\Renderer.h" />
-    <ClInclude Include="src\Model\Shape.h" />
     <ClInclude Include="src\3rd\stb_image\stb_image.h" />
     <ClInclude Include="src\App\App.h" />
     <ClInclude Include="src\Error\GLError.h" />

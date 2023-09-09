@@ -76,37 +76,11 @@ Status App::run()
 
     Box box = Box(200, 200, 50, 50);
     InputController inputController = InputController(2);
-    //renderer.addShape(&box);
 
     Box box2 = Box((WINDOW_WIDTH / 2) - 150, (WINDOW_HEIGHT / 2) - 150, 300, 300);
-    //renderer.addShape(&box2);
 
     float r = 0;
     float i = 0.005;
-
-    std::vector<float> positions
-    {
-        -0.5f, 0.5f,
-        0.5f, 0.5f,
-        -0.5f, -0.5f,
-        0.5f, -0.5f
-    };
-    std::vector<unsigned int> indices
-    {
-        0, 1, 2,
-        1, 2, 3
-    };
-    VertexArray va(positions, 2, indices);
-    std::vector<float> color
-    {
-        1.0f, 0.0f, 0.0f, 1.0f,
-        0.0f, 1.0f, 0.0f, 1.0f,
-        0.0f, 0.0f, 1.0f, 1.0f,
-        0.0f, 0.0f, 0.0f, 1.0f
-    };
-    va.addBuffer(color, 4);
-
-
 
     glfwSwapInterval(1);
 
@@ -114,8 +88,8 @@ Status App::run()
     while (!glfwWindowShouldClose(window) && !glfwGetKey(window, GLFW_KEY_ESCAPE))
     {
         //shader.useShader();
-        //inputController.move2D(window, &xpos, &ypos);
-        //box.setPosition(xpos, ypos);
+        inputController.move2D(window, &xpos, &ypos);
+        box.setPosition(xpos, ypos);
 
         /*box.setColor(AppTools::normalizeX(xpos),
             0.5f,
@@ -132,20 +106,11 @@ Status App::run()
                   << AppTools::normalizeY(ypos)
                   << " " << xpos << " " << ypos << std::endl;
 
-        std::vector<float> color
-        {
-            r, 0.0f, 0.0f, 1.0f,
-            r, 0.0f, 0.0f, 1.0f,
-            0.0f, 0.0f, 1.0f, 1.0f,
-            0.0f, 0.0f, 1.0f, 1.0f
-        };
-        va.updateBuffer(1, color);
-
         renderer.clear();
 
         //renderer.drawShapes(shader);
-        va.draw();
         box.draw();
+        box2.draw();
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window);
