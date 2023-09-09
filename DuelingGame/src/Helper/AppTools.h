@@ -13,8 +13,8 @@ static const Status STATUS_BAD = 1U;
 class AppTools
 {
 public:
-	static double normalizeX(double position);
-	static double normalizeY(double position);
+	static float normalizeX(float position);
+	static float normalizeY(float position);
 };
 
 

@@ -1,17 +1,17 @@
 #include "InputController.h"
 #include<iostream>
 
-InputController::InputController(double v)
+InputController::InputController(float v)
 {
 	velocity = v;
 }
 
-void InputController::move2D(GLFWwindow* window, double* x, double* y)
+void InputController::move2D(GLFWwindow* window, float* x, float* y)
 {
-	double left = glfwGetKey(window, GLFW_KEY_LEFT);
-	double right = glfwGetKey(window, GLFW_KEY_RIGHT);
-	double up = glfwGetKey(window, GLFW_KEY_UP);
-	double down = glfwGetKey(window, GLFW_KEY_DOWN);
+	int left = glfwGetKey(window, GLFW_KEY_LEFT);
+	int right = glfwGetKey(window, GLFW_KEY_RIGHT);
+	int up = glfwGetKey(window, GLFW_KEY_UP);
+	int down = glfwGetKey(window, GLFW_KEY_DOWN);
 
 	*x += (right - left) * velocity;
 	*y += (down - up) * velocity;

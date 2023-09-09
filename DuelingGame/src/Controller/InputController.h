@@ -4,9 +4,9 @@
 class InputController
 {
 public:
-	InputController(double v);
-	void move2D(GLFWwindow* window, double* x, double* y);
+	InputController(float v);
+	void move2D(GLFWwindow* window, float* x, float* y);
 private:
-	double velocity;
+	float velocity;
 };
 

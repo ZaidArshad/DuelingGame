@@ -75,8 +75,8 @@ Status App::run()
 
     Renderer renderer;
 
-    double xpos = 0;
-    double ypos = 0;
+    float xpos = 0.0f;
+    float ypos = 0.0f;
 
     Box box = Box(200, 200, 50, 50);
     InputController inputController = InputController(2);
@@ -84,7 +84,7 @@ Status App::run()
     Box box2 = Box((WINDOW_WIDTH / 2) - 150, (WINDOW_HEIGHT / 2) - 150, 300, 300);
 
     float r = 0;
-    float i = 0.005;
+    float i = 0.005f;
 
     glfwSwapInterval(1);
 
@@ -100,7 +100,7 @@ Status App::run()
             AppTools::normalizeY(ypos),
             1.0f);
 
-        box2.setColor(r, 1.0-r, 1.0, 0.5);
+        box2.setColor(r, 1.0f-r, 1.0f, 0.5f);
         std::cout << r << std::endl;
         r += i;
         if (r >= 1 || r <= 0) i *= -1;

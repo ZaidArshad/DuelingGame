@@ -7,12 +7,12 @@
 #include <iostream>
 #include <sstream>
 
-double AppTools::normalizeX(double position)
+float AppTools::normalizeX(float position)
 {
 	return (position - WINDOW_WIDTH/2) / (WINDOW_WIDTH/2);
 }
 
-double AppTools::normalizeY(double position)
+float AppTools::normalizeY(float position)
 {
 	return (WINDOW_HEIGHT/2 - position) / (WINDOW_HEIGHT/2);
 }
