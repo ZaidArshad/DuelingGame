@@ -91,12 +91,12 @@ Status App::run()
         inputController.move2D(window, &xpos, &ypos);
         box.setPosition(xpos, ypos);
 
-        /*box.setColor(AppTools::normalizeX(xpos),
+        box.setColor(AppTools::normalizeX(xpos),
             0.5f,
             AppTools::normalizeY(ypos),
-            1.0f);*/
+            1.0f);
 
-        //box2.setColor(r, 1.0-r, 1.0, 1.0);
+        box2.setColor(r, 1.0-r, 1.0, 1.0);
         std::cout << r << std::endl;
         r += i;
         if (r >= 1 || r <= 0) i *= -1;

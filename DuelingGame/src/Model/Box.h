@@ -10,6 +10,7 @@ public:
 	Box(float x, float y, float w, float h);
 	~Box();
 	void setPosition(float x, float y);
+	void setColor(float r, float g, float b, float a);
 	void draw();
 private:
 	std::vector<float> getPosition();
