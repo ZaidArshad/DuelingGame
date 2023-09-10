@@ -2,9 +2,12 @@
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
+#include <iostream>
+#include <fstream>
+
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
+#include "glm/gtc/type_ptr.hpp"
 
 #include "Model/Box.h"
 #include "Model/Texture.h"
@@ -13,11 +16,8 @@
 #include "Controller/InputController.h"
 #include "Shader/Shader.h"
 #include "Renderer/Renderer.h"
-
 #include "Model/VertexArray.h"
 
-#include <iostream>
-#include <fstream>
 
 App::App()
 {
@@ -76,6 +76,10 @@ Status App::run()
     shader.useShader();
 
     Renderer renderer;
+
+    glm::mat4 proj = glm::ortho(-1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 1.0f);
+    GLint location = glGetUniformLocation(shader.getProgram(), "u_MVP");
+    glUniformMatrix4fv(location, 1, GL_FALSE, &proj[0][0]);
 
     float xpos = 0.0f;
     float ypos = 0.0f;
