@@ -86,7 +86,7 @@ Status App::run()
     InputController inputController = InputController(2);
 
     Box box2 = Box((WINDOW_WIDTH / 2) - 150, (WINDOW_HEIGHT / 2) - 150, 300, 300);
-    box2.setTexture("res/Images/france.png");
+    box2.setTexture("res/Images/bb-sun.png");
     renderer.addShape(&box2);
 
     Box box3 = Box(WINDOW_WIDTH - 50, WINDOW_HEIGHT - 50, 50, 50);
@@ -103,19 +103,10 @@ Status App::run()
         inputController.move2D(window, &xpos, &ypos);
         box.setPosition(xpos, ypos);
 
-        //box.setColor(AppTools::normalizeX(xpos),
-        //    0.5f,
-        //    AppTools::normalizeY(ypos),
-        //    1.0f);
-
         box3.setColor(r, 1.0f-r, 1.0f, 1.0f);
         std::cout << r << std::endl;
         r += i;
         if (r >= 1 || r <= 0) i *= -1;
-  
-        std::cout << AppTools::normalizeX(xpos) << " "
-                  << AppTools::normalizeY(ypos)
-                  << " " << xpos << " " << ypos << std::endl;
 
         renderer.clear();
 
