@@ -80,6 +80,9 @@ Status App::run()
     float xpos = 0.0f;
     float ypos = 0.0f;
 
+    double mouseX = 0.0f;
+    double mouseY = 0.0f;
+
     Box box = Box(0, 0, 100, 50);
     box.setTexture("res/Images/him.PNG");
     renderer.addShape(&box);
@@ -101,15 +104,16 @@ Status App::run()
     while (!glfwWindowShouldClose(window) && !glfwGetKey(window, GLFW_KEY_ESCAPE))
     {
         inputController.move2D(window, &xpos, &ypos);
-        //box.setPosition(xpos, ypos);
+        box.setPosition(xpos, ypos);
+        inputController.mouseMove2D(window, &mouseX, &mouseY);
 
         box3.setColor(r, 1.0f-r, 1.0f, 1.0f);
-        std::cout << r << std::endl;
+        // std::cout << r << std::endl;
         r += i;
         if (r >= 1 || r <= 0) i *= -1;
 
         glm::mat4 proj = glm::ortho(-1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 1.0f);
-        glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(AppTools::normalizeX(xpos), AppTools::normalizeX(-ypos), 0.0));
+        glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(AppTools::normalizeX(mouseX), AppTools::normalizeX(-mouseY), 0.0));
         glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(1.0f, 1.0, 0.0));
         glm::mat4 mvp = proj * view * model;
         GLint location = glGetUniformLocation(shader.getProgram(), "u_MVP");
