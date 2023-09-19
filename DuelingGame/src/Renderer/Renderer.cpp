@@ -25,10 +25,11 @@ void Renderer::addShape(Shape* shape)
 	m_shapes.push_back(shape);
 }
 
-void Renderer::drawShapes()
+void Renderer::drawShapes(Shader* shader)
 {
 	for (Shape* shape : m_shapes)
 	{
+		updateMVP(shape->getModelMatrix(), shader);
 		shape->draw();
 	}
 }
@@ -36,4 +37,11 @@ void Renderer::drawShapes()
 void Renderer::clear()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
+}
+
+void Renderer::updateMVP(glm::mat4 model, Shader* shader)
+{
+	glm::mat4 mvp = m_projection * m_view * model;
+	GLint location = glGetUniformLocation(shader->getProgram(), "u_MVP");
+	glUniformMatrix4fv(location, 1, GL_FALSE, &mvp[0][0]);
 }

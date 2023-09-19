@@ -1,6 +1,7 @@
 #pragma once
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
+#include "glm/glm.hpp"
 #include "Shape.h"
 #include "Texture.h"
 #include "Shader/Shader.h"
@@ -14,7 +15,10 @@ public:
 	void setPosition(float x, float y);
 	void setColor(float r, float g, float b, float a);
 	void setTexture(const std::string& path);
+	
+	// Overloaded virtual functions of Shape
 	void draw();
+	glm::mat4 getModelMatrix();
 private:
 	std::vector<float> getPosition();
 
@@ -23,6 +27,8 @@ private:
 	float m_y;
 	float m_width;
 	float m_height;
+
+	glm::mat4 m_modelMat;
 
 	VertexArray m_va;
 	Texture* m_pTexture;

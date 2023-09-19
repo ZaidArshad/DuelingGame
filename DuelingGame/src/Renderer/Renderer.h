@@ -15,8 +15,9 @@ public:
 	~Renderer();
 	void setView(glm::mat4 view);
 	void setProjection(glm::mat4 projection);
+	void updateMVP(glm::mat4 model, Shader* shader);
 	void addShape(Shape* shape);
-	void drawShapes();
+	void drawShapes(Shader* shader);
 	void clear();
 private:
 	std::vector<Shape*> m_shapes;

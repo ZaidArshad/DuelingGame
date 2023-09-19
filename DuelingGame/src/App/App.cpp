@@ -80,8 +80,8 @@ Status App::run()
     float xpos = 0.0f;
     float ypos = 0.0f;
 
-    double mouseX = 0.0f;
-    double mouseY = 0.0f;
+    double mouseX = WINDOW_WIDTH/2;
+    double mouseY = WINDOW_HEIGHT/2;
 
     Box box = Box(0, 0, 100, 50);
     box.setTexture("res/Images/him.PNG");
@@ -112,16 +112,17 @@ Status App::run()
         r += i;
         if (r >= 1 || r <= 0) i *= -1;
 
-        glm::mat4 proj = glm::ortho(-1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 1.0f);
-        glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(AppTools::normalizeX(mouseX), AppTools::normalizeX(-mouseY), 0.0));
-        glm::mat4 model = glm::mat4(1.0f);
-        glm::mat4 mvp = proj * view * model;
-        GLint location = glGetUniformLocation(shader.getProgram(), "u_MVP");
-        glUniformMatrix4fv(location, 1, GL_FALSE, &mvp[0][0]);
+        //glm::mat4 proj = glm::ortho(-1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 1.0f);
+        //glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(AppTools::normalizeX(mouseX), AppTools::normalizeX(-mouseY), 0.0));
+        //glm::mat4 model = glm::mat4(1.0f);
+        //glm::mat4 mvp = proj * view * model;
+        //GLint location = glGetUniformLocation(shader.getProgram(), "u_MVP");
+        //glUniformMatrix4fv(location, 1, GL_FALSE, &mvp[0][0]);
+        renderer.setView(glm::translate(glm::mat4(1.0f), glm::vec3(AppTools::normalizeX(mouseX), AppTools::normalizeY(mouseY), 0.0)));
 
         renderer.clear();
 
-        renderer.drawShapes();
+        renderer.drawShapes(&shader);
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window);
