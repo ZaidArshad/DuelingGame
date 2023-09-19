@@ -105,7 +105,7 @@ Status App::run()
     {
         inputController.move2D(window, &xpos, &ypos);
         box.setPosition(xpos, ypos);
-        inputController.mouseMove2D(window, &mouseX, &mouseY);
+        inputController.mouseDrag2D(window, &mouseX, &mouseY);
 
         box3.setColor(r, 1.0f-r, 1.0f, 1.0f);
         // std::cout << r << std::endl;
@@ -114,7 +114,7 @@ Status App::run()
 
         glm::mat4 proj = glm::ortho(-1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 1.0f);
         glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(AppTools::normalizeX(mouseX), AppTools::normalizeX(-mouseY), 0.0));
-        glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(1.0f, 1.0, 0.0));
+        glm::mat4 model = glm::mat4(1.0f);
         glm::mat4 mvp = proj * view * model;
         GLint location = glGetUniformLocation(shader.getProgram(), "u_MVP");
         glUniformMatrix4fv(location, 1, GL_FALSE, &mvp[0][0]);

@@ -18,7 +18,7 @@ void InputController::move2D(GLFWwindow* window, float* x, float* y)
 	*y += (down - up) * velocity;
 }
 
-void InputController::mouseMove2D(GLFWwindow* window, double* x, double* y)
+void InputController::mouseDrag2D(GLFWwindow* window, double* x, double* y)
 {
 	if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_2))
 	{
