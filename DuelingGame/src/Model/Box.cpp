@@ -1,5 +1,7 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp"
 #include "Box.h"
 #include "Shader/Color.h"
 #include "Helper/AppTools.h"
@@ -74,6 +76,11 @@ void Box::setTexture(const std::string& path)
 	}
 	m_va.updateBuffer(1, colors);
 	m_pTexture = new Texture(path);
+}
+
+void Box::rotateModelX(float radians)
+{
+	m_modelMat =  glm::rotate(m_modelMat, radians, glm::vec3(0.5, 0.0, 0.0));
 }
 
 

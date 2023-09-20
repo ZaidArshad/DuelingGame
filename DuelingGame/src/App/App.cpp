@@ -106,6 +106,7 @@ Status App::run()
         inputController.move2D(window, &xpos, &ypos);
         box.setPosition(xpos, ypos);
         inputController.mouseDrag2D(window, &mouseX, &mouseY);
+        box2.rotateModelX(0.01);
 
         box3.setColor(r, 1.0f-r, 1.0f, 1.0f);
         // std::cout << r << std::endl;
@@ -119,7 +120,6 @@ Status App::run()
         //GLint location = glGetUniformLocation(shader.getProgram(), "u_MVP");
         //glUniformMatrix4fv(location, 1, GL_FALSE, &mvp[0][0]);
         renderer.setView(glm::translate(glm::mat4(1.0f), glm::vec3(AppTools::normalizeX(mouseX), AppTools::normalizeY(mouseY), 0.0)));
-
         renderer.clear();
 
         renderer.drawShapes(&shader);

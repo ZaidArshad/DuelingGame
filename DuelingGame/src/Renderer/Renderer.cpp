@@ -1,9 +1,13 @@
 #include "Renderer.h"
+#include "glm/gtc/matrix_transform.hpp"
 
 Renderer::Renderer()
 {
+
 	m_view = glm::mat4(1.0f);
-	m_projection = glm::ortho(-1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 1.0f);
+	m_projection = glm::ortho(-1.0f, 1.0f, -1.0f, 1.0f, -2.0f, 2.0f);
+	//m_view = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, -1));
+	//m_projection = glm::perspective(45.0f, (float)WINDOW_WIDTH/(float)WINDOW_HEIGHT, 0.1f, 1000.0f);
 }
 
 Renderer::~Renderer()
