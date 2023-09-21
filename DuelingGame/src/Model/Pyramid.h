@@ -3,8 +3,9 @@
 class Pyramid : public Shape
 {
 public:
-	Pyramid(float x, float y, float z, float length);
+	Pyramid(float length);
 	~Pyramid();
+	void translate(float x, float y, float z);
 	void rotateModelX(float radians);
 
 	// Overloaded virtual functions of Shape
@@ -12,9 +13,6 @@ public:
 	std::vector<float> getPosition() override;
 
 private:
-	float m_x;
-	float m_y;
-	float m_z;
 	float m_length;
 };
 

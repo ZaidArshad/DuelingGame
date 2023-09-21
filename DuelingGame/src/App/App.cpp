@@ -96,7 +96,8 @@ Status App::run()
     Box box3 = Box(WINDOW_WIDTH - 50, WINDOW_HEIGHT - 50, 50, 50);
     renderer.addShape(&box3);
 
-    Pyramid pyramid = Pyramid(20.0f, 20.0f, 20.0f, 100.0f);
+    Pyramid pyramid = Pyramid(0.2f);
+    pyramid.translate(0.5, 0, 0);
     renderer.addShape(&pyramid);
 
 
