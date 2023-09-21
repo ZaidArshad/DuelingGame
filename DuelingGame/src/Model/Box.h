@@ -18,20 +18,14 @@ public:
 	void rotateModelX(float radians);
 	
 	// Overloaded virtual functions of Shape
-	void draw();
-	glm::mat4 getModelMatrix();
-private:
-	std::vector<float> getPosition();
+	void draw() override;
+	std::vector<float> getPosition() override;
 
+private:
 	// Used to calculate dimensions
 	float m_x;
 	float m_y;
 	float m_width;
 	float m_height;
-
-	glm::mat4 m_modelMat;
-
-	VertexArray m_va;
-	Texture* m_pTexture;
 };
 

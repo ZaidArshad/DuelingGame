@@ -21,7 +21,6 @@ public:
 	~VertexArray();
 	void addBuffer(const std::vector<float>& vertices, unsigned int stride);
 	void setIndices(const std::vector<unsigned int>& indices);
-	void setTexture(const std::string& path);
 	void updateBuffer(unsigned int i, const std::vector<float>& vertices);
 	void draw();
 private:

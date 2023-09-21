@@ -17,6 +17,7 @@
 #include "Shader/Shader.h"
 #include "Renderer/Renderer.h"
 #include "Model/VertexArray.h"
+#include "Model/Pyramid.h"
 
 
 App::App()
@@ -95,6 +96,10 @@ Status App::run()
     Box box3 = Box(WINDOW_WIDTH - 50, WINDOW_HEIGHT - 50, 50, 50);
     renderer.addShape(&box3);
 
+    Pyramid pyramid = Pyramid(20.0f, 20.0f, 20.0f, 100.0f);
+    renderer.addShape(&pyramid);
+
+
     float r = 0;
     float i = 0.005f;
 
@@ -107,6 +112,7 @@ Status App::run()
         box.setPosition(xpos, ypos);
         inputController.mouseDrag2D(window, &mouseX, &mouseY);
         box2.rotateModelX(0.01);
+        pyramid.rotateModelX(0.01);
 
         box3.setColor(r, 1.0f-r, 1.0f, 1.0f);
         // std::cout << r << std::endl;

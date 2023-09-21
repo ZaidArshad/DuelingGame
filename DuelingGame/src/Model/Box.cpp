@@ -16,8 +16,6 @@ Box::Box(float x, float y, float w, float h)
 	m_x = x;
 	m_y = y;
 	m_va.addBuffer(getPosition(), 2);
-	m_pTexture = nullptr;
-	m_modelMat = glm::mat4(1.0f);
 
 	// Generating color buffer to white
 	std::vector<float> colors;
@@ -96,11 +94,6 @@ void Box::draw()
 	{
 		m_va.draw();
 	}
-}
-
-glm::mat4 Box::getModelMatrix()
-{
-	return m_modelMat;
 }
 
 std::vector<float> Box::getPosition()

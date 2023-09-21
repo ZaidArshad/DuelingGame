@@ -165,6 +165,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Model\Pyramid.cpp" />
     <ClCompile Include="src\Renderer\Renderer.cpp" />
     <ClCompile Include="src\3rd\stb_image\stb_image.cpp" />
     <ClCompile Include="src\App\App.cpp" />
@@ -179,6 +180,7 @@
     <ClCompile Include="src\Model\VertexArray.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Model\Pyramid.h" />
     <ClInclude Include="src\Model\Shape.h" />
     <ClInclude Include="src\Shader\Color.h" />
     <ClInclude Include="src\Renderer\Renderer.h" />
