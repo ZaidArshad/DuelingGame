@@ -59,6 +59,7 @@ Status App::run()
 
     Logger::log((const char*)glGetString(GL_VERSION));
     glEnable(GL_DEBUG_OUTPUT);
+    glEnable(GL_DEPTH_TEST);
     glDebugMessageCallback(MessageCallback, 0);
 
     // Enables transparency
@@ -97,7 +98,8 @@ Status App::run()
     renderer.addShape(&box3);
 
     Pyramid pyramid = Pyramid(0.2f);
-    pyramid.translate(0.5, 0, 0);
+    pyramid.translate(0.5, 0, 1);
+    pyramid.setTexture("res/Images/cobble.png");
     renderer.addShape(&pyramid);
 
 
@@ -126,7 +128,7 @@ Status App::run()
         //glm::mat4 mvp = proj * view * model;
         //GLint location = glGetUniformLocation(shader.getProgram(), "u_MVP");
         //glUniformMatrix4fv(location, 1, GL_FALSE, &mvp[0][0]);
-        renderer.setView(glm::translate(glm::mat4(1.0f), glm::vec3(AppTools::normalizeX(mouseX), AppTools::normalizeY(mouseY), 0.0)));
+        //renderer.setView(glm::translate(glm::mat4(1.0f), glm::vec3(AppTools::normalizeX(mouseX), AppTools::normalizeY(mouseY), 0.0)));
         renderer.clear();
 
         renderer.drawShapes(&shader);

@@ -7,7 +7,7 @@ Renderer::Renderer()
 
 	m_view = glm::mat4(1.0f);
 	m_projection = glm::ortho(-1.0f, 1.0f, -1.0f, 1.0f, -2.0f, 2.0f);
-	//m_view = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, -1));
+	//m_view = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, -4));
 	//m_projection = glm::perspective(45.0f, (float)WINDOW_WIDTH/(float)WINDOW_HEIGHT, 0.1f, 1000.0f);
 }
 
@@ -41,7 +41,7 @@ void Renderer::drawShapes(Shader* shader)
 
 void Renderer::clear()
 {
-	glClear(GL_COLOR_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 void Renderer::updateMVP(glm::mat4 model, Shader* shader)

@@ -78,7 +78,7 @@ void Box::setTexture(const std::string& path)
 
 void Box::rotateModelX(float radians)
 {
-	m_modelMat =  glm::rotate(m_modelMat, radians, glm::vec3(0.5, 0.0, 0.0));
+	m_modelMat =  glm::rotate(m_modelMat, radians, glm::vec3(0.0, 1.0, 0.0));
 }
 
 
