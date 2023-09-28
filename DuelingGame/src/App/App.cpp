@@ -98,9 +98,9 @@ Status App::run()
     renderer.addShape(&box3);
 
     Pyramid pyramid = Pyramid(0.2f);
-    pyramid.translate(0.5, 0, 1);
+    pyramid.translate(0, 0, -1);
     pyramid.setTexture("res/Images/cobble.png");
-    renderer.addShape(&pyramid);
+    renderer.addShape(&pyramid, true);
 
 
     float r = 0;
@@ -122,13 +122,7 @@ Status App::run()
         r += i;
         if (r >= 1 || r <= 0) i *= -1;
 
-        //glm::mat4 proj = glm::ortho(-1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 1.0f);
-        //glm::mat4 view = glm::translate(glm::mat4(1.0f), glm::vec3(AppTools::normalizeX(mouseX), AppTools::normalizeX(-mouseY), 0.0));
-        //glm::mat4 model = glm::mat4(1.0f);
-        //glm::mat4 mvp = proj * view * model;
-        //GLint location = glGetUniformLocation(shader.getProgram(), "u_MVP");
-        //glUniformMatrix4fv(location, 1, GL_FALSE, &mvp[0][0]);
-        //renderer.setView(glm::translate(glm::mat4(1.0f), glm::vec3(AppTools::normalizeX(mouseX), AppTools::normalizeY(mouseY), 0.0)));
+        renderer.setView(glm::translate(glm::mat4(1.0f), glm::vec3(AppTools::normalizeX(mouseX), AppTools::normalizeY(mouseY), 0.0)));
         renderer.clear();
 
         renderer.drawShapes(&shader);

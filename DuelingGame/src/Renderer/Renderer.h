@@ -16,11 +16,13 @@ public:
 	void setView(glm::mat4 view);
 	void setProjection(glm::mat4 projection);
 	void updateMVP(glm::mat4 model, Shader* shader);
-	void addShape(Shape* shape);
+	void addShape(Shape* shape, bool is3D = false);
 	void drawShapes(Shader* shader);
 	void clear();
 private:
-	std::vector<Shape*> m_shapes;
+	std::vector<Shape*> m_2DShapes;
+	std::vector<Shape*> m_3DShapes;
+
 	glm::mat4 m_view;
 	glm::mat4 m_projection;
 };

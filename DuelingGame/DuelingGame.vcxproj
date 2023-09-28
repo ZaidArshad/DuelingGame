@@ -166,6 +166,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Model\Pyramid.cpp" />
+    <ClCompile Include="src\Model\Shape.cpp" />
     <ClCompile Include="src\Renderer\Renderer.cpp" />
     <ClCompile Include="src\3rd\stb_image\stb_image.cpp" />
     <ClCompile Include="src\App\App.cpp" />

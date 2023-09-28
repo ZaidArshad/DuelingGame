@@ -15,10 +15,8 @@ public:
 	void setPosition(float x, float y);
 	void setColor(float r, float g, float b, float a);
 	void setTexture(const std::string& path);
-	void rotateModelX(float radians);
 	
 	// Overloaded virtual functions of Shape
-	void draw() override;
 	std::vector<float> getPosition() override;
 
 private:

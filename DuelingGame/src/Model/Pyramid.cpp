@@ -52,30 +52,6 @@ void Pyramid::setTexture(const std::string& path)
 	m_pTexture = new Texture(path);
 }
 
-void Pyramid::translate(float x, float y, float z)
-{
-	m_modelMat = glm::translate(m_modelMat, glm::vec3(x, y, z));
-}
-
-void Pyramid::rotateModelX(float radians)
-{
-	m_modelMat = glm::rotate(m_modelMat, radians, glm::vec3(0.0, 1.0, 0.0));
-}
-
-void Pyramid::draw()
-{
-	if (m_pTexture)
-	{
-		m_pTexture->bind(0);
-		m_va.draw();
-		m_pTexture->unbind();
-	}
-	else
-	{
-		m_va.draw();
-	}
-}
-
 std::vector<float> Pyramid::getPosition()
 {
 

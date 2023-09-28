@@ -76,26 +76,6 @@ void Box::setTexture(const std::string& path)
 	m_pTexture = new Texture(path);
 }
 
-void Box::rotateModelX(float radians)
-{
-	m_modelMat =  glm::rotate(m_modelMat, radians, glm::vec3(0.0, 1.0, 0.0));
-}
-
-
-void Box::draw()
-{
-	if (m_pTexture)
-	{
-		m_pTexture->bind(0);
-		m_va.draw();
-		m_pTexture->unbind();
-	}
-	else
-	{
-		m_va.draw();
-	}
-}
-
 std::vector<float> Box::getPosition()
 {
 	float left = AppTools::normalizeX(m_x);
