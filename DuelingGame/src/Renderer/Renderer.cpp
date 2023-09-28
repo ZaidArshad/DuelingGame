@@ -36,6 +36,7 @@ void Renderer::addShape(Shape* shape, bool is3D)
 
 void Renderer::drawShapes(Shader* shader)
 {
+	// Switch to orthographic projection for 3D shapes
 	m_projection = glm::ortho(-1.0f, 1.0f, -1.0f, 1.0f, -2.0f, 2.0f);
 	for (Shape* shape : m_2DShapes)
 	{
@@ -43,6 +44,7 @@ void Renderer::drawShapes(Shader* shader)
 		shape->draw();
 	}
 
+	// Switch to perspective projection for 3D shapes
 	m_projection = glm::perspective(45.0f,
 									(float)WINDOW_WIDTH / (float)WINDOW_HEIGHT,
 									0.1f,
