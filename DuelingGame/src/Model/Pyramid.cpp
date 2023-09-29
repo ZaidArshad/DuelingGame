@@ -6,6 +6,7 @@
 
 Pyramid::Pyramid(float length)
 {
+	m_vertCount = 4;
 	m_length = length;
 	m_va.addBuffer(getPosition(), 3);
 
@@ -38,23 +39,11 @@ Pyramid::Pyramid(float length)
 
 Pyramid::~Pyramid()
 {
-	delete m_pTexture;
 }
 
-void Pyramid::setTexture(const std::string& path)
-{
-	std::vector<float> colors;
-	for (int i = 0; i < 4; i++)
-	{
-		colors.insert(colors.end(), COLOR_TEXTURE.begin(), COLOR_TEXTURE.end());
-	}
-	m_va.updateBuffer(1, colors);
-	m_pTexture = new Texture(path);
-}
-
+// -- Overload -- //
 std::vector<float> Pyramid::getPosition()
 {
-
 	std::vector<float> positions
 	{
 		-m_length,  -m_length,  m_length, // left,   bottom, front

@@ -5,9 +5,8 @@ class Pyramid : public Shape
 public:
 	Pyramid(float length);
 	~Pyramid();
-	void setTexture(const std::string& path);
 
-	// Overloaded virtual functions of Shape
+	// -- Overload -- //
 	std::vector<float> getPosition() override;
 
 private:

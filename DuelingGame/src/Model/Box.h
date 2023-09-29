@@ -10,19 +10,13 @@
 class Box : public Shape
 {
 public:
-	Box(float x, float y, float w, float h);
+	Box(float w, float h);
 	~Box();
-	void setPosition(float x, float y);
-	void setColor(float r, float g, float b, float a);
-	void setTexture(const std::string& path);
 	
-	// Overloaded virtual functions of Shape
+	// -- Overload -- //
 	std::vector<float> getPosition() override;
 
 private:
-	// Used to calculate dimensions
-	float m_x;
-	float m_y;
 	float m_width;
 	float m_height;
 };

@@ -85,16 +85,19 @@ Status App::run()
     double mouseX = WINDOW_WIDTH/2;
     double mouseY = WINDOW_HEIGHT/2;
 
-    Box box = Box(0, 0, 100, 50);
+    Box box = Box(1.0, 0.5);
+    box.translate(-0.5, -0.5, 0);
     box.setTexture("res/Images/him.PNG");
+
     renderer.addShape(&box);
     InputController inputController = InputController(2);
 
-    Box box2 = Box((WINDOW_WIDTH / 2) - 150, (WINDOW_HEIGHT / 2) - 150, 300, 300);
+    Box box2 = Box(0.3, 0.3);
     box2.setTexture("res/Images/bb-sun.png");
     renderer.addShape(&box2);
 
-    Box box3 = Box(WINDOW_WIDTH - 50, WINDOW_HEIGHT - 50, 50, 50);
+    Box box3 = Box(0.25, 0.25);
+    box3.translate(0.5, 0.5, 0);
     renderer.addShape(&box3);
 
     Pyramid pyramid = Pyramid(0.2f);
@@ -112,7 +115,7 @@ Status App::run()
     while (!glfwWindowShouldClose(window) && !glfwGetKey(window, GLFW_KEY_ESCAPE))
     {
         inputController.move2D(window, &xpos, &ypos);
-        box.setPosition(xpos, ypos);
+        //box.translate(AppTools::normalizeX(xpos)/10, AppTools::normalizeY(ypos)/10, 0);
         inputController.mouseDrag2D(window, &mouseX, &mouseY);
         box2.rotateModelX(0.01);
         pyramid.rotateModelX(0.01);

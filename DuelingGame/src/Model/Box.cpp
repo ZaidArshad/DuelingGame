@@ -8,13 +8,13 @@
 
 #include <iostream>
 
-Box::Box(float x, float y, float w, float h)
+Box::Box(float w, float h)
 {
+	m_vertCount = 4;
+
 	// Generating position buffer
 	m_width = w;
 	m_height = h;
-	m_x = x;
-	m_y = y;
 	m_va.addBuffer(getPosition(), 2);
 
 	// Generating color buffer to white
@@ -45,43 +45,15 @@ Box::Box(float x, float y, float w, float h)
 
 Box::~Box()
 {
-	delete m_pTexture;
 }
 
-void Box::setPosition(float x, float y)
-{
-	m_x = x;
-	m_y = y;
-	m_va.updateBuffer(0, getPosition());
-}
-
-void Box::setColor(float r, float g, float b, float a)
-{
-	std::vector<float> colors;
-	for (int i = 0; i < 4; i++)
-	{
-		colors.insert(colors.end(), { r, g, b, a });
-	}
-	m_va.updateBuffer(1, colors);
-}
-
-void Box::setTexture(const std::string& path)
-{
-	std::vector<float> colors;
-	for (int i = 0; i < 4; i++)
-	{
-		colors.insert(colors.end(), COLOR_TEXTURE.begin(), COLOR_TEXTURE.end());
-	}
-	m_va.updateBuffer(1, colors);
-	m_pTexture = new Texture(path);
-}
-
+// -- Overload -- //
 std::vector<float> Box::getPosition()
 {
-	float left = AppTools::normalizeX(m_x);
-	float right = AppTools::normalizeX(m_x + m_width);
-	float top = AppTools::normalizeY(m_y);
-	float bottom = AppTools::normalizeY(m_y + m_height);
+	float left = -m_width/2;
+	float right = m_width/2;
+	float top = m_height/2;
+	float bottom = -m_height/2;
 	std::vector<float> positions
 	{
 		left,  top,
