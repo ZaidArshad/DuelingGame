@@ -19,6 +19,11 @@
 #include "Model/VertexArray.h"
 #include "Model/Pyramid.h"
 
+double g_scroll = 0;
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
+{
+    g_scroll = yoffset;
+}
 
 App::App()
 {
@@ -84,13 +89,14 @@ Status App::run()
 
     double mouseX = WINDOW_WIDTH/2;
     double mouseY = WINDOW_HEIGHT/2;
+    double mouseZ = 0;
 
     Box box = Box(1.0, 0.5);
     box.translate(-0.5, -0.5, 0);
     box.setTexture("res/Images/him.PNG");
 
     renderer.addShape(&box);
-    InputController inputController = InputController(2);
+    InputController inputController = InputController(0.01);
 
     Box box2 = Box(0.3, 0.3);
     box2.setTexture("res/Images/bb-sun.png");
@@ -105,18 +111,30 @@ Status App::run()
     pyramid.setTexture("res/Images/cobble.png");
     renderer.addShape(&pyramid, true);
 
+    glfwSetScrollCallback(window, scroll_callback);
 
     float r = 0;
     float i = 0.005f;
+
+    float scroll = 0;
 
     glfwSwapInterval(1);
 
     ///* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window) && !glfwGetKey(window, GLFW_KEY_ESCAPE))
     {
+        if (g_scroll != 0)
+        {
+            scroll += (g_scroll / 10);
+            g_scroll = 0;
+        }
+
         inputController.move2D(window, &xpos, &ypos);
-        //box.translate(AppTools::normalizeX(xpos)/10, AppTools::normalizeY(ypos)/10, 0);
         inputController.mouseDrag2D(window, &mouseX, &mouseY);
+        
+        std::cout << scroll << " " << mouseX << std::endl;
+
+        box.translate(xpos, ypos, 0);
         box2.rotateModelX(0.01);
         pyramid.rotateModelX(0.01);
 
@@ -125,7 +143,7 @@ Status App::run()
         r += i;
         if (r >= 1 || r <= 0) i *= -1;
 
-        renderer.setView(glm::translate(glm::mat4(1.0f), glm::vec3(AppTools::normalizeX(mouseX), AppTools::normalizeY(mouseY), 0.0)));
+        renderer.setView(glm::translate(glm::mat4(1.0f), glm::vec3(AppTools::normalizeX(mouseX), AppTools::normalizeY(mouseY), scroll)));
         renderer.clear();
 
         renderer.drawShapes(&shader);
