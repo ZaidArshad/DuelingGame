@@ -18,7 +18,7 @@ public:
 
 	// -- Utility -- //
 	void translate(float x, float y, float z);
-	void rotateModelX(float radians);
+	void rotateModel(float radians, float x, float y, float z);
 	void draw();
 
 	// -- Virtual -- //

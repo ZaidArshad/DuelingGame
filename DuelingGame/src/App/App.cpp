@@ -94,13 +94,15 @@ Status App::run()
     Box box = Box(1.0, 0.5);
     box.translate(-0.5, -0.5, 0);
     box.setTexture("res/Images/him.PNG");
+    renderer.addShape(&box, true);
 
-    renderer.addShape(&box);
     InputController inputController = InputController(0.01);
 
     Box box2 = Box(0.3, 0.3);
-    box2.setTexture("res/Images/bb-sun.png");
-    renderer.addShape(&box2);
+    box2.setTexture("res/Images/france.png");
+    box2.rotateModel(glm::half_pi<float>(), 1, 0, 0);
+    box2.translate(0, -1, 0.5);
+    renderer.addShape(&box2, true);
 
     Box box3 = Box(0.25, 0.25);
     box3.translate(0.5, 0.5, 0);
@@ -131,12 +133,10 @@ Status App::run()
 
         inputController.move2D(window, &xpos, &ypos);
         inputController.mouseDrag2D(window, &mouseX, &mouseY);
-        
-        std::cout << scroll << " " << mouseX << std::endl;
 
-        box.translate(xpos, ypos, 0);
-        box2.rotateModelX(0.01);
-        pyramid.rotateModelX(0.01);
+        box.translate(xpos, 0, ypos);
+        //box.rotateModel(0.01, 0, 1, 0);
+        pyramid.rotateModel(0.01, 0, 1, 0);
 
         box3.setColor(r, 1.0f-r, 1.0f, 1.0f);
         // std::cout << r << std::endl;
