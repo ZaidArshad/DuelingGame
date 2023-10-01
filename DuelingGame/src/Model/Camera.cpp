@@ -21,5 +21,5 @@ const glm::mat4 Camera::getView()
 
 void Camera::translate(float x, float y, float z)
 {
-	glm::translate(m_view, glm::vec3(x, y, z));
+	m_view = glm::translate(m_view, glm::vec3(x, y, z));
 }

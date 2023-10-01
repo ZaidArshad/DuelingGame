@@ -5,6 +5,9 @@
 InputController::InputController(float v)
 {
 	velocity = v;
+	m_originMouseX = 0;
+	m_originMouseY = 0;
+	m_mouseClicked = false;
 }
 
 void InputController::move2D(GLFWwindow* window, float* x, float* y)
@@ -24,15 +27,15 @@ void InputController::mouseDrag2D(GLFWwindow* window, double* x, double* y)
 	{
 		double curX, curY;
 		glfwGetCursorPos(window, &curX, &curY);
-		if (!m_mouseClicked)
+
+		if (m_mouseClicked)
 		{
-			m_originMouseX = *x - curX;
-			m_originMouseY = *y - curY;
+			*x = AppTools::normalizeX(curX) - m_originMouseX;
+			*y = m_originMouseY - AppTools::normalizeX(curY);
 		}
 		m_mouseClicked = true;
-
-		*x = m_originMouseX + curX;
-		*y = m_originMouseY + curY;
+		m_originMouseX = AppTools::normalizeX(curX);
+		m_originMouseY = AppTools::normalizeX(curY);
 	}
 	else
 	{

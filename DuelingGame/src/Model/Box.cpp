@@ -48,7 +48,7 @@ Box::~Box()
 {
 }
 
-void Box::makeTiled(float count)
+void Box::makeTiled(float rows, float cols)
 {
 	if (m_pTexture == nullptr)
 	{
@@ -62,9 +62,9 @@ void Box::makeTiled(float count)
 	std::vector<float> textureCoords
 	{
 		0.0f, 0.0f,
-		count, 0.0f,
-		0.0f, count,
-		count, count
+		rows, 0.0f,
+		0.0f, cols,
+		rows, cols
 	};
 	m_va.updateBuffer(2, textureCoords);
 }

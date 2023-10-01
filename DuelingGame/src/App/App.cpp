@@ -87,10 +87,6 @@ Status App::run()
     float xpos = 0.0f;
     float ypos = 0.0f;
 
-    double mouseX = WINDOW_WIDTH/2;
-    double mouseY = WINDOW_HEIGHT/2;
-    double mouseZ = 0;
-
     Box box = Box(0.25, 0.25);
     box.translate(-0.5, -0.375, 0);
     box.setTexture("res/Images/him.PNG");
@@ -98,9 +94,9 @@ Status App::run()
 
     InputController inputController = InputController(0.01f);
 
-    Box box2 = Box(1, 1);
+    Box box2 = Box(1, 5);
     box2.setTexture("res/Images/cobble.png");
-    box2.makeTiled(5);
+    box2.makeTiled(5, 50);
     box2.rotateModel(glm::half_pi<float>(), 1, 0, 0);
     box2.translate(0, -1, 0.5);
     renderer.addShape(&box2, true);
@@ -114,6 +110,8 @@ Status App::run()
     pyramid.setTexture("res/Images/france.png");
     renderer.addShape(&pyramid, true);
 
+    renderer.getCamera()->translate(0, 0.25, 0);
+
     glfwSetScrollCallback(window, scroll_callback);
 
     float r = 0;
@@ -126,14 +124,12 @@ Status App::run()
     ///* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window) && !glfwGetKey(window, GLFW_KEY_ESCAPE))
     {
-        if (g_scroll != 0)
-        {
-            scroll += (g_scroll / 10);
-            g_scroll = 0;
-        }
 
         inputController.move2D(window, &xpos, &ypos);
-        inputController.mouseDrag2D(window, &mouseX, &mouseY);
+
+        double dragX = 0;
+        double dragY = 0;
+        inputController.mouseDrag2D(window, &dragX, &dragY);
 
         box.translate(xpos, 0, -ypos);
         pyramid.rotateModel(0.01, 0, 1, 0);
@@ -143,11 +139,18 @@ Status App::run()
         r += i;
         if (r >= 1 || r <= 0) i *= -1;
 
-        renderer.getCamera()->setView(
-            glm::translate(glm::mat4(1.0f),
-            glm::vec3(AppTools::normalizeX(mouseX),
-            AppTools::normalizeY(mouseY),
-            scroll)));
+        //renderer.getCamera()->setView(
+        //    glm::translate(glm::mat4(1.0f),
+        //    glm::vec3(AppTools::normalizeX(mouseX),
+        //    AppTools::normalizeY(mouseY),
+        //    scroll)));
+        std::cout << dragX << " " << dragY << std::endl;
+        renderer.getCamera()->translate(
+            dragX,
+            dragY,
+            g_scroll/10
+        );
+        g_scroll = 0;
         renderer.clear();
 
         renderer.drawShapes(&shader);
