@@ -5,6 +5,7 @@
 #include "Box.h"
 #include "Shader/Color.h"
 #include "Helper/AppTools.h"
+#include "Helper/Logger.h"
 
 #include <iostream>
 
@@ -45,6 +46,27 @@ Box::Box(float w, float h)
 
 Box::~Box()
 {
+}
+
+void Box::makeTiled(float count)
+{
+	if (m_pTexture == nullptr)
+	{
+		Logger::log("Tried to make tile of null texture");
+		return;
+	}
+
+	m_pTexture->bind(0);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	std::vector<float> textureCoords
+	{
+		0.0f, 0.0f,
+		count, 0.0f,
+		0.0f, count,
+		count, count
+	};
+	m_va.updateBuffer(2, textureCoords);
 }
 
 // -- Overload -- //

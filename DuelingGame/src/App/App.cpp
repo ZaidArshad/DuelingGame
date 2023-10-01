@@ -91,15 +91,16 @@ Status App::run()
     double mouseY = WINDOW_HEIGHT/2;
     double mouseZ = 0;
 
-    Box box = Box(1.0, 0.5);
-    box.translate(-0.5, -0.5, 0);
+    Box box = Box(0.25, 0.25);
+    box.translate(-0.5, -0.375, 0);
     box.setTexture("res/Images/him.PNG");
     renderer.addShape(&box, true);
 
-    InputController inputController = InputController(0.01);
+    InputController inputController = InputController(0.01f);
 
-    Box box2 = Box(0.3, 0.3);
-    box2.setTexture("res/Images/france.png");
+    Box box2 = Box(1, 1);
+    box2.setTexture("res/Images/cobble.png");
+    box2.makeTiled(5);
     box2.rotateModel(glm::half_pi<float>(), 1, 0, 0);
     box2.translate(0, -1, 0.5);
     renderer.addShape(&box2, true);
@@ -108,9 +109,9 @@ Status App::run()
     box3.translate(0.5, 0.5, 0);
     renderer.addShape(&box3);
 
-    Pyramid pyramid = Pyramid(0.2f);
+    Pyramid pyramid = Pyramid(0.05f);
     pyramid.translate(0, 0, -1);
-    pyramid.setTexture("res/Images/cobble.png");
+    pyramid.setTexture("res/Images/france.png");
     renderer.addShape(&pyramid, true);
 
     glfwSetScrollCallback(window, scroll_callback);
@@ -134,7 +135,7 @@ Status App::run()
         inputController.move2D(window, &xpos, &ypos);
         inputController.mouseDrag2D(window, &mouseX, &mouseY);
 
-        box.translate(xpos, 0, ypos);
+        box.translate(xpos, 0, -ypos);
         //box.rotateModel(0.01, 0, 1, 0);
         pyramid.rotateModel(0.01, 0, 1, 0);
 

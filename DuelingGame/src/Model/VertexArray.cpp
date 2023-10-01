@@ -30,6 +30,16 @@ VertexArray::~VertexArray()
 {
 }
 
+void VertexArray::bind()
+{
+	glBindVertexArray(m_VAO);
+}
+
+void VertexArray::unbind()
+{
+	glBindVertexArray(0);
+}
+
 void VertexArray::addBuffer(const std::vector<float>& vertices, 
 							unsigned int stride)
 {

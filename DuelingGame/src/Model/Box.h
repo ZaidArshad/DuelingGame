@@ -12,6 +12,7 @@ class Box : public Shape
 public:
 	Box(float w, float h);
 	~Box();
+	void makeTiled(float count);
 	
 	// -- Overload -- //
 	std::vector<float> getPosition() override;

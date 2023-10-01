@@ -19,6 +19,9 @@ public:
 				unsigned int stride,
 				const std::vector<unsigned int>& indices);
 	~VertexArray();
+
+	void bind();
+	void unbind();
 	void addBuffer(const std::vector<float>& vertices, unsigned int stride);
 	void setIndices(const std::vector<unsigned int>& indices);
 	void updateBuffer(unsigned int i, const std::vector<float>& vertices);
