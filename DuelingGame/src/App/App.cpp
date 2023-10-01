@@ -136,7 +136,6 @@ Status App::run()
         inputController.mouseDrag2D(window, &mouseX, &mouseY);
 
         box.translate(xpos, 0, -ypos);
-        //box.rotateModel(0.01, 0, 1, 0);
         pyramid.rotateModel(0.01, 0, 1, 0);
 
         box3.setColor(r, 1.0f-r, 1.0f, 1.0f);
@@ -144,7 +143,11 @@ Status App::run()
         r += i;
         if (r >= 1 || r <= 0) i *= -1;
 
-        renderer.setView(glm::translate(glm::mat4(1.0f), glm::vec3(AppTools::normalizeX(mouseX), AppTools::normalizeY(mouseY), scroll)));
+        renderer.getCamera()->setView(
+            glm::translate(glm::mat4(1.0f),
+            glm::vec3(AppTools::normalizeX(mouseX),
+            AppTools::normalizeY(mouseY),
+            scroll)));
         renderer.clear();
 
         renderer.drawShapes(&shader);
