@@ -4,16 +4,10 @@
 
 Renderer::Renderer()
 {
-	m_projection = glm::ortho(-1.0f, 1.0f, -1.0f, 1.0f, -2.0f, 2.0f);
 }
 
 Renderer::~Renderer()
 {
-}
-
-void Renderer::setProjection(glm::mat4 projection)
-{
-	m_projection = projection;
 }
 
 Camera* Renderer::getCamera()
@@ -35,22 +29,17 @@ void Renderer::addShape(Shape* shape, bool is3D)
 
 void Renderer::drawShapes(Shader* shader)
 {
-	// Switch to orthographic projection for 3D shapes
-	m_projection = glm::ortho(-1.0f, 1.0f, -1.0f, 1.0f, -2.0f, 2.0f);
+	// Switch to orthographic projection for 2D shapes
 	for (Shape* shape : m_2DShapes)
 	{
-		updateMVP(shape->getModelMatrix(), shader);
+		updateMVP(shape->getModelMatrix(), m_camera.getOrthoProjection(), shader);
 		shape->draw();
 	}
 
 	// Switch to perspective projection for 3D shapes
-	m_projection = glm::perspective(45.0f,
-									(float)WINDOW_WIDTH / (float)WINDOW_HEIGHT,
-									0.1f,
-									1000.0f);
 	for (Shape* shape : m_3DShapes)
 	{
-		updateMVP(shape->getModelMatrix(), shader);
+		updateMVP(shape->getModelMatrix(), m_camera.getPerpsProjection(), shader);
 		shape->draw();
 	}
 }
@@ -60,9 +49,9 @@ void Renderer::clear()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
-void Renderer::updateMVP(glm::mat4 model, Shader* shader)
+void Renderer::updateMVP(glm::mat4 model, glm::mat4 projection, Shader* shader)
 {
-	glm::mat4 mvp = m_projection * m_camera.getView() * model;
+	glm::mat4 mvp = projection * m_camera.getView() * model;
 	GLint location = glGetUniformLocation(shader->getProgram(), "u_MVP");
 	glUniformMatrix4fv(location, 1, GL_FALSE, &mvp[0][0]);
 }
