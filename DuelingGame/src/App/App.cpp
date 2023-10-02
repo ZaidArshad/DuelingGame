@@ -139,18 +139,14 @@ Status App::run()
         r += i;
         if (r >= 1 || r <= 0) i *= -1;
 
-        //renderer.getCamera()->setView(
-        //    glm::translate(glm::mat4(1.0f),
-        //    glm::vec3(AppTools::normalizeX(mouseX),
-        //    AppTools::normalizeY(mouseY),
-        //    scroll)));
-        std::cout << dragX << " " << dragY << std::endl;
         renderer.getCamera()->translate(
             dragX,
             dragY,
             g_scroll/10
         );
         g_scroll = 0;
+        renderer.getCamera()->rotate(0.01, 0, 0, 1);
+
         renderer.clear();
 
         renderer.drawShapes(&shader);

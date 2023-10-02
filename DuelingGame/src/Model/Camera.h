@@ -18,6 +18,7 @@ public:
 
 	// -- Utility -- //
 	void translate(float x, float y, float z);
+	void rotate(float radians, float x, float y, float z);
 
 private:
 	glm::mat4 m_view;
