@@ -88,7 +88,7 @@ Status App::run()
     float ypos = 0.0f;
 
     Box box = Box(0.25, 0.25);
-    box.translate(-0.5, -0.375, 0);
+    box.translate(-0.5, -0.375, -1);
     box.setTexture("res/Images/him.PNG");
     renderer.addShape(&box, true);
 
@@ -132,6 +132,7 @@ Status App::run()
         inputController.mouseDrag2D(window, &dragX, &dragY);
 
         box.translate(xpos, 0, -ypos);
+        box.rotateModel(-xpos/2, 0, 1, 0);
         pyramid.rotateModel(0.01, 0, 1, 0);
 
         box3.setColor(r, 1.0f-r, 1.0f, 1.0f);
@@ -145,7 +146,9 @@ Status App::run()
             g_scroll/10
         );
         g_scroll = 0;
-        renderer.getCamera()->rotate(0.01, 0, 0, 1);
+        //renderer.getCamera()->translate(-xpos, 0, ypos);
+        renderer.getCamera()->followModel(box.getModelMatrix(), 0, -0.25, -1);
+        //renderer.getCamera()->rotate(0.1, 1, 0, 0);
 
         renderer.clear();
 
