@@ -19,6 +19,7 @@
 #include "Renderer/Renderer.h"
 #include "Model/VertexArray.h"
 #include "Shape/Pyramid.h"
+#include "Shape/Cube.h"
 
 double g_scroll = 0;
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
@@ -111,6 +112,9 @@ Status App::run()
     pyramid.setTexture("res/Images/france.png");
     renderer.addShape(&pyramid, true);
 
+    Cube cube = Cube(0.05f);
+    renderer.addShape(&cube, true);
+
     renderer.getCamera()->translate(0, 0.25, 0);
 
     glfwSetScrollCallback(window, scroll_callback);
@@ -135,6 +139,7 @@ Status App::run()
         std::cout << glm::to_string(box.getModelMatrix()) << std::endl;
 
         box.translate(0, 0, ypos);
+        cube.rotateModel(0.01, 0, 1, 0);
 
         box.rotateModel(-xpos/2, 0, 1, 0);
         

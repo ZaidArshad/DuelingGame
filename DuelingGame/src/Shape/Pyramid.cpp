@@ -1,8 +1,5 @@
 #include "Pyramid.h"
-#include "Helper/AppTools.h"
 #include "Shader/Color.h"
-#include "glm/glm.hpp"
-#include "glm/gtc/matrix_transform.hpp"
 
 Pyramid::Pyramid(float length)
 {

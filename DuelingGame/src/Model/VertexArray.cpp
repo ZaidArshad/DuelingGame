@@ -1,8 +1,6 @@
 #include "VertexArray.h"
 #include "Helper/Logger.h"
 
-
-
 VertexArray::VertexArray()
 {
 	m_VAO = 0;
@@ -114,6 +112,6 @@ void VertexArray::updateBuffer(unsigned int i, const std::vector<float>& vertice
 void VertexArray::draw()
 {
 	glBindVertexArray(m_VAO);
-	glDrawElements(GL_TRIANGLES, m_indices.size(), GL_UNSIGNED_INT, nullptr);
+	glDrawElements(GL_LINE_STRIP, m_indices.size(), GL_UNSIGNED_INT, nullptr);
 	glBindVertexArray(0);
 }
