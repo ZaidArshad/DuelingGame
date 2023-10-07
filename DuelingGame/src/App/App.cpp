@@ -8,8 +8,9 @@
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp"
+#include "glm/gtx/string_cast.hpp"
 
-#include "Model/Box.h"
+#include "Shape/Box.h"
 #include "Model/Texture.h"
 #include "Helper/AppTools.h"
 #include "Helper/Logger.h"
@@ -17,7 +18,7 @@
 #include "Shader/Shader.h"
 #include "Renderer/Renderer.h"
 #include "Model/VertexArray.h"
-#include "Model/Pyramid.h"
+#include "Shape/Pyramid.h"
 
 double g_scroll = 0;
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
@@ -131,8 +132,13 @@ Status App::run()
         double dragY = 0;
         inputController.mouseDrag2D(window, &dragX, &dragY);
 
-        box.translate(xpos, 0, -ypos);
+        std::cout << glm::to_string(box.getModelMatrix()) << std::endl;
+
+        box.translate(0, 0, ypos);
+
         box.rotateModel(-xpos/2, 0, 1, 0);
+        
+        
         pyramid.rotateModel(0.01, 0, 1, 0);
 
         box3.setColor(r, 1.0f-r, 1.0f, 1.0f);
@@ -148,6 +154,7 @@ Status App::run()
         g_scroll = 0;
         //renderer.getCamera()->translate(-xpos, 0, ypos);
         renderer.getCamera()->followModel(box.getModelMatrix(), 0, -0.25, -1);
+        //renderer.getCamera()->rotate(xpos / 2, 0, 1, 0);
         //renderer.getCamera()->rotate(0.1, 1, 0, 0);
 
         renderer.clear();

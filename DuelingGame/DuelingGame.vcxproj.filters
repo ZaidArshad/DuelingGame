@@ -21,7 +21,7 @@
     <ClCompile Include="src\Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Model\Box.cpp">
+    <ClCompile Include="src\Shape\Box.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Helper\AppTools.cpp">
@@ -54,10 +54,10 @@
     <ClCompile Include="src\Model\VertexArray.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Model\Pyramid.cpp">
+    <ClCompile Include="src\Shape\Pyramid.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Model\Shape.cpp">
+    <ClCompile Include="src\Shape\Shape.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Model\Camera.cpp">
@@ -65,7 +65,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\Model\Box.h">
+    <ClInclude Include="src\Shape\Box.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Helper\AppTools.h">
@@ -104,10 +104,10 @@
     <ClInclude Include="src\Model\VertexArray.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Model\Shape.h">
+    <ClInclude Include="src\Shape\Shape.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Model\Pyramid.h">
+    <ClInclude Include="src\Shape\Pyramid.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Model\Camera.h">

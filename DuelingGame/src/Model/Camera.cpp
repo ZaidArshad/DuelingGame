@@ -47,6 +47,11 @@ void Camera::rotate(float radians, float x, float y, float z)
 
 void Camera::followModel(glm::mat4 model, float x, float y, float z)
 {
-	m_view = glm::inverse(model);
-	translate(x, y, z);
+	glm::vec3 modelPos = model[3];
+	glm::vec3 cameraPos = glm::vec3(modelPos[0] + x, modelPos [1] - y, modelPos[2] +z);
+	m_view = glm::lookAt(cameraPos,
+						 modelPos,
+						 glm::vec3(0, 1, 0));
+	//m_view = glm::inverse(model);
+	//m_view = glm::translate(m_view, glm::vec3(0, 0, -1));
 }

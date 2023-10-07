@@ -3,9 +3,9 @@
 #include <GLFW/glfw3.h>
 #include "glm/glm.hpp"
 #include "Shape.h"
-#include "Texture.h"
+#include "Model/Texture.h"
 #include "Shader/Shader.h"
-#include "VertexArray.h"
+#include "Model/VertexArray.h"
 
 class Box : public Shape
 {

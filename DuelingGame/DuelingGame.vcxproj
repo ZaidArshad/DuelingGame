@@ -166,8 +166,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Model\Camera.cpp" />
-    <ClCompile Include="src\Model\Pyramid.cpp" />
-    <ClCompile Include="src\Model\Shape.cpp" />
+    <ClCompile Include="src\Shape\Pyramid.cpp" />
+    <ClCompile Include="src\Shape\Shape.cpp" />
     <ClCompile Include="src\Renderer\Renderer.cpp" />
     <ClCompile Include="src\3rd\stb_image\stb_image.cpp" />
     <ClCompile Include="src\App\App.cpp" />
@@ -177,14 +177,14 @@
     <ClCompile Include="src\Helper\AppTools.cpp" />
     <ClCompile Include="src\Controller\InputController.cpp" />
     <ClCompile Include="src\Main.cpp" />
-    <ClCompile Include="src\Model\Box.cpp" />
+    <ClCompile Include="src\Shape\Box.cpp" />
     <ClCompile Include="src\Model\Texture.cpp" />
     <ClCompile Include="src\Model\VertexArray.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Model\Camera.h" />
-    <ClInclude Include="src\Model\Pyramid.h" />
-    <ClInclude Include="src\Model\Shape.h" />
+    <ClInclude Include="src\Shape\Pyramid.h" />
+    <ClInclude Include="src\Shape\Shape.h" />
     <ClInclude Include="src\Shader\Color.h" />
     <ClInclude Include="src\Renderer\Renderer.h" />
     <ClInclude Include="src\3rd\stb_image\stb_image.h" />
@@ -194,7 +194,7 @@
     <ClInclude Include="src\Helper\Logger.h" />
     <ClInclude Include="src\Shader\Shader.h" />
     <ClInclude Include="src\Helper\AppTools.h" />
-    <ClInclude Include="src\Model\Box.h" />
+    <ClInclude Include="src\Shape\Box.h" />
     <ClInclude Include="src\Controller\InputController.h" />
     <ClInclude Include="src\Model\Texture.h" />
     <ClInclude Include="src\Model\VertexArray.h" />

@@ -6,7 +6,7 @@
 
 #include "Model/Camera.h"
 #include "Shader/Shader.h"
-#include "Model/Shape.h"
+#include "Shape/Shape.h"
 #include "Helper/Apptools.h"
 
 class Renderer

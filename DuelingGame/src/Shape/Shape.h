@@ -1,7 +1,7 @@
 #pragma once
 #include "glm/glm.hpp"
-#include "VertexArray.h"
-#include "Texture.h"
+#include "Model/VertexArray.h"
+#include "Model/Texture.h"
 
 class Shape
 {
