@@ -114,6 +114,8 @@ Status App::run()
 
     Cube cube = Cube(0.05f);
     renderer.addShape(&cube, true);
+    cube.translate(-0.5, -0.375, -1);
+    cube.setTexture("res/Images/fella.png");
 
     renderer.getCamera()->translate(0, 0.25, 0);
 
@@ -138,10 +140,9 @@ Status App::run()
 
         std::cout << glm::to_string(renderer.getCamera()->getView()) << std::endl;
 
-        box.translate(0, 0, ypos);
-        cube.rotateModel(0.01, 0, 1, 0);
+        cube.translate(0, 0, ypos);
 
-        box.rotateModel(-xpos/2, 0, 1, 0);
+        cube.rotateModel(-xpos, 0, 1, 0);
         
         
         pyramid.rotateModel(0.01, 0, 1, 0);
@@ -158,7 +159,7 @@ Status App::run()
         //);
         
         //renderer.getCamera()->translate(-xpos, 0, ypos);
-        renderer.getCamera()->followModel(box.getModelMatrix(), dragX, dragY, g_scroll / 10);
+        renderer.getCamera()->followModel(cube.getModelMatrix(), dragX, dragY, g_scroll / 10);
         g_scroll = 0;
         //renderer.getCamera()->rotate(xpos / 2, 0, 1, 0);
         //renderer.getCamera()->rotate(0.1, 1, 0, 0);
