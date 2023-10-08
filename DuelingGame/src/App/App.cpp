@@ -90,7 +90,7 @@ Status App::run()
     float ypos = 0.0f;
 
     Box box = Box(0.25, 0.25);
-    box.translate(-0.5, -0.375, -1);
+    box.translate(-0.5, 0.375, -1);
     box.setTexture("res/Images/him.PNG");
     renderer.addShape(&box, true);
 
@@ -100,7 +100,6 @@ Status App::run()
     box2.setTexture("res/Images/cobble.png");
     box2.makeTiled(5, 50);
     box2.rotateModel(glm::half_pi<float>(), 1, 0, 0);
-    box2.translate(0, -1, 0.5);
     renderer.addShape(&box2, true);
 
     Box box3 = Box(0.25, 0.25);
@@ -108,13 +107,13 @@ Status App::run()
     renderer.addShape(&box3);
 
     Pyramid pyramid = Pyramid(0.05f);
-    pyramid.translate(0, 0, -1);
+    pyramid.translate(0, 2, -1);
     pyramid.setTexture("res/Images/france.png");
     renderer.addShape(&pyramid, true);
 
     Cube cube = Cube(0.05f);
     renderer.addShape(&cube, true);
-    cube.translate(-0.5, -0.375, -1);
+    cube.translate(-0.5, 0.051f, -1);
     cube.setTexture("res/Images/fella.png");
 
     renderer.getCamera()->translate(0, 0.25, 0);

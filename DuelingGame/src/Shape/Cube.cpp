@@ -14,18 +14,16 @@ Cube::Cube(float length)
 	}
 	m_va.addBuffer(colors, 4);
 
-	const float third = (float)1/(float)3;
-	const float half = (float)1/(float)2;
 	std::vector<float> textureCoords
 	{
-		0.0f, 0.0f,
-		0.0f, half,
-		third, half,
-		third, 0.0f,
-		0.0f, 0.0f,
-		0.0f, half,
-		third, half,
-		third, 0.0f,
+		0.0f, 0.0f, // 0
+		0.0f, 0.0f, // 1
+		1.0f, 0.0f, // 2
+		1.0f, 0.0f, // 3
+		0.0f, 1.0f, // 4
+		0.0f, 1.0f, // 5
+		1.0f, 1.0f, // 6
+		1.0f, 1.0f, // 7
 	};
 	m_va.addBuffer(textureCoords, 2);
 

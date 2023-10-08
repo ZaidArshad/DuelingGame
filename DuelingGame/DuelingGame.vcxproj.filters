@@ -125,6 +125,5 @@
       <Filter>Resource Files\Shaders</Filter>
     </None>
     <None Include="res\Shaders\Vertex.shader" />
-    <None Include="res\Shaders\Vertex3D.shader" />
   </ItemGroup>
 </Project>
