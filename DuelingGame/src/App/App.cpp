@@ -136,7 +136,7 @@ Status App::run()
         double dragY = 0;
         inputController.mouseDrag2D(window, &dragX, &dragY);
 
-        std::cout << glm::to_string(box.getModelMatrix()) << std::endl;
+        std::cout << glm::to_string(renderer.getCamera()->getView()) << std::endl;
 
         box.translate(0, 0, ypos);
         cube.rotateModel(0.01, 0, 1, 0);
@@ -151,14 +151,15 @@ Status App::run()
         r += i;
         if (r >= 1 || r <= 0) i *= -1;
 
-        renderer.getCamera()->translate(
-            dragX,
-            dragY,
-            g_scroll/10
-        );
-        g_scroll = 0;
+        //renderer.getCamera()->translate(
+        //    dragX,
+        //    dragY,
+        //    g_scroll/10
+        //);
+        
         //renderer.getCamera()->translate(-xpos, 0, ypos);
-        renderer.getCamera()->followModel(box.getModelMatrix(), 0, -0.25, -1);
+        renderer.getCamera()->followModel(box.getModelMatrix(), dragX, dragY, g_scroll / 10);
+        g_scroll = 0;
         //renderer.getCamera()->rotate(xpos / 2, 0, 1, 0);
         //renderer.getCamera()->rotate(0.1, 1, 0, 0);
 

@@ -24,6 +24,8 @@ public:
 	void followModel(glm::mat4 model, float x, float y, float z);
 
 private:
+	glm::vec3 m_offset;
+
 	glm::mat4 m_view;
 	glm::mat4 m_orthoProjection;
 	glm::mat4 m_perspProjection;

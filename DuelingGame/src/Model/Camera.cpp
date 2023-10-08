@@ -3,6 +3,7 @@
 
 Camera::Camera()
 {
+	m_offset = glm::vec3(0.0f, 0.25f, -1.0f);
 	m_view = glm::mat4(1.0f);
 	m_orthoProjection = glm::ortho(-1.0f, 1.0f, -1.0f, 1.0f, -2.0f, 2.0f);
 	m_perspProjection = glm::perspective(45.0f,
@@ -47,11 +48,12 @@ void Camera::rotate(float radians, float x, float y, float z)
 
 void Camera::followModel(glm::mat4 model, float x, float y, float z)
 {
+	m_offset[0] += x;
+	m_offset[1] -= y;
+	m_offset[2] += z;
 	glm::vec3 modelPos = model[3];
-	glm::vec3 cameraPos = glm::vec3(modelPos[0] + x, modelPos [1] - y, modelPos[2] +z);
+	glm::vec3 cameraPos = modelPos + m_offset;
 	m_view = glm::lookAt(cameraPos,
 						 modelPos,
 						 glm::vec3(0, 1, 0));
-	//m_view = glm::inverse(model);
-	//m_view = glm::translate(m_view, glm::vec3(0, 0, -1));
 }
