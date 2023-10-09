@@ -99,7 +99,7 @@ Status App::run()
     Box box2 = Box(1, 5);
     box2.setTexture("res/Images/cobble.png");
     box2.makeTiled(5, 50);
-    box2.rotateModel(glm::half_pi<float>(), 1, 0, 0);
+    box2.rotate(glm::half_pi<float>(), 1, 0, 0);
     renderer.addShape(&box2, true);
 
     Box box3 = Box(0.25, 0.25);
@@ -115,6 +115,17 @@ Status App::run()
     renderer.addShape(&cube, true);
     cube.translate(-0.5, 0.051f, -1);
     cube.setTexture("res/Images/fella.png");
+
+    std::vector<Cube*> towers;
+    for (int i = 0; i < 6; i++)
+    {
+        Cube* tower = new Cube(0.05f);
+        towers.push_back(tower);
+        tower->translate(1 * (i%2) - 0.5, 0.15f, (i%3)*-1);
+        tower->scale(1, 4, 1);
+        tower->setTexture("res/Images/fella.png");
+        renderer.addShape(tower, true);
+    }
 
     renderer.getCamera()->translate(0, 0.25, 0);
 
@@ -141,10 +152,10 @@ Status App::run()
 
         cube.translate(0, 0, ypos);
 
-        cube.rotateModel(-xpos, 0, 1, 0);
+        cube.rotate(-xpos, 0, 1, 0);
         
         
-        pyramid.rotateModel(0.01, 0, 1, 0);
+        pyramid.rotate(0.01, 0, 1, 0);
 
         box3.setColor(r, 1.0f-r, 1.0f, 1.0f);
         // std::cout << r << std::endl;

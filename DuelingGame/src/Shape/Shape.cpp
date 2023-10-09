@@ -48,9 +48,19 @@ void Shape::translate(float x, float y, float z)
 	m_modelMat = glm::translate(m_modelMat, glm::vec3(x, y, z));
 }
 
-void Shape::rotateModel(float radians, float x, float y, float z)
+void Shape::rotate(float radians, float x, float y, float z)
 {
 	m_modelMat = glm::rotate(m_modelMat, radians, glm::vec3(x, y, z));
+}
+
+void Shape::scale(float x, float y, float z)
+{
+	m_modelMat = glm::scale(m_modelMat, glm::vec3(x, y, z));
+}
+
+void Shape::resetModel()
+{
+	m_modelMat = glm::mat4(1.0f);
 }
 
 void Shape::draw()

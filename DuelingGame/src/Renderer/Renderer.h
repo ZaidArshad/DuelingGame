@@ -19,7 +19,10 @@ public:
 	Camera* getCamera();
 	
 	// -- Utility -- //
-	void updateMVP(glm::mat4 model, glm::mat4 view, glm::mat4 projection, Shader* shader);
+	void updateMVP(glm::mat4 model, 
+				   glm::mat4 view,
+				   glm::mat4 projection,
+				   Shader* shader);
 	void addShape(Shape* shape, bool is3D = false);
 	void drawShapes(Shader* shader);
 	void clear();

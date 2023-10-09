@@ -9,6 +9,8 @@ class Texture
 public:
 	Texture(const std::string& path);
 	~Texture();
+
+	// -- Utility -- //
 	void bind(unsigned int slot);
 	void unbind();
 

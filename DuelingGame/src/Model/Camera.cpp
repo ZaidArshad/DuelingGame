@@ -5,10 +5,10 @@ Camera::Camera()
 {
 	m_offset = glm::vec3(0.0f, 0.25f, -1.0f);
 	m_view = glm::mat4(1.0f);
-	m_orthoProjection = glm::ortho(-1.0f, 1.0f, -1.0f, 1.0f, -2.0f, 2.0f);
+	m_orthoProjection = glm::ortho(-1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 1.0f);
 	m_perspProjection = glm::perspective(45.0f,
 		(float)WINDOW_WIDTH / (float)WINDOW_HEIGHT,
-		0.1f,
+		0.01f,
 		1000.0f);
 }
 
@@ -46,8 +46,9 @@ void Camera::rotate(float radians, float x, float y, float z)
 	m_view = glm::rotate(m_view, radians, glm::vec3(x, y, z));
 }
 
-void Camera::followModel(glm::mat4 model, float x, float y, float z)
+void Camera::followModel(const glm::mat4& model, float x, float y, float z)
 {
+	// Offset allows the camera to move away from the model using user input
 	m_offset[0] += x;
 	m_offset[1] -= y;
 	m_offset[2] += z;
