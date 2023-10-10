@@ -1,6 +1,6 @@
 #include "Player.h"
+#include "Helper/Apptools.h"
 #include "glm/gtc/matrix_transform.hpp"
-#include "glm/gtx/vector_angle.hpp"
 #include <iostream>
 
 Player::Player()
@@ -31,24 +31,7 @@ void Player::move(GLFWwindow* window)
 		return;
 	}
 
-	double heading = 0;
-	if (x != 0 && z != 0)
-	{
-		heading = glm::atan(x/z);
-	}
-	else if (x != 0 || z < 0)
-	{
-		heading = glm::half_pi<double>();
-	}
-
-	if (z < 0)
-	{
-		heading += (heading > 0) ? glm::half_pi<double>() : -glm::half_pi<double>();
-	}
-	else
-	{
-		heading *= -1;
-	}
+	float heading = AppTools::calculateHeading(x, z);
 
 	if (m_cube.getRotation()[1] != heading)
 	{

@@ -15,6 +15,7 @@ class AppTools
 public:
 	static float normalizeX(float position);
 	static float normalizeY(float position);
+	static float calculateHeading(float x, float y);
 };
 
 
