@@ -23,29 +23,25 @@ Shape* Player::getModel()
 void Player::move(GLFWwindow* window)
 {
 	int x = 0;
-	int y = 0;
+	int z = 0;
 
-	m_controller.move2D(window, &x, &y);
-	if (x == 0 && y == 0)
+	m_controller.move2D(window, &x, &z);
+	if (x == 0 && z == 0)
 	{
 		return;
 	}
 
 	double heading = 0;
-	if (x != 0 && y != 0)
+	if (x != 0 && z != 0)
 	{
-		heading = glm::atan(x/y);
+		heading = glm::atan(x/z);
 	}
-	else if (x != 0)
-	{
-		heading = glm::half_pi<double>();
-	}
-	else if (y < 0)
+	else if (x != 0 || z < 0)
 	{
 		heading = glm::half_pi<double>();
 	}
 
-	if (y < 0)
+	if (z < 0)
 	{
 		heading += (heading > 0) ? glm::half_pi<double>() : -glm::half_pi<double>();
 	}
@@ -54,16 +50,11 @@ void Player::move(GLFWwindow* window)
 		heading *= -1;
 	}
 
-	std::cout << x << " " << y << " " << glm::degrees(heading) << std::endl;
-
-	if (rotation != heading)
+	if (m_cube.getRotation()[1] != heading)
 	{
-		m_cube.rotate(-rotation, 0, 1, 0);
-		m_cube.rotate(heading, 0, 1, 0);
+		m_cube.setRotation(glm::vec3(0, heading, 0));
 		rotation = heading;
 	}
 
-	m_cube.rotate(-rotation, 0, 1, 0);
-	m_cube.translate(-x*m_velocity, 0, y*m_velocity);
-	m_cube.rotate(rotation, 0, 1, 0);
+	m_cube.shift(-x*m_velocity, 0, z*m_velocity);
 }

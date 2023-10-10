@@ -112,7 +112,7 @@ Status App::run()
     Box box2 = Box(1, 5);
     box2.setTexture("res/Images/cobble.png");
     box2.makeTiled(5, 50);
-    box2.rotate(glm::half_pi<float>(), 1, 0, 0);
+    box2.rotate(glm::vec3(glm::half_pi<float>(), 0, 0));
     renderer.addShape(&box2, true);
 
     Box box3 = Box(0.25, 0.25);
@@ -148,7 +148,7 @@ Status App::run()
     {
         player.move(m_window);
         
-        pyramid.rotate(0.01, 0, 1, 0);
+        pyramid.rotate(glm::vec3(0, 0.01f, 0));
         box3.setColor(r, 1.0f-r, 1.0f, 1.0f);
         r += i;
         if (r >= 1 || r <= 0) i *= -1;

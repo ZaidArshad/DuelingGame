@@ -5,6 +5,7 @@
 Shape::Shape()
 {
 	m_vertCount = 0;
+	m_rotation = glm::vec3(0.0f);
 	m_pTexture = nullptr;
 	m_modelMat = glm::mat4(1.0f);
 }
@@ -37,9 +38,22 @@ void Shape::setTexture(const std::string& path)
 }
 
 // -- Getters -- //
-glm::mat4 Shape::getModelMatrix()
+const glm::mat4 Shape::getModelMatrix()
 {
 	return m_modelMat;
+}
+
+const glm::vec3 Shape::getRotation()
+{
+	return m_rotation;
+}
+
+void Shape::shift(float x, float y, float z)
+{
+	glm::vec3 rotation = m_rotation;
+	setRotation(glm::vec3(0.0f));
+	translate(x, y, z);
+	setRotation(rotation);
 }
 
 //  -- Utility -- //
@@ -48,23 +62,25 @@ void Shape::translate(float x, float y, float z)
 	m_modelMat = glm::translate(m_modelMat, glm::vec3(x, y, z));
 }
 
-void Shape::rotate(float radians, float x, float y, float z)
+void Shape::rotate(glm::vec3 rotation)
 {
-	m_modelMat = glm::rotate(m_modelMat, radians, glm::vec3(x, y, z));
+	for (int i = 0; i < 3; i++)
+	{
+		glm::vec3 axis = glm::mat4(1.0f)[i];
+		m_modelMat = glm::rotate(m_modelMat, rotation[i], axis);
+	}
+	m_rotation += rotation;
+}
+
+void Shape::setRotation(glm::vec3 rotation)
+{
+	rotate(-m_rotation);
+	rotate(rotation);
 }
 
 void Shape::scale(float x, float y, float z)
 {
 	m_modelMat = glm::scale(m_modelMat, glm::vec3(x, y, z));
-}
-
-void Shape::lookAt(float x, float y, float z)
-{
-	if (x != 0 || y != 0 || z != 0)
-	{
-		glm::vec3 self = m_modelMat[3];
-		m_modelMat = glm::lookAt(self, glm::vec3(x, y, z), glm::vec3(0, 1, 0));
-	}
 }
 
 void Shape::resetModel()

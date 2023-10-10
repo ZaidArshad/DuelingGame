@@ -14,13 +14,15 @@ public:
 	void setTexture(const std::string& path);
 
 	// -- Getters -- //
-	glm::mat4 getModelMatrix();
+	const glm::mat4 getModelMatrix();
+	const glm::vec3 getRotation();
 
 	// -- Utility -- //
+	void shift(float x, float y, float z);
 	void translate(float x, float y, float z);
-	void rotate(float radians, float x, float y, float z);
+	void rotate(glm::vec3 rotation);
+	void setRotation(glm::vec3 rotation);
 	void scale(float x, float y, float z);
-	void lookAt(float x, float y, float z);
 	void resetModel();
 	void draw();
 
@@ -28,6 +30,7 @@ public:
 	virtual std::vector<float> getPosition() = 0;
 protected:
 	int m_vertCount;
+	glm::vec3 m_rotation;
 	VertexArray m_va;
 	Texture* m_pTexture;
 	glm::mat4 m_modelMat;
