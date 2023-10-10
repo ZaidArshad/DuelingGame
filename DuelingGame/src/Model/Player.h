@@ -15,5 +15,8 @@ public:
 private:
 	InputController m_controller;
 	Cube m_cube;
+
+	float m_velocity;
+	double rotation = 0;
 };
 

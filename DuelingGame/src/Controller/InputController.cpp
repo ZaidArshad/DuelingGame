@@ -4,29 +4,20 @@
 
 InputController::InputController()
 {
-	velocity = 0;
 	m_originMouseX = 0;
 	m_originMouseY = 0;
 	m_mouseClicked = false;
 }
 
-InputController::InputController(float v)
-{
-	velocity = v;
-	m_originMouseX = 0;
-	m_originMouseY = 0;
-	m_mouseClicked = false;
-}
-
-void InputController::move2D(GLFWwindow* window, float* x, float* y)
+void InputController::move2D(GLFWwindow* window, int* x, int* y)
 {
 	int left = glfwGetKey(window, GLFW_KEY_LEFT);
 	int right = glfwGetKey(window, GLFW_KEY_RIGHT);
 	int up = glfwGetKey(window, GLFW_KEY_UP);
 	int down = glfwGetKey(window, GLFW_KEY_DOWN);
 
-	*x = (right - left) * velocity;
-	*y = (up - down) * velocity;
+	*x = (right - left);
+	*y = (up - down);
 }
 
 void InputController::mouseDrag2D(GLFWwindow* window, double* x, double* y)

@@ -20,6 +20,7 @@ public:
 	void translate(float x, float y, float z);
 	void rotate(float radians, float x, float y, float z);
 	void scale(float x, float y, float z);
+	void lookAt(float x, float y, float z);
 	void resetModel();
 	void draw();
 

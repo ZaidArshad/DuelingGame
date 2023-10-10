@@ -58,6 +58,15 @@ void Shape::scale(float x, float y, float z)
 	m_modelMat = glm::scale(m_modelMat, glm::vec3(x, y, z));
 }
 
+void Shape::lookAt(float x, float y, float z)
+{
+	if (x != 0 || y != 0 || z != 0)
+	{
+		glm::vec3 self = m_modelMat[3];
+		m_modelMat = glm::lookAt(self, glm::vec3(x, y, z), glm::vec3(0, 1, 0));
+	}
+}
+
 void Shape::resetModel()
 {
 	m_modelMat = glm::mat4(1.0f);
