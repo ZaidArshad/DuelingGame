@@ -2,6 +2,14 @@
 #include "Helper/Apptools.h"
 #include<iostream>
 
+InputController::InputController()
+{
+	velocity = 0;
+	m_originMouseX = 0;
+	m_originMouseY = 0;
+	m_mouseClicked = false;
+}
+
 InputController::InputController(float v)
 {
 	velocity = v;

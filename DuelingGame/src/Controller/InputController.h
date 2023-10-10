@@ -4,6 +4,7 @@
 class InputController
 {
 public:
+	InputController();
 	InputController(float v);
 	void move2D(GLFWwindow* window, float* x, float* y);
 	void mouseDrag2D(GLFWwindow* window, double* x, double* y);

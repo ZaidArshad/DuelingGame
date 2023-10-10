@@ -11,15 +11,16 @@
 #include "glm/gtx/string_cast.hpp"
 
 #include "Shape/Box.h"
-#include "Model/Texture.h"
+#include "Renderer/Texture.h"
 #include "Helper/AppTools.h"
 #include "Helper/Logger.h"
 #include "Controller/InputController.h"
 #include "Shader/Shader.h"
 #include "Renderer/Renderer.h"
-#include "Model/VertexArray.h"
+#include "Renderer/VertexArray.h"
 #include "Shape/Pyramid.h"
 #include "Shape/Cube.h"
+#include "Model/Player.h"
 
 double g_scroll = 0;
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
@@ -111,10 +112,8 @@ Status App::run()
     pyramid.setTexture("res/Images/france.png");
     renderer.addShape(&pyramid, true);
 
-    Cube cube = Cube(0.05f);
-    renderer.addShape(&cube, true);
-    cube.translate(-0.5, 0.051f, -1);
-    cube.setTexture("res/Images/fella.png");
+    Player player;
+    renderer.addShape(player.getModel(), true);
 
     std::vector<Cube*> towers;
     for (int i = 0; i < 6; i++)
@@ -126,8 +125,6 @@ Status App::run()
         tower->setTexture("res/Images/fella.png");
         renderer.addShape(tower, true);
     }
-
-    renderer.getCamera()->translate(0, 0.25, 0);
 
     glfwSetScrollCallback(window, scroll_callback);
 
@@ -147,12 +144,7 @@ Status App::run()
         double dragX = 0;
         double dragY = 0;
         inputController.mouseDrag2D(window, &dragX, &dragY);
-
-        std::cout << glm::to_string(renderer.getCamera()->getView()) << std::endl;
-
-        cube.translate(0, 0, ypos);
-
-        cube.rotate(-xpos, 0, 1, 0);
+        player.move(window);
         
         
         pyramid.rotate(0.01, 0, 1, 0);
@@ -168,11 +160,8 @@ Status App::run()
         //    g_scroll/10
         //);
         
-        //renderer.getCamera()->translate(-xpos, 0, ypos);
-        renderer.getCamera()->followModel(cube.getModelMatrix(), dragX, dragY, g_scroll / 10);
+        renderer.getCamera()->followModel(player.getModel()->getModelMatrix(), dragX, dragY, g_scroll / 10);
         g_scroll = 0;
-        //renderer.getCamera()->rotate(xpos / 2, 0, 1, 0);
-        //renderer.getCamera()->rotate(0.1, 1, 0, 0);
 
         renderer.clear();
 

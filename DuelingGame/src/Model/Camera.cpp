@@ -3,7 +3,7 @@
 
 Camera::Camera()
 {
-	m_offset = glm::vec3(0.0f, 0.25f, -1.0f);
+	m_offset = glm::vec3(0.0f, 0.25f, -0.75f);
 	m_view = glm::mat4(1.0f);
 	m_orthoProjection = glm::ortho(-1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 1.0f);
 	m_perspProjection = glm::perspective(45.0f,

@@ -1,6 +1,12 @@
 #include "Cube.h"
 #include "Shader/Color.h"
 
+Cube::Cube()
+{
+	m_vertCount = 0;
+	m_length = 0;
+}
+
 Cube::Cube(float length)
 {
 	m_vertCount = 8;

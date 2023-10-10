@@ -3,6 +3,7 @@
 class Cube : public Shape
 {
 public:
+	Cube();
 	Cube(float length);
 	~Cube();
 
