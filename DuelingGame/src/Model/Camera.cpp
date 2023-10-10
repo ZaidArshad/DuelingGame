@@ -46,15 +46,21 @@ void Camera::rotate(float radians, float x, float y, float z)
 	m_view = glm::rotate(m_view, radians, glm::vec3(x, y, z));
 }
 
-void Camera::followModel(const glm::mat4& model, float x, float y, float z)
+void Camera::followModel(const glm::mat4& model)
 {
-	// Offset allows the camera to move away from the model using user input
-	m_offset[0] += x;
-	m_offset[1] -= y;
-	m_offset[2] += z;
 	glm::vec3 modelPos = model[3];
 	glm::vec3 cameraPos = modelPos + m_offset;
 	m_view = glm::lookAt(cameraPos,
 						 modelPos,
 						 glm::vec3(0, 1, 0));
+}
+
+void Camera::pan(GLFWwindow* window, double scroll)
+{
+	double dragX = 0;
+	double dragY = 0;
+	m_controller.mouseDrag2D(window, &dragX, &dragY);
+	m_offset[0] += dragX;
+	m_offset[1] -= dragY;
+	m_offset[2] += scroll;
 }

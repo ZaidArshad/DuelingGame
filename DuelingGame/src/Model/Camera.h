@@ -1,6 +1,7 @@
 #pragma once
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
+#include "Controller/Inputcontroller.h"
 
 class Camera
 {
@@ -19,11 +20,14 @@ public:
 	// -- Utility -- //
 	void translate(float x, float y, float z);
 	void rotate(float radians, float x, float y, float z);
-	void followModel(const glm::mat4& model, float x, float y, float z);
+	void followModel(const glm::mat4& model);
+	void pan(GLFWwindow* window, double scroll);
 
 private:
 	// Offset from view matrix
 	glm::vec3 m_offset;
+
+	InputController m_controller;
 
 	// Matrices
 	glm::mat4 m_view;

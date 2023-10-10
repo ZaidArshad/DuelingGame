@@ -22,18 +22,19 @@
 #include "Shape/Cube.h"
 #include "Model/Player.h"
 
-double g_scroll = 0;
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
-    g_scroll = yoffset;
+    Options* options = static_cast<Options*>(glfwGetWindowUserPointer(window));
+    options->scroll = yoffset;
 }
 
 App::App()
 {
-    window = nullptr;
+    m_window = nullptr;
+    m_options = nullptr;
 }
 
-Status App::run()
+Status App::setup()
 {
     /* Initialize the library */
     if (!glfwInit())
@@ -46,24 +47,28 @@ Status App::run()
     glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GL_TRUE);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, 
-                              "DuelingGame", NULL, NULL);
+    m_window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT,
+        "DuelingGame", NULL, NULL);
     glViewport(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT);
-    if (!window)
+    if (!m_window)
     {
-        glfwTerminate();
-        return -1;
+        Logger::log("Error initializing GLFW\n");
+        return STATUS_BAD;
     }
 
     /* Make the window's context current */
-    glfwMakeContextCurrent(window);
+    glfwMakeContextCurrent(m_window);
     glfwSwapInterval(1);
 
     if (glewInit() != GLEW_OK)
     {
         Logger::log("Error initializing GLEW\n");
-        return -1;
+        return STATUS_BAD;
     }
+
+    m_options = new Options();
+    glfwSetWindowUserPointer(m_window, m_options);
+    glfwSetScrollCallback(m_window, scroll_callback);
 
     Logger::log((const char*)glGetString(GL_VERSION));
     glEnable(GL_DEBUG_OUTPUT);
@@ -74,8 +79,20 @@ Status App::run()
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glEnable(GL_BLEND);
 
+    return STATUS_OK;
+}
+
+Status App::run()
+{
+    // err should be STATUS_OK after setup
+    Status err = setup();
+    if (err == STATUS_BAD)
+    {
+        glfwTerminate();
+        return STATUS_BAD;
+    }
+
     Shader shader;
-    Status err = STATUS_OK;
     err = shader.generateShader("res/Shaders/Vertex.shader",
                                 "res/Shaders/Fragment.shader");
     if (err == STATUS_BAD)
@@ -87,15 +104,10 @@ Status App::run()
 
     Renderer renderer;
 
-    float xpos = 0.0f;
-    float ypos = 0.0f;
-
     Box box = Box(0.25, 0.25);
     box.translate(-0.5, 0.375, -1);
     box.setTexture("res/Images/him.PNG");
     renderer.addShape(&box, true);
-
-    InputController inputController = InputController(0.01f);
 
     Box box2 = Box(1, 5);
     box2.setTexture("res/Images/cobble.png");
@@ -126,49 +138,31 @@ Status App::run()
         renderer.addShape(tower, true);
     }
 
-    glfwSetScrollCallback(window, scroll_callback);
-
     float r = 0;
     float i = 0.005f;
-
-    float scroll = 0;
 
     glfwSwapInterval(1);
 
     ///* Loop until the user closes the window */
-    while (!glfwWindowShouldClose(window) && !glfwGetKey(window, GLFW_KEY_ESCAPE))
+    while (!glfwWindowShouldClose(m_window) && !glfwGetKey(m_window, GLFW_KEY_ESCAPE))
     {
-
-        inputController.move2D(window, &xpos, &ypos);
-
-        double dragX = 0;
-        double dragY = 0;
-        inputController.mouseDrag2D(window, &dragX, &dragY);
-        player.move(window);
-        
+        player.move(m_window);
         
         pyramid.rotate(0.01, 0, 1, 0);
-
         box3.setColor(r, 1.0f-r, 1.0f, 1.0f);
-        // std::cout << r << std::endl;
         r += i;
         if (r >= 1 || r <= 0) i *= -1;
 
-        //renderer.getCamera()->translate(
-        //    dragX,
-        //    dragY,
-        //    g_scroll/10
-        //);
-        
-        renderer.getCamera()->followModel(player.getModel()->getModelMatrix(), dragX, dragY, g_scroll / 10);
-        g_scroll = 0;
+        renderer.getCamera()->pan(m_window, m_options->scroll/10);
+        renderer.getCamera()->followModel(player.getModel()->getModelMatrix());
+        m_options->scroll = 0;
 
         renderer.clear();
 
         renderer.drawShapes(&shader);
 
         /* Swap front and back buffers */
-        glfwSwapBuffers(window);
+        glfwSwapBuffers(m_window);
 
         /* Poll for and process events */
         glfwPollEvents();

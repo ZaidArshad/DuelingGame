@@ -184,6 +184,7 @@
     <ClCompile Include="src\Renderer\VertexArray.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\App\Options.h" />
     <ClInclude Include="src\Model\Player.h" />
     <ClInclude Include="src\Shape\Cube.h" />
     <ClInclude Include="src\Model\Camera.h" />
