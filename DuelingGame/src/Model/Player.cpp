@@ -32,7 +32,6 @@ void Player::move(GLFWwindow* window)
 	}
 
 	float heading = AppTools::calculateHeading(x, z);
-
 	if (m_cube.getRotation()[1] != heading)
 	{
 		m_cube.setRotation(glm::vec3(0, heading, 0));

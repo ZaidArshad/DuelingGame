@@ -23,14 +23,19 @@ float AppTools::normalizeY(float position)
 float AppTools::calculateHeading(float x, float y)
 {
 	double heading = 0;
+	x = -x;
 	if (x != 0 && y != 0)
 	{
-		heading = glm::atan(x/-y);
+		heading = glm::atan(x/y);
+		if (y < 0)
+		{
+			heading -= glm::pi<double>();
+		}
 	}
 	// When y is zero
 	else if (x != 0)
 	{
-		heading = glm::half_pi<double>();
+		heading = x * glm::half_pi<double>();
 	}
 	// When x is zero
 	else if (y < 0)
