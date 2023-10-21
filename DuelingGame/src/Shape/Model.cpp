@@ -1,7 +1,8 @@
 #include "Model.h"
+#include "OBJConstants.h"
 
 #include<iostream>
-#include <iomanip>
+#include<iomanip>
 #include<fstream>
 #include<sstream>
 
@@ -26,7 +27,7 @@ void Model::parseOBJFile(const std::string& path)
 	std::vector<float> positions;
 	std::vector<float> textures;
 	std::vector<float> normals;
-	std::vector<std::vector<int>> faces;
+	std::vector<std::vector<std::vector<int>>> faces;
 
 	std::ifstream stream(path);
 	std::string line;
@@ -38,7 +39,7 @@ void Model::parseOBJFile(const std::string& path)
 		std::stringstream buffer(line);
 		buffer >> opcode;
 
-		if (opcode == "v")
+		if (opcode == STR_OBJ_VERTEX)
 		{
 			for (int i = 0; i < 3; i++)
 			{
@@ -47,7 +48,7 @@ void Model::parseOBJFile(const std::string& path)
 			}
 			
 		}
-		else if (opcode == "vt")
+		else if (opcode == STR_OBJ_VERTEX_TEXTURE)
 		{
 			for (int i = 0; i < 2; i++)
 			{
@@ -55,7 +56,7 @@ void Model::parseOBJFile(const std::string& path)
 				textures.push_back(std::stof(payload));
 			}
 		}
-		else if (opcode == "vn")
+		else if (opcode == STR_OBJ_VERTEX_NORMAL)
 		{
 			for (int i = 0; i < 3; i++)
 			{
@@ -63,21 +64,23 @@ void Model::parseOBJFile(const std::string& path)
 				normals.push_back(std::stof(payload));
 			}
 		}
-		else if (opcode == "f")
+		else if (opcode == STR_OBJ_FACE)
 		{
+			std::vector<std::vector<int>> face;
 			for (int i = 0; i < 3; i++)
 			{
-				std::vector<int> face;
+				std::vector<int> indices;
 				buffer >> payload;
 				std::stringstream faceBuffer(payload);
 				for (int j = 0; j < 3; j++)
 				{
 					std::string val;
 					std::getline(faceBuffer, val, '/');
-					face.push_back(std::stoi(val));
+					indices.push_back(std::stoi(val));
 				}
-				faces.push_back(face);
+				face.push_back(indices);
 			}
+			faces.push_back(face);
 		}
 	}
 }

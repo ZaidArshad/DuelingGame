@@ -190,6 +190,7 @@
     <ClInclude Include="src\Model\Player.h" />
     <ClInclude Include="src\Shape\Cube.h" />
     <ClInclude Include="src\Model\Camera.h" />
+    <ClInclude Include="src\Shape\OBJConstants.h" />
     <ClInclude Include="src\Shape\Pyramid.h" />
     <ClInclude Include="src\Shape\Shape.h" />
     <ClInclude Include="src\Shader\Color.h" />
