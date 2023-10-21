@@ -21,6 +21,7 @@
 #include "Shape/Pyramid.h"
 #include "Shape/Cube.h"
 #include "Model/Player.h"
+#include "Shape/Model.h"
 
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
@@ -140,6 +141,8 @@ Status App::run()
 
     float r = 0;
     float i = 0.005f;
+
+    Model model("res/Models/cube/cube.obj");
 
     glfwSwapInterval(1);
 
