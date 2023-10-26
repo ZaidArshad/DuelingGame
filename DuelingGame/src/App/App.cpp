@@ -142,7 +142,9 @@ Status App::run()
     float r = 0;
     float i = 0.005f;
 
-    Model model("res/Models/cube/cube.obj");
+    Model* model = new Model("res/Models/cube/cube.obj");
+    //model->setTexture("res/Models/cube/Letter.png");
+    renderer.addShape(model, true);
 
     glfwSwapInterval(1);
 
@@ -152,6 +154,7 @@ Status App::run()
         player.move(m_window);
         
         pyramid.rotate(glm::vec3(0, 0.01f, 0));
+        model->rotate(glm::vec3(0, 0.01f, 0));
         box3.setColor(r, 1.0f-r, 1.0f, 1.0f);
         r += i;
         if (r >= 1 || r <= 0) i *= -1;

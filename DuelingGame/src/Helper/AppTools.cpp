@@ -45,3 +45,12 @@ float AppTools::calculateHeading(float x, float y)
 
 	return heading;
 }
+
+void AppTools::printVector(const std::vector<float>& vec)
+{
+	for (float f : vec)
+	{
+		std::cout << f << " ";
+	}
+	std::cout << std::endl;
+}

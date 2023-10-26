@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <fstream>
+#include <vector>
 
 #define Status unsigned int
 
@@ -16,6 +17,9 @@ public:
 	static float normalizeX(float position);
 	static float normalizeY(float position);
 	static float calculateHeading(float x, float y);
+
+	
+	static void printVector(const std::vector<float>& vec);
 };
 
 

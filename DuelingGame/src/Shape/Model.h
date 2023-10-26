@@ -1,7 +1,7 @@
 #pragma once
 #include "Shape.h"
 
-typedef std::vector<std::vector<int>> Face;
+typedef std::vector<glm::ivec3> Face;
 
 class Model : public Shape
 {
