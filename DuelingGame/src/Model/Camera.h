@@ -1,6 +1,6 @@
 #pragma once
-#include "glm/glm.hpp"
-#include "glm/gtc/matrix_transform.hpp"
+#include "3rd/glm/glm.hpp"
+#include "3rd/glm/gtc/matrix_transform.hpp"
 #include "Controller/Inputcontroller.h"
 
 class Camera

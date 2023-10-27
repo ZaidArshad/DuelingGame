@@ -3,8 +3,8 @@
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-#include "glm/gtc/matrix_transform.hpp"
-#include "glm/gtx/vector_angle.hpp"
+#include "3rd/glm/gtc/matrix_transform.hpp"
+#include "3rd/glm/gtx/vector_angle.hpp"
 
 #include <iostream>
 #include <sstream>
@@ -27,20 +27,15 @@ float AppTools::calculateHeading(float x, float y)
 	if (x != 0 && y != 0)
 	{
 		heading = glm::atan(x/y);
-		if (y < 0)
-		{
-			heading -= glm::pi<double>();
-		}
 	}
 	// When y is zero
 	else if (x != 0)
 	{
 		heading = x * glm::half_pi<double>();
 	}
-	// When x is zero
-	else if (y < 0)
+	if (y < 0)
 	{
-		heading = glm::pi<double>();
+		heading += glm::pi<double>();
 	}
 
 	return heading;

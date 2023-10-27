@@ -5,10 +5,10 @@
 #include <iostream>
 #include <fstream>
 
-#include "glm/glm.hpp"
-#include "glm/gtc/matrix_transform.hpp"
-#include "glm/gtc/type_ptr.hpp"
-#include "glm/gtx/string_cast.hpp"
+#include "3rd/glm/glm.hpp"
+#include "3rd/glm/gtc/matrix_transform.hpp"
+#include "3rd/glm/gtc/type_ptr.hpp"
+#include "3rd/glm/gtx/string_cast.hpp"
 
 #include "Shape/Box.h"
 #include "Renderer/Texture.h"

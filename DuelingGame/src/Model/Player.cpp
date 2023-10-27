@@ -1,6 +1,6 @@
 #include "Player.h"
 #include "Helper/Apptools.h"
-#include "glm/gtc/matrix_transform.hpp"
+#include "3rd/glm/gtc/matrix_transform.hpp"
 #include <iostream>
 
 Player::Player()

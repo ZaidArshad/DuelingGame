@@ -1,6 +1,6 @@
 #include "Shape.h"
 #include "Shader/Color.h"
-#include "glm/gtc/matrix_transform.hpp"
+#include "3rd/glm/gtc/matrix_transform.hpp"
 
 Shape::Shape()
 {

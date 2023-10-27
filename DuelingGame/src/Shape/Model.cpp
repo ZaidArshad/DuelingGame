@@ -37,8 +37,8 @@ void printVectorVecs(std::vector<T>& outerVec, int length)
 	}
 }
 
-template <class T>
-void pushVecInToVector(std::vector<float>& container, const T& vec, int length)
+template <class T, class U>
+void pushVecIntoVector(std::vector<T>& container, const U& vec, int length)
 {
 	for (int i = 0; i < length; i++)
 	{
@@ -55,9 +55,9 @@ void Model::generateModel(std::vector<glm::vec3>& vPositions,
 	{
 		for (const auto& indices : face) // {v, vt, vn}
 		{
-			pushVecInToVector(m_vPositions, vPositions[indices[0]-1], 3);
-			pushVecInToVector(m_vTextures, vTextures[indices[1]-1], 2);
-			pushVecInToVector(m_vNormals, vNormals[indices[2]-1], 3);
+			pushVecIntoVector(m_vPositions, vPositions[indices[0]-1], 3);
+			pushVecIntoVector(m_vTextures, vTextures[indices[1]-1], 2);
+			pushVecIntoVector(m_vNormals, vNormals[indices[2]-1], 3);
 		}
 	}
 	//AppTools::printVector(m_vPositions);
@@ -73,7 +73,7 @@ void Model::generateModel(std::vector<glm::vec3>& vPositions,
 	m_va.addBuffer(colors, 4);
 	m_va.addBuffer(m_vTextures, 2);
 
-	std::vector<unsigned int> indices(faces.size()*3);
+	std::vector<unsigned int> indices(m_vertCount);
 	std::iota(indices.begin(), indices.end(), 0);
 	m_va.setIndices(indices);
 }

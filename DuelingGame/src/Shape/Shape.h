@@ -1,5 +1,5 @@
 #pragma once
-#include "glm/glm.hpp"
+#include "3rd/glm/glm.hpp"
 #include "Renderer/VertexArray.h"
 #include "Renderer/Texture.h"
 

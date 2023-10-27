@@ -1,7 +1,7 @@
 #pragma once
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-#include "glm/glm.hpp"
+#include "3rd/glm/glm.hpp"
 #include "Shape.h"
 
 class Box : public Shape

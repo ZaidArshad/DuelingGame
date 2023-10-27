@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.31702.278
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DuelingGame", "DuelingGame.vcxproj", "{27A89AD1-BC5A-4477-9845-91B687C66CF4}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestModel", "..\TestModel\TestModel.vcxproj", "{38C9E8CE-516E-433B-B8F2-4301210BC72C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{27A89AD1-BC5A-4477-9845-91B687C66CF4}.Release|x64.Build.0 = Release|x64
 		{27A89AD1-BC5A-4477-9845-91B687C66CF4}.Release|x86.ActiveCfg = Release|Win32
 		{27A89AD1-BC5A-4477-9845-91B687C66CF4}.Release|x86.Build.0 = Release|Win32
+		{38C9E8CE-516E-433B-B8F2-4301210BC72C}.Debug|x64.ActiveCfg = Debug|x64
+		{38C9E8CE-516E-433B-B8F2-4301210BC72C}.Debug|x64.Build.0 = Debug|x64
+		{38C9E8CE-516E-433B-B8F2-4301210BC72C}.Debug|x86.ActiveCfg = Debug|Win32
+		{38C9E8CE-516E-433B-B8F2-4301210BC72C}.Debug|x86.Build.0 = Debug|Win32
+		{38C9E8CE-516E-433B-B8F2-4301210BC72C}.Release|x64.ActiveCfg = Release|x64
+		{38C9E8CE-516E-433B-B8F2-4301210BC72C}.Release|x64.Build.0 = Release|x64
+		{38C9E8CE-516E-433B-B8F2-4301210BC72C}.Release|x86.ActiveCfg = Release|Win32
+		{38C9E8CE-516E-433B-B8F2-4301210BC72C}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
