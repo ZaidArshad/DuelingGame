@@ -1,5 +1,5 @@
 #pragma once
-#include "Shape/Cube.h"
+#include "Shape/Model.h"
 #include "Controller/InputController.h"
 
 class Player
@@ -14,9 +14,9 @@ public:
 	
 private:
 	InputController m_controller;
-	Cube m_cube;
+	Model* m_model;
 
 	float m_velocity;
-	double rotation = 0;
+	double m_rotation = 0;
 };
 
