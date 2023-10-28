@@ -165,6 +165,6 @@ void Model::parseOBJFile(const std::string& path)
 	//{
 	//	printVectorVecs(face, 3);
 	//}
-	//std::cout << std::endl;
+	std::cout << std::endl;
 	generateModel(positions, textures, normals, faces);
 } 

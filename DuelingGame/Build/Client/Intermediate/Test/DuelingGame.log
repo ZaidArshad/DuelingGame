@@ -1,0 +1,44 @@
+﻿  App.cpp
+D:\Desktop_Folders\Projects\C++\DuelingGame\DuelingGame\src\App\App.cpp(136,55): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Desktop_Folders\Projects\C++\DuelingGame\DuelingGame\src\App\App.cpp(136,36): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  Main.cpp
+  Model.cpp
+  Player.cpp
+D:\Desktop_Folders\Projects\C++\DuelingGame\DuelingGame\src\Model\Player.cpp(36,48): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Desktop_Folders\Projects\C++\DuelingGame\DuelingGame\src\Model\Player.cpp(36,45): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Cube.cpp
+  Camera.cpp
+D:\Desktop_Folders\Projects\C++\DuelingGame\DuelingGame\src\Model\Camera.cpp(63,22): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Desktop_Folders\Projects\C++\DuelingGame\DuelingGame\src\Model\Camera.cpp(64,22): warning C4244: '-=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Desktop_Folders\Projects\C++\DuelingGame\DuelingGame\src\Model\Camera.cpp(65,23): warning C4244: '+=': conversion from 'double' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+  Pyramid.cpp
+  Shape.cpp
+  Renderer.cpp
+  stb_image.cpp
+  GLError.cpp
+  Logger.cpp
+  Shader.cpp
+  AppTools.cpp
+D:\Desktop_Folders\Projects\C++\DuelingGame\DuelingGame\src\Helper\AppTools.cpp(41,9): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  InputController.cpp
+D:\Desktop_Folders\Projects\C++\DuelingGame\DuelingGame\src\Controller\InputController.cpp(32,30): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+D:\Desktop_Folders\Projects\C++\DuelingGame\DuelingGame\src\Controller\InputController.cpp(33,47): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+D:\Desktop_Folders\Projects\C++\DuelingGame\DuelingGame\src\Controller\InputController.cpp(36,41): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+D:\Desktop_Folders\Projects\C++\DuelingGame\DuelingGame\src\Controller\InputController.cpp(37,41): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  Box.cpp
+  Texture.cpp
+  VertexArray.cpp
+  Generating Code...
+  DuelingGame.vcxproj -> D:\Desktop_Folders\Projects\C++\DuelingGame\DuelingGame\Build\Client\Output\Test\DuelingGame.lib

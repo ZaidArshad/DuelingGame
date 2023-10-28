@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DuelingGame", "DuelingGame.vcxproj", "{27A89AD1-BC5A-4477-9845-91B687C66CF4}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestModel", "..\TestModel\TestModel.vcxproj", "{38C9E8CE-516E-433B-B8F2-4301210BC72C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{27A89AD1-BC5A-4477-9845-91B687C66CF4} = {27A89AD1-BC5A-4477-9845-91B687C66CF4}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +16,8 @@ Global
 		Debug|x86 = Debug|x86
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
+		Test|x64 = Test|x64
+		Test|x86 = Test|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{27A89AD1-BC5A-4477-9845-91B687C66CF4}.Debug|x64.ActiveCfg = Debug|x64
@@ -23,6 +28,10 @@ Global
 		{27A89AD1-BC5A-4477-9845-91B687C66CF4}.Release|x64.Build.0 = Release|x64
 		{27A89AD1-BC5A-4477-9845-91B687C66CF4}.Release|x86.ActiveCfg = Release|Win32
 		{27A89AD1-BC5A-4477-9845-91B687C66CF4}.Release|x86.Build.0 = Release|Win32
+		{27A89AD1-BC5A-4477-9845-91B687C66CF4}.Test|x64.ActiveCfg = Test|x64
+		{27A89AD1-BC5A-4477-9845-91B687C66CF4}.Test|x64.Build.0 = Test|x64
+		{27A89AD1-BC5A-4477-9845-91B687C66CF4}.Test|x86.ActiveCfg = Test|Win32
+		{27A89AD1-BC5A-4477-9845-91B687C66CF4}.Test|x86.Build.0 = Test|Win32
 		{38C9E8CE-516E-433B-B8F2-4301210BC72C}.Debug|x64.ActiveCfg = Debug|x64
 		{38C9E8CE-516E-433B-B8F2-4301210BC72C}.Debug|x64.Build.0 = Debug|x64
 		{38C9E8CE-516E-433B-B8F2-4301210BC72C}.Debug|x86.ActiveCfg = Debug|Win32
@@ -31,6 +40,10 @@ Global
 		{38C9E8CE-516E-433B-B8F2-4301210BC72C}.Release|x64.Build.0 = Release|x64
 		{38C9E8CE-516E-433B-B8F2-4301210BC72C}.Release|x86.ActiveCfg = Release|Win32
 		{38C9E8CE-516E-433B-B8F2-4301210BC72C}.Release|x86.Build.0 = Release|Win32
+		{38C9E8CE-516E-433B-B8F2-4301210BC72C}.Test|x64.ActiveCfg = Test|x64
+		{38C9E8CE-516E-433B-B8F2-4301210BC72C}.Test|x64.Build.0 = Test|x64
+		{38C9E8CE-516E-433B-B8F2-4301210BC72C}.Test|x86.ActiveCfg = Test|Win32
+		{38C9E8CE-516E-433B-B8F2-4301210BC72C}.Test|x86.Build.0 = Test|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
