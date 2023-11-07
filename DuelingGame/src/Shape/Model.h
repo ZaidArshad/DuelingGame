@@ -9,6 +9,10 @@ public:
 	Model(const std::string& path);
 	~Model();
 
+	// -- Getters -- //
+	std::vector<float> getTextureCoords();
+	std::vector<float> getNormals();
+
 	// -- Overload -- //
 	std::vector<float> getPosition() override;
 

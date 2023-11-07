@@ -10,6 +10,7 @@
 
 int main()
 {
+    // BOILERPLATE TO INIT GLFW AND GLEW
     /* Initialize the library */
     if (!glfwInit())
     {
@@ -39,6 +40,7 @@ int main()
         Logger::log("Error initializing GLEW\n");
         return STATUS_BAD;
     }
+    // END OF BOILERPLATE
 
 	testModel();
 }

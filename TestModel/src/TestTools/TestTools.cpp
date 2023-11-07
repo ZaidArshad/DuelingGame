@@ -7,11 +7,11 @@ std::vector<float> readVectorFile(const std::string& path)
 {
 	std::ifstream stream(path);
 	std::string buffer;
+	std::vector<float> vec;
 	while (stream >> buffer)
 	{
-		std::cout << buffer << std::endl;
+		vec.push_back(std::stof(buffer));
 	}
-
-	std::vector<float> vec;
+	
 	return vec;
 }

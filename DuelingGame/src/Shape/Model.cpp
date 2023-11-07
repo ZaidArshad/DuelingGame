@@ -19,6 +19,16 @@ Model::~Model()
 {
 }
 
+std::vector<float> Model::getTextureCoords()
+{
+	return m_vTextures;
+}
+
+std::vector<float> Model::getNormals()
+{
+	return m_vNormals;
+}
+
 std::vector<float> Model::getPosition()
 {
 	return m_vPositions;
