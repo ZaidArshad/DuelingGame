@@ -14,9 +14,10 @@
 
 Model::Model(const std::string& dir)
 {
+	// Reading the obj files in the directory
 	for (const auto& file : std::filesystem::directory_iterator(dir))
 	{
-		m_frames.push_back(parseOBJFiles(file.path().string()));
+		m_frames.push_back(parseOBJFile(file.path().string()));
 	}
 	
 	if (m_frames.empty())
@@ -27,6 +28,10 @@ Model::Model(const std::string& dir)
 
 Model::~Model()
 {
+	for (Frame* frame : m_frames)
+	{
+		delete frame;
+	}
 }
 
 std::vector<float> Model::getTextureCoords()
@@ -104,7 +109,7 @@ Frame* Model::generateModel(std::vector<glm::vec3>& vPositions,
 	return frame;
 }
 
-Frame* Model::parseOBJFiles(const std::string& path)
+Frame* Model::parseOBJFile(const std::string& path)
 {
 	std::cout << std::fixed << std::setprecision(6);
 

@@ -15,7 +15,8 @@ typedef std::vector<Frame*> Frames;
 class Model : public Shape
 {
 public:
-	Model(const std::string& path);
+	// Takes in a directory of obj files
+	Model(const std::string& dir);
 	~Model();
 
 	// -- Getters -- //
@@ -30,7 +31,7 @@ private:
 					   std::vector<glm::vec2>& vTextures,
 					   std::vector<glm::vec3>& vNormals,
 					   std::vector<Face>& faces);
-	Frame* parseOBJFiles(const std::string& dir);
+	Frame* parseOBJFile(const std::string& path);
 
 	// One frame for each model loaded
 	Frames m_frames;
