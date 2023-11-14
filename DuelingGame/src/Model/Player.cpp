@@ -5,7 +5,7 @@
 
 Player::Player()
 {
-	m_model = new Model("res/Models/waddle/waddle.obj");
+	m_model = new Model("res/Models/waddle/frames/");
 	m_model->setTexture("res/Models/waddle/HrDee.00.png");
 	m_model->scale(0.1f, 0.1f, 0.1f);
 	m_model->translate(0.0f, 0.0f, 0.0f);

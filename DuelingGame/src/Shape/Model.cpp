@@ -2,17 +2,27 @@
 #include "OBJConstants.h"
 
 #include "Helper/AppTools.h"
+#include "Helper/Logger.h"
 #include "Shader/Color.h"
 
-#include<iostream>
-#include<iomanip>
-#include<fstream>
-#include<sstream>
-#include<numeric>
+#include <iostream>
+#include <iomanip>
+#include <fstream>
+#include <sstream>
+#include <numeric>
+#include <filesystem>
 
-Model::Model(const std::string& path)
+Model::Model(const std::string& dir)
 {
-	parseOBJFile(path);
+	for (const auto& file : std::filesystem::directory_iterator(dir))
+	{
+		m_frames.push_back(parseOBJFiles(file.path().string()));
+	}
+	
+	if (m_frames.empty())
+	{
+		Logger::log("Could not read models from directory: " + dir + "\n");
+	}
 }
 
 Model::~Model()
@@ -21,17 +31,17 @@ Model::~Model()
 
 std::vector<float> Model::getTextureCoords()
 {
-	return m_vTextures;
+	return m_frames[0]->vTextures;
 }
 
 std::vector<float> Model::getNormals()
 {
-	return m_vNormals;
+	return m_frames[0]->vNormals;
 }
 
 std::vector<float> Model::getPosition()
 {
-	return m_vPositions;
+	return m_frames[0]->vPositions;
 }
 
 template <class T>
@@ -56,39 +66,45 @@ void pushVecIntoVector(std::vector<T>& container, const U& vec, int length)
 	}
 }
 
-void Model::generateModel(std::vector<glm::vec3>& vPositions,
+Frame* Model::generateModel(std::vector<glm::vec3>& vPositions,
 						  std::vector<glm::vec2>& vTextures,
 						  std::vector<glm::vec3>& vNormals,
 						  std::vector<Face>& faces)
 {
+	Frame* frame = new Frame();
 	for (const Face& face : faces)
 	{
 		for (const auto& indices : face) // {v, vt, vn}
 		{
-			pushVecIntoVector(m_vPositions, vPositions[indices[0]-1], 3);
-			pushVecIntoVector(m_vTextures, vTextures[indices[1]-1], 2);
-			pushVecIntoVector(m_vNormals, vNormals[indices[2]-1], 3);
+			pushVecIntoVector(frame->vPositions, vPositions[indices[0]-1], 3);
+			pushVecIntoVector(frame->vTextures, vTextures[indices[1]-1], 2);
+			pushVecIntoVector(frame->vNormals, vNormals[indices[2]-1], 3);
 		}
 	}
 	//AppTools::printVector(m_vPositions);
 	//AppTools::printVector(m_vTextures);
 	//AppTools::printVector(m_vNormals);
+
 	m_vertCount = faces.size()*3;
-	m_va.addBuffer(m_vPositions, 3);
+	m_va.addBuffer(frame->vPositions, 3);
 	std::vector<float> colors;
 	for (int i = 0; i < m_vertCount; i++)
 	{
 		colors.insert(colors.end(), COLOR_WHITE.begin(), COLOR_WHITE.end());
 	}
 	m_va.addBuffer(colors, 4);
-	m_va.addBuffer(m_vTextures, 2);
+	m_va.addBuffer(frame->vTextures, 2);
+	
+	// TODO Add normals to buffer
 
 	std::vector<unsigned int> indices(m_vertCount);
 	std::iota(indices.begin(), indices.end(), 0);
 	m_va.setIndices(indices);
+
+	return frame;
 }
 
-void Model::parseOBJFile(const std::string& path)
+Frame* Model::parseOBJFiles(const std::string& path)
 {
 	std::cout << std::fixed << std::setprecision(6);
 
@@ -176,5 +192,5 @@ void Model::parseOBJFile(const std::string& path)
 	//	printVectorVecs(face, 3);
 	//}
 	std::cout << std::endl;
-	generateModel(positions, textures, normals, faces);
+	return generateModel(positions, textures, normals, faces);
 } 
