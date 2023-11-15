@@ -24,6 +24,9 @@ Model::Model(const std::string& dir)
 	{
 		Logger::log("Could not read models from directory: " + dir + "\n");
 	}
+
+	m_frameIndex = 0;
+	m_frameGap = 0;
 }
 
 Model::~Model()
@@ -36,17 +39,43 @@ Model::~Model()
 
 std::vector<float> Model::getTextureCoords()
 {
-	return m_frames[0]->vTextures;
+	return m_frames[m_frameIndex]->vTextures;
 }
 
 std::vector<float> Model::getNormals()
 {
-	return m_frames[0]->vNormals;
+	return m_frames[m_frameIndex]->vNormals;
+}
+
+void Model::updateModel()
+{
+	std::cout << m_frameIndex << std::endl;
+	m_va.bind();
+	m_va.updateBuffer(0, m_frames[m_frameIndex]->vPositions);
+	m_va.unbind();
+}
+
+void Model::nextFrame()
+{
+	if (m_frameGap == 5)
+	{
+		
+		m_frameGap = 0;
+		m_frameIndex = (m_frameIndex + 1) % m_frames.size();
+		updateModel();
+	}
+	m_frameGap++;
+}
+
+void Model::resetFrames()
+{
+	m_frameIndex = 0;
+	updateModel();
 }
 
 std::vector<float> Model::getPosition()
 {
-	return m_frames[0]->vPositions;
+	return m_frames[m_frameIndex]->vPositions;
 }
 
 template <class T>
@@ -89,22 +118,26 @@ Frame* Model::generateModel(std::vector<glm::vec3>& vPositions,
 	//AppTools::printVector(m_vPositions);
 	//AppTools::printVector(m_vTextures);
 	//AppTools::printVector(m_vNormals);
-
-	m_vertCount = faces.size()*3;
-	m_va.addBuffer(frame->vPositions, 3);
-	std::vector<float> colors;
-	for (int i = 0; i < m_vertCount; i++)
+	if (m_frames.empty())
 	{
-		colors.insert(colors.end(), COLOR_WHITE.begin(), COLOR_WHITE.end());
-	}
-	m_va.addBuffer(colors, 4);
-	m_va.addBuffer(frame->vTextures, 2);
-	
-	// TODO Add normals to buffer
+		m_va.bind();
+		m_vertCount = faces.size() * 3;
+		m_va.addBuffer(frame->vPositions, 3);
+		std::vector<float> colors;
+		for (int i = 0; i < m_vertCount; i++)
+		{
+			colors.insert(colors.end(), COLOR_WHITE.begin(), COLOR_WHITE.end());
+		}
+		m_va.addBuffer(colors, 4);
+		m_va.addBuffer(frame->vTextures, 2);
 
-	std::vector<unsigned int> indices(m_vertCount);
-	std::iota(indices.begin(), indices.end(), 0);
-	m_va.setIndices(indices);
+		// TODO Add normals to buffer
+
+		std::vector<unsigned int> indices(m_vertCount);
+		std::iota(indices.begin(), indices.end(), 0);
+		m_va.setIndices(indices);
+		m_va.unbind();
+	}
 
 	return frame;
 }
@@ -196,6 +229,6 @@ Frame* Model::parseOBJFile(const std::string& path)
 	//{
 	//	printVectorVecs(face, 3);
 	//}
-	std::cout << std::endl;
+	// std::cout << std::endl;
 	return generateModel(positions, textures, normals, faces);
 } 

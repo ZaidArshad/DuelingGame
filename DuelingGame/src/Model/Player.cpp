@@ -9,7 +9,7 @@ Player::Player()
 	m_model->setTexture("res/Models/waddle/HrDee.00.png");
 	m_model->scale(0.1f, 0.1f, 0.1f);
 	m_model->translate(0.0f, 0.0f, 0.0f);
-	m_velocity = 0.25;
+	m_velocity = 0.10;
 }
 
 Player::~Player()
@@ -30,8 +30,10 @@ void Player::move(GLFWwindow* window)
 	m_controller.move2D(window, &x, &z);
 	if (x == 0 && z == 0)
 	{
+		m_model->resetFrames();
 		return;
 	}
+	m_model->nextFrame();
 
 	float heading = AppTools::calculateHeading(x, z);
 	if (m_model->getRotation()[1] != heading)

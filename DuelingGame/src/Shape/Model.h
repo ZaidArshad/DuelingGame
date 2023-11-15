@@ -23,6 +23,11 @@ public:
 	std::vector<float> getTextureCoords();
 	std::vector<float> getNormals();
 
+	// -- Utility -- //
+	void updateModel();
+	void nextFrame();
+	void resetFrames();
+
 	// -- Overload -- //
 	std::vector<float> getPosition() override;
 
@@ -35,5 +40,10 @@ private:
 
 	// One frame for each model loaded
 	Frames m_frames;
+	unsigned int m_frameIndex;
+
+	std::vector<float> m_vPositions;
+
+	unsigned int m_frameGap;
 };
 
