@@ -51,7 +51,7 @@ void Model::updateModel()
 {
 	std::cout << m_frameIndex << std::endl;
 	m_va.bind();
-	m_va.updateBuffer(0, m_frames[m_frameIndex]->vPositions);
+	m_va.updateBuffer(0, m_frames[m_frameIndex]->vPositions, GL_STREAM_DRAW);
 	m_va.unbind();
 }
 

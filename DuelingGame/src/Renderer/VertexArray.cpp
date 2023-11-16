@@ -75,7 +75,7 @@ void VertexArray::setIndices(const std::vector<unsigned int>& indices)
 	m_indices = indices;
 }
 
-void VertexArray::updateBuffer(unsigned int i, const std::vector<float>& vertices)
+void VertexArray::updateBuffer(unsigned int i, const std::vector<float>& vertices, GLenum drawType)
 {
 	if (i > m_vertexLayouts.size())
 	{
@@ -102,7 +102,7 @@ void VertexArray::updateBuffer(unsigned int i, const std::vector<float>& vertice
 	// Updating VBO
 	glBindBuffer(GL_ARRAY_BUFFER, layout->VBO);
 	glBufferData(GL_ARRAY_BUFFER, layout->vertices.size() * sizeof(float),
-		layout->vertices.data(), GL_STATIC_DRAW);
+		layout->vertices.data(), drawType);
 
 	// Binding VBO to VAO
 	glEnableVertexAttribArray(i);

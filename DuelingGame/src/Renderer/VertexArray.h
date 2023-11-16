@@ -24,7 +24,7 @@ public:
 	void unbind();
 	void addBuffer(const std::vector<float>& vertices, unsigned int stride);
 	void setIndices(const std::vector<unsigned int>& indices);
-	void updateBuffer(unsigned int i, const std::vector<float>& vertices);
+	void updateBuffer(unsigned int i, const std::vector<float>& vertices, GLenum drawType);
 	void draw();
 private:
 	GLuint m_VAO;

@@ -66,7 +66,7 @@ void Box::makeTiled(float rows, float cols)
 		0.0f, cols,
 		rows, cols
 	};
-	m_va.updateBuffer(2, textureCoords);
+	m_va.updateBuffer(2, textureCoords, GL_STATIC_DRAW);
 }
 
 // -- Overload -- //

@@ -23,7 +23,7 @@ void Shape::setColor(float r, float g, float b, float a)
 	{
 		colors.insert(colors.end(), { r, g, b, a });
 	}
-	m_va.updateBuffer(1, colors);
+	m_va.updateBuffer(1, colors, GL_STATIC_DRAW);
 }
 
 void Shape::setTexture(const std::string& path)
@@ -33,7 +33,7 @@ void Shape::setTexture(const std::string& path)
 	{
 		colors.insert(colors.end(), COLOR_TEXTURE.begin(), COLOR_TEXTURE.end());
 	}
-	m_va.updateBuffer(1, colors);
+	m_va.updateBuffer(1, colors, GL_STATIC_DRAW);
 	m_pTexture = new Texture(path);
 }
 
