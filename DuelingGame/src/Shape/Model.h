@@ -19,17 +19,12 @@ public:
 	Model(const std::string& dir);
 	~Model();
 
-	// -- Getters -- //
-	std::vector<float> getTextureCoords();
-	std::vector<float> getNormals();
-
 	// -- Utility -- //
-	void updateModel();
 	void nextFrame();
 	void resetFrames();
 
 	// -- Overload -- //
-	std::vector<float> getPosition() override;
+	void draw() override;
 
 private:
 	Frame* generateModel(std::vector<glm::vec3>& vPositions,
@@ -39,11 +34,8 @@ private:
 	Frame* parseOBJFile(const std::string& path);
 
 	// One frame for each model loaded
-	Frames m_frames;
+	std::vector<VertexArray*> m_vaFrames;
 	unsigned int m_frameIndex;
-
-	std::vector<float> m_vPositions;
-
 	unsigned int m_frameGap;
 };
 

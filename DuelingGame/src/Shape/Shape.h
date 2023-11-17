@@ -24,10 +24,9 @@ public:
 	void setRotation(glm::vec3 rotation);
 	void scale(float x, float y, float z);
 	void resetModel();
-	void draw();
 
 	// -- Virtual -- //
-	virtual std::vector<float> getPosition() = 0;
+	virtual void draw();
 protected:
 	int m_vertCount;
 	glm::vec3 m_rotation;

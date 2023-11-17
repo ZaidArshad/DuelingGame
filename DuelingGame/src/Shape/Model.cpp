@@ -17,12 +17,7 @@ Model::Model(const std::string& dir)
 	// Reading the obj files in the directory
 	for (const auto& file : std::filesystem::directory_iterator(dir))
 	{
-		m_frames.push_back(parseOBJFile(file.path().string()));
-	}
-	
-	if (m_frames.empty())
-	{
-		Logger::log("Could not read models from directory: " + dir + "\n");
+		parseOBJFile(file.path().string());
 	}
 
 	m_frameIndex = 0;
@@ -31,38 +26,18 @@ Model::Model(const std::string& dir)
 
 Model::~Model()
 {
-	for (Frame* frame : m_frames)
+	for (auto &va : m_vaFrames)
 	{
-		delete frame;
+		delete va;
 	}
-}
-
-std::vector<float> Model::getTextureCoords()
-{
-	return m_frames[m_frameIndex]->vTextures;
-}
-
-std::vector<float> Model::getNormals()
-{
-	return m_frames[m_frameIndex]->vNormals;
-}
-
-void Model::updateModel()
-{
-	std::cout << m_frameIndex << std::endl;
-	m_va.bind();
-	m_va.updateBuffer(0, m_frames[m_frameIndex]->vPositions, GL_STREAM_DRAW);
-	m_va.unbind();
 }
 
 void Model::nextFrame()
 {
 	if (m_frameGap == 5)
 	{
-		
 		m_frameGap = 0;
-		m_frameIndex = (m_frameIndex + 1) % m_frames.size();
-		updateModel();
+		m_frameIndex = (m_frameIndex + 1) % m_vaFrames.size();
 	}
 	m_frameGap++;
 }
@@ -70,12 +45,20 @@ void Model::nextFrame()
 void Model::resetFrames()
 {
 	m_frameIndex = 0;
-	updateModel();
 }
 
-std::vector<float> Model::getPosition()
+void Model::draw()
 {
-	return m_frames[m_frameIndex]->vPositions;
+	if (m_pTexture)
+	{
+		m_pTexture->bind(0);
+		m_vaFrames[m_frameIndex]->draw();
+		m_pTexture->unbind();
+	}
+	else
+	{
+		m_vaFrames[m_frameIndex]->draw();
+	}
 }
 
 template <class T>
@@ -118,7 +101,7 @@ Frame* Model::generateModel(std::vector<glm::vec3>& vPositions,
 	//AppTools::printVector(m_vPositions);
 	//AppTools::printVector(m_vTextures);
 	//AppTools::printVector(m_vNormals);
-	if (m_frames.empty())
+	if (m_vaFrames.empty())
 	{
 		m_va.bind();
 		m_vertCount = faces.size() * 3;
@@ -138,6 +121,23 @@ Frame* Model::generateModel(std::vector<glm::vec3>& vPositions,
 		m_va.setIndices(indices);
 		m_va.unbind();
 	}
+	VertexArray* va = new VertexArray();
+	va->bind();
+	va->addBuffer(frame->vPositions, 3);
+	std::vector<float> colors;
+	for (int i = 0; i < m_vertCount; i++)
+	{
+		colors.insert(colors.end(), COLOR_TEXTURE.begin(), COLOR_TEXTURE.end());
+	}
+	va->addBuffer(colors, 4);
+	va->addBuffer(frame->vTextures, 2);
+
+	std::vector<unsigned int> indices(m_vertCount);
+	std::iota(indices.begin(), indices.end(), 0);
+	va->setIndices(indices);
+	va->unbind();
+	m_vaFrames.push_back(va);
+
 
 	return frame;
 }

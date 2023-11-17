@@ -6,8 +6,8 @@ public:
 	Pyramid(float length);
 	~Pyramid();
 
-	// -- Overload -- //
-	std::vector<float> getPosition() override;
+	// -- Utility -- //
+	std::vector<float> getPosition();
 
 private:
 	float m_length;

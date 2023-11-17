@@ -11,8 +11,8 @@ public:
 	~Box();
 	void makeTiled(float rows, float cols);
 	
-	// -- Overload -- //
-	std::vector<float> getPosition() override;
+	// -- Utility -- //
+	std::vector<float> getPosition();
 
 private:
 	float m_width;
