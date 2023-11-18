@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 
-const std::string STR_OBJ_VERTEX = "v";
+const std::string STR_OBJ_VERTEX_POSITION = "v";
 const std::string STR_OBJ_VERTEX_NORMAL = "vn";
 const std::string STR_OBJ_VERTEX_TEXTURE = "vt";
 const std::string STR_OBJ_FACE = "f";

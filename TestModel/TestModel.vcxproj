@@ -214,11 +214,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Main.cpp" />
-    <ClCompile Include="src\TestShape\TestModel.cpp" />
     <ClCompile Include="src\TestTools\TestTools.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\TestShape\TestShape.h" />
     <ClInclude Include="src\TestTools\TestTools.h" />
   </ItemGroup>
   <ItemGroup>

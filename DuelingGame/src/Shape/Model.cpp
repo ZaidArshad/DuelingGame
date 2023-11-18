@@ -134,6 +134,19 @@ void Model::generateModel(std::vector<glm::vec3>& vPositions,
 	m_vaFrames.push_back(va);
 }
 
+template <class T>
+T bufferToVec(std::stringstream& buffer, int length)
+{
+	std::string payload;
+	T vec{};
+	for (int i = 0; i < length; i++)
+	{
+		buffer >> payload;
+		vec[i] = std::stof(payload);
+	}
+	return vec;
+}
+
 void Model::parseOBJFile(const std::string& path)
 {
 	std::cout << std::fixed << std::setprecision(6);
@@ -153,41 +166,18 @@ void Model::parseOBJFile(const std::string& path)
 		std::stringstream buffer(line);
 		buffer >> opcode;
 
-		// Reading v
-		if (opcode == STR_OBJ_VERTEX)
+		if (opcode == STR_OBJ_VERTEX_POSITION)
 		{
-			glm::vec3 vPosition;
-			for (int i = 0; i < 3; i++)
-			{
-				buffer >> payload;
-				vPosition[i] = std::stof(payload);
-			}
-			positions.push_back(vPosition);
+			positions.push_back(bufferToVec<glm::vec3>(buffer, 3));
 		}
-		// Reading vt
 		else if (opcode == STR_OBJ_VERTEX_TEXTURE)
 		{
-			glm::vec2 vTexture;
-			for (int i = 0; i < 2; i++)
-			{
-				buffer >> payload;
-				vTexture[i] = std::stof(payload);
-				
-			}
-			textures.push_back(vTexture);
+			textures.push_back(bufferToVec<glm::vec2>(buffer, 2));
 		}
-		// Reading vn
 		else if (opcode == STR_OBJ_VERTEX_NORMAL)
 		{
-			glm::vec3 vNormal;
-			for (int i = 0; i < 3; i++)
-			{
-				buffer >> payload;
-				vNormal[i] = std::stof(payload);
-			}
-			normals.push_back(vNormal);
+			normals.push_back(bufferToVec<glm::vec3>(buffer, 3));
 		}
-		// Reading f
 		else if (opcode == STR_OBJ_FACE)
 		{
 			Face face;
