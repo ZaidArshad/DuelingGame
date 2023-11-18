@@ -26,6 +26,8 @@ VertexArray::VertexArray(const std::vector<float>& vertices,
 
 VertexArray::~VertexArray()
 {
+	m_VAO = 0;
+	m_IBO = 0;
 }
 
 void VertexArray::bind()

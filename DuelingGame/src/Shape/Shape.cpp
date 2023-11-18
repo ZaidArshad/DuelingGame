@@ -4,14 +4,16 @@
 
 Shape::Shape()
 {
+	m_pVA = new VertexArray();
 	m_vertCount = 0;
-	m_rotation = glm::vec3(0.0f);
 	m_pTexture = nullptr;
+	m_rotation = glm::vec3(0.0f);
 	m_modelMat = glm::mat4(1.0f);
 }
 
 Shape::~Shape()
 {
+	delete m_pVA;
 	delete m_pTexture;
 }
 
@@ -23,7 +25,7 @@ void Shape::setColor(float r, float g, float b, float a)
 	{
 		colors.insert(colors.end(), { r, g, b, a });
 	}
-	m_va.updateBuffer(1, colors, GL_STATIC_DRAW);
+	m_pVA->updateBuffer(1, colors, GL_STATIC_DRAW);
 }
 
 void Shape::setTexture(const std::string& path)
@@ -33,7 +35,7 @@ void Shape::setTexture(const std::string& path)
 	{
 		colors.insert(colors.end(), COLOR_TEXTURE.begin(), COLOR_TEXTURE.end());
 	}
-	m_va.updateBuffer(1, colors, GL_STATIC_DRAW);
+	m_pVA->updateBuffer(1, colors, GL_STATIC_DRAW);
 	m_pTexture = new Texture(path);
 }
 
@@ -93,11 +95,11 @@ void Shape::draw()
 	if (m_pTexture)
 	{
 		m_pTexture->bind(0);
-		m_va.draw();
+		m_pVA->draw();
 		m_pTexture->unbind();
 	}
 	else
 	{
-		m_va.draw();
+		m_pVA->draw();
 	}
 }

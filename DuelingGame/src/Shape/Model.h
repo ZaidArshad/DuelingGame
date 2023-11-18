@@ -10,8 +10,6 @@ struct Frame
 	std::vector<float> vNormals;
 };
 
-typedef std::vector<Frame*> Frames;
-
 class Model : public Shape
 {
 public:
@@ -27,11 +25,11 @@ public:
 	void draw() override;
 
 private:
-	Frame* generateModel(std::vector<glm::vec3>& vPositions,
+	void generateModel(std::vector<glm::vec3>& vPositions,
 					   std::vector<glm::vec2>& vTextures,
 					   std::vector<glm::vec3>& vNormals,
 					   std::vector<Face>& faces);
-	Frame* parseOBJFile(const std::string& path);
+	void parseOBJFile(const std::string& path);
 
 	// One frame for each model loaded
 	std::vector<VertexArray*> m_vaFrames;

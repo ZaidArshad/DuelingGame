@@ -16,7 +16,7 @@ Box::Box(float w, float h)
 	// Generating position buffer
 	m_width = w;
 	m_height = h;
-	m_va.addBuffer(getPosition(), 2);
+	m_pVA->addBuffer(getPosition(), 2);
 
 	// Generating color buffer to white
 	std::vector<float> colors;
@@ -24,7 +24,7 @@ Box::Box(float w, float h)
 	{
 		colors.insert(colors.end(), COLOR_WHITE.begin(), COLOR_WHITE.end());
 	}
-	m_va.addBuffer(colors, 4);
+	m_pVA->addBuffer(colors, 4);
 
 	std::vector<float> textureCoords
 	{
@@ -33,7 +33,7 @@ Box::Box(float w, float h)
 		0.0f, 1.0f,
 		1.0f, 1.0f
 	};
-	m_va.addBuffer(textureCoords, 2);
+	m_pVA->addBuffer(textureCoords, 2);
 
 	// Generating index buffer
 	std::vector<unsigned int> indices
@@ -41,7 +41,7 @@ Box::Box(float w, float h)
 		0, 1, 2,
 		1, 2, 3
 	};
-	m_va.setIndices(indices);
+	m_pVA->setIndices(indices);
 }
 
 Box::~Box()
@@ -66,7 +66,7 @@ void Box::makeTiled(float rows, float cols)
 		0.0f, cols,
 		rows, cols
 	};
-	m_va.updateBuffer(2, textureCoords, GL_STATIC_DRAW);
+	m_pVA->updateBuffer(2, textureCoords, GL_STATIC_DRAW);
 }
 
 // -- Overload -- //

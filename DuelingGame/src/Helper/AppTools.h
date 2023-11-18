@@ -5,11 +5,11 @@
 
 #define Status unsigned int
 
-static const int WINDOW_WIDTH = 640;
-static const int WINDOW_HEIGHT = 480;
+constexpr int WINDOW_WIDTH = 640;
+constexpr const int WINDOW_HEIGHT = 480;
 
-static const Status STATUS_OK = 0U;
-static const Status STATUS_BAD = 1U;
+constexpr Status STATUS_OK = 0U;
+constexpr Status STATUS_BAD = 1U;
 
 class AppTools
 {

@@ -11,14 +11,14 @@ Cube::Cube(float length)
 {
 	m_vertCount = 8;
 	m_length = length;
-	m_va.addBuffer(getPosition(), 3);
+	m_pVA->addBuffer(getPosition(), 3);
 
 	std::vector<float> colors;
 	for (int i = 0; i < m_vertCount; i++)
 	{
 		colors.insert(colors.end(), COLOR_WHITE.begin(), COLOR_WHITE.end());
 	}
-	m_va.addBuffer(colors, 4);
+	m_pVA->addBuffer(colors, 4);
 
 	std::vector<float> textureCoords
 	{
@@ -31,7 +31,7 @@ Cube::Cube(float length)
 		1.0f, 1.0f, // 6
 		1.0f, 1.0f, // 7
 	};
-	m_va.addBuffer(textureCoords, 2);
+	m_pVA->addBuffer(textureCoords, 2);
 
 	// Generating index buffer
 	std::vector<unsigned int> indices
@@ -50,7 +50,7 @@ Cube::Cube(float length)
 		7, 6, 2  // E
 
 	};
-	m_va.setIndices(indices);
+	m_pVA->setIndices(indices);
 }
 
 Cube::~Cube()

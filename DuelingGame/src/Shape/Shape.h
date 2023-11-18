@@ -28,9 +28,9 @@ public:
 	// -- Virtual -- //
 	virtual void draw();
 protected:
+	VertexArray* m_pVA;
 	int m_vertCount;
-	glm::vec3 m_rotation;
-	VertexArray m_va;
 	Texture* m_pTexture;
+	glm::vec3 m_rotation;
 	glm::mat4 m_modelMat;
 };
