@@ -8,6 +8,8 @@
 #include "TestTools/TestTools.h"
 #include "Shader/Shader.h"
 #include "Renderer/Renderer.h"
+#include "Shape/Box.h"
+#include "Model/Player.h"
 
 
 int main()
@@ -43,37 +45,5 @@ int main()
         return STATUS_BAD;
     }
 
-    Shader shader;
-    Status err = shader.generateShader("res/Shaders/Vertex.shader",
-        "res/Shaders/Fragment.shader");
-    if (err == STATUS_BAD)
-    {
-        glfwTerminate();
-        return STATUS_BAD;
-    }
-    shader.useShader();
-
-    Renderer renderer;
-    Model model("res/Models/cube/model");
-    model.setTexture("res/Models/Letters.png");
-    renderer.addShape(&model, true);
-
-    while (!glfwWindowShouldClose(window) && !glfwGetKey(window, GLFW_KEY_ESCAPE))
-    {
-        renderer.clear();
-
-        renderer.drawShapes(&shader);
-
-        renderer.getCamera()->followModel(model.getModelMatrix());
-
-        /* Swap front and back buffers */
-        glfwSwapBuffers(window);
-
-        /* Poll for and process events */
-        glfwPollEvents();
-    }
-
-    shader.deleteShader();
-    glfwTerminate();
-    return err;
+    return 0;
 }

@@ -4,6 +4,8 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 #include <fstream>
+#include <sstream>
+#include <iomanip>
 
 #include "3rd/glm/glm.hpp"
 #include "3rd/glm/gtc/matrix_transform.hpp"
@@ -22,6 +24,7 @@
 #include "Shape/Cube.h"
 #include "Model/Player.h"
 #include "Shape/Model.h"
+
 
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 {
@@ -81,6 +84,21 @@ Status App::setup()
     glEnable(GL_BLEND);
 
     return STATUS_OK;
+}
+
+void App::fpsCounter()
+{
+    double curTime = glfwGetTime();
+    double diff = curTime - m_prevTime;
+    if (diff >= 1)
+    {
+        std::stringstream stream;
+        stream << std::fixed << std::setprecision(2) << "DuelingGame FPS(" << (m_frameCount/diff) << ")";
+        glfwSetWindowTitle(m_window, stream.str().c_str());
+        m_prevTime = curTime;
+        m_frameCount = 0;
+    }
+    m_frameCount++;
 }
 
 Status App::run()
@@ -144,6 +162,9 @@ Status App::run()
 
     glfwSwapInterval(1);
 
+    double prev = glfwGetTime();
+    float frames = 0;
+
     ///* Loop until the user closes the window */
     while (!glfwWindowShouldClose(m_window) && !glfwGetKey(m_window, GLFW_KEY_ESCAPE))
     {
@@ -162,11 +183,13 @@ Status App::run()
 
         renderer.drawShapes(&shader);
 
-        /* Swap front and back buffers */
+        // Swap front and back buffers, manages fps
         glfwSwapBuffers(m_window);
 
-        /* Poll for and process events */
+        // Poll for and process events
         glfwPollEvents();
+
+        fpsCounter();
     }
 
     shader.deleteShader();
